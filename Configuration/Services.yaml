@@ -1,0 +1,12 @@
+services:
+  # general settings
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  Wacon\Feuserregistration\:
+    resource: '../Classes/*'
+
+  Wacon\Feuserregistration\Service\Validation\UserValidationService:  
+    public: true

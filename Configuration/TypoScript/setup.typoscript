@@ -1,0 +1,32 @@
+/**************************************************************
+ * PLUGINS - START
+ *************************************************************/
+plugin.tx_feuserregistration {
+    view {
+        layoutRootPaths {
+            0 = EXT:feuserregistration/Resources/Private/Layouts/
+        }
+
+        templateRootPaths {
+            0 = EXT:feuserregistration/Resources/Private/Templates/
+        }
+
+        partialRootPaths {
+            0 = EXT:feuserregistration/Resources/Private/Partials/
+        }
+    }
+}
+/**************************************************************
+ * PLUGINS - END
+ *************************************************************/
+/**************************************************************
+ * PAGE - START
+ *************************************************************/
+page {
+    includeCSS {
+        feuserregistration = EXT:feuserregistration/Resources/Public/Css/style.css
+    }
+}
+/**************************************************************
+ * PAGE - END
+ *************************************************************/ 

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="EXT:alm_displaycustomers/Resources/Private/Language/Modules/locallang.xlf" date="2023-05-01T10:59:51Z" product-name="alm_displaycustomers">
+        <header/>
+        <body>
+            <trans-unit id="register.form.submit" resname="register.form.submit">
+                <source>Register</source>
+            </trans-unit>
+            <trans-unit id="register.form.email" resname="register.form.email">
+                <source>Enter you email address...</source>
+            </trans-unit>
+
+            <trans-unit id="validation.error.notempty" resname="validation.error.notempty">
+                <source>This field is required.</source>
+            </trans-unit>
+            <trans-unit id="validation.error.email.exists" resname="validation.error.email.exists">
+                <source>This email is already registered.</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

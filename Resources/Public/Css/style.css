@@ -1,0 +1,10 @@
+/**************************************************
+ * ERRORS / MESSAGES - START
+ *************************************************/
+.feuserregistration .f3-form-error {
+    border: 1px solid var(--bs-danger);
+    background-color: rgba(var(--bs-danger-rgb), 0.25);
+}
+/**************************************************
+ * ERRORS / MESSAGES - END
+ *************************************************/ 

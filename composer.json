@@ -1,0 +1,19 @@
+{
+    "name": "wacon/feuserregistration",
+    "type": "typo3-cms-extension",
+    "description": "Extension to enable a frontend registration.",
+    "license": "GPL-2.0-or-later",
+    "require": {
+       "typo3/cms-core": "^12.4"
+    },
+    "autoload": {
+       "psr-4": {
+          "Wacon\\Feuserregistration\\": "Classes/"
+       }
+    },
+    "extra": {
+       "typo3/cms": {
+          "extension-key": "feuserregistration"
+       }
+    }
+ }

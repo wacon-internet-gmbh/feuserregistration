@@ -1,0 +1,18 @@
+<f:form.validationResults>
+    <f:if condition="{validationResults.flattenedErrors}">
+        <div class="alert alert-danger">
+            <h2><f:translate key="validation.error.title" extensionName="alm_displaycustomers" /></h2>
+            <ul class="errors mb-0">
+                <f:for each="{validationResults.flattenedErrors}" as="errors" key="propertyPath">
+                    <li><f:translate key="validation.error.field.{propertyPath}" extensionName="alm_displaycustomers" default="{propertyPath}" />
+                        <ul>
+                            <f:for each="{errors}" as="error">
+                                <li>{error}</li>
+                            </f:for>
+                        </ul>
+                    </li>
+                </f:for>
+            </ul>
+        </div>
+    </f:if>
+</f:form.validationResults>

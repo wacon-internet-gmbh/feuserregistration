@@ -1,0 +1,4 @@
+Version main-dev-1
+- [NEW] Kickstart Extension
+- [NEW] Registration Form with Validator
+- [WIP] DOI Process
