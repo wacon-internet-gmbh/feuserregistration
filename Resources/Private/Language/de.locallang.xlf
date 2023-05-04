@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="de" datatype="plaintext" original="EXT:alm_displaycustomers/Resources/Private/Language/Modules/locallang.xlf" date="2023-05-01T10:59:51Z" product-name="alm_displaycustomers">
+    <file source-language="en" target-language="de" datatype="plaintext" original="EXT:feuserregistration/Resources/Private/Language/de.locallang.xlf" date="2023-05-01T10:59:51Z" product-name="alm_displaycustomers">
         <header/>
         <body>
             <trans-unit id="register.form.submit" resname="register.form.submit">
@@ -8,6 +8,40 @@
             </trans-unit>
             <trans-unit id="register.form.email" resname="register.form.email">
                 <target>E-Mail Adresse eingeben...</target>
+            </trans-unit>
+            <trans-unit id="register.form.text.afterRegistration" resname="register.form.text.afterRegistration">
+                <target>Danke für deine Registrierung. Wir haben Ihnen eine E-Mail gesendet, um den Registrierungsprozess abzuschließen. Bitte überprüfen Sie Ihren Posteingang.</target>
+            </trans-unit>
+            <trans-unit id="register.form.text.afterDoi" resname="register.form.text.afterDoi">
+                <target>Ihre Registrierung ist abgeschlossen.</target>
+            </trans-unit>
+            <trans-unit id="register.form.text.afterDoi.error" resname="register.form.text.afterDoi.error">
+                <target>Der Bestätigungslink ist abgelaufen.</target>
+            </trans-unit>
+
+            <trans-unit id="register.mail.doi.subject" resname="register.mail.doi.subject">
+                <target>Schließen Sie Ihre Registrierung auf %s ab</target>
+            </trans-unit>
+            <trans-unit id="register.mail.doi.text.salutation" resname="register.mail.doi.text.salutation">
+                <target>Sehr geehrte Damen und Herren,</target>
+            </trans-unit>
+            <trans-unit id="register.mail.doi.text.1" resname="register.mail.doi.text.1">
+                <target>wir haben eine Registrierungsanfrage für diese E-Mail erhalten.</target>
+            </trans-unit>
+            <trans-unit id="register.mail.doi.text.2" resname="register.mail.doi.text.2">
+                <target>Wir bitten Sie, Ihre E-Mail-Adresse zu bestätigen, um die Registrierung abzuschließen.</target>
+            </trans-unit>
+            <trans-unit id="register.mail.doi.text.3" resname="register.mail.doi.text.3">
+                <target>Bitte klicken Sie auf den folgenden Link:</target>
+            </trans-unit>
+            <trans-unit id="register.mail.doi.link.helpText" resname="register.mail.doi.link.helpText">
+                <target>(Kopieren Sie diesen Link und fügen Sie ihn in Ihren Browser ein)</target>
+            </trans-unit>
+            <trans-unit id="register.mail.doi.text.greetings" resname="register.mail.doi.text.greetings">
+                <target>Mit freundlichen Grüßen,</target>
+            </trans-unit>
+            <trans-unit id="register.mail.doi.text.greetings.brand" resname="register.mail.doi.text.greetings.brand">
+                <target>WACON Internet GmbH</target>
             </trans-unit>
 
             <trans-unit id="validation.error.notempty" resname="validation.error.notempty">

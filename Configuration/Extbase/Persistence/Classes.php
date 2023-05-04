@@ -9,6 +9,12 @@ return [
             ],
             'doi_hash' => [
                 'fieldName' => 'doiHash'
+            ],
+            'disable' => [
+                'fieldName' => 'disable'
+            ],
+            'usergroup' => [
+                'fieldName' => 'usergroup'
             ]
         ]
     ]

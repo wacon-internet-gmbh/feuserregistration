@@ -12,19 +12,16 @@ declare(strict_types=1);
 
  namespace Wacon\Feuserregistration\Utility;
 
-
- use TYPO3\CMS\Core\Crypto\PasswordHashing\PasswordHashFactory;
  use TYPO3\CMS\Core\Utility\GeneralUtility;
 
- class PasswordUtility {
+ class SiteUtility {
     /**
-     * Return a random hashed password
+     * Return the current domain
      * @return string
      */
-    public static function randomHash() {
-        // Given plain text password
-        $password = md5(uniqid((string)time()));
-        $hashInstance = GeneralUtility::makeInstance(PasswordHashFactory::class)->getDefaultHashInstance('FE');
-        return $hashInstance->getHashedPassword($password);
+    public static function getDomain() {
+        $base = $GLOBALS['TYPO3_REQUEST']->getAttribute('site')->getBase();
+        
+        return $base->getAuthority();
     }
  }

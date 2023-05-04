@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" datatype="plaintext" original="EXT:alm_displaycustomers/Resources/Private/Language/Modules/locallang.xlf" date="2023-05-01T10:59:51Z" product-name="alm_displaycustomers">
+    <file source-language="en" datatype="plaintext" original="EXT:feuserregistration/Resources/Private/Language/locallang.xlf" date="2023-05-01T10:59:51Z" product-name="alm_displaycustomers">
         <header/>
         <body>
             <trans-unit id="register.form.submit" resname="register.form.submit">
@@ -8,6 +8,40 @@
             </trans-unit>
             <trans-unit id="register.form.email" resname="register.form.email">
                 <source>Enter you email address...</source>
+            </trans-unit>
+            <trans-unit id="register.form.text.afterRegistration" resname="register.form.text.afterRegistration">
+                <source>Thank you for your registration. We have sent you an email to complete the registration process. Please check your mailbox.</source>
+            </trans-unit>
+            <trans-unit id="register.form.text.afterDoi" resname="register.form.text.afterDoi">
+                <source>Your registration is completed.</source>
+            </trans-unit>
+            <trans-unit id="register.form.text.afterDoi.error" resname="register.form.text.afterDoi.error">
+                <source>The verification link has expired.</source>
+            </trans-unit>
+
+            <trans-unit id="register.mail.doi.subject" resname="register.mail.doi.subject">
+                <source>Complete your registration on %s</source>
+            </trans-unit>
+            <trans-unit id="register.mail.doi.text.salutation" resname="register.mail.doi.text.salutation">
+                <source>Dear Sir or Maddam,</source>
+            </trans-unit>
+            <trans-unit id="register.mail.doi.text.1" resname="register.mail.doi.text.1">
+                <source>we have received a registration request for this email.</source>
+            </trans-unit>
+            <trans-unit id="register.mail.doi.text.2" resname="register.mail.doi.text.2">
+                <source>We ask you to verfiy your email address to complete the registration.</source>
+            </trans-unit>
+            <trans-unit id="register.mail.doi.text.3" resname="register.mail.doi.text.3">
+                <source>Please, click the link below:</source>
+            </trans-unit>
+            <trans-unit id="register.mail.doi.link.helpText" resname="register.mail.doi.link.helpText">
+                <source>(Copy and paste this link into your browser)</source>
+            </trans-unit>
+            <trans-unit id="register.mail.doi.text.greetings" resname="register.mail.doi.text.greetings">
+                <source>Kind regards,</source>
+            </trans-unit>
+            <trans-unit id="register.mail.doi.text.greetings.brand" resname="register.mail.doi.text.greetings.brand">
+                <source>WACON Internet GmbH</source>
             </trans-unit>
 
             <trans-unit id="validation.error.notempty" resname="validation.error.notempty">

@@ -1,5 +1,12 @@
 <f:layout name="Default" />
 
 <f:section name="Main">
-    <f:debug inline="true">{_all}</f:debug>
+    <f:if condition="{error}">
+        <f:then>
+            <p class="alert alert-danger">{error}</p>
+        </f:then>
+        <f:else>
+            <p><f:translate key="register.form.text.afterRegistration" extensionName="feuserregistration" /></p>
+        </f:else>
+    </f:if>    
 </f:section>

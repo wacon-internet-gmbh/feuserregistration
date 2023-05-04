@@ -15,6 +15,12 @@ plugin.tx_feuserregistration {
             0 = EXT:feuserregistration/Resources/Private/Partials/
         }
     }
+
+    settings {
+        fegroups {
+            target = 
+        }
+    }
 }
 /**************************************************************
  * PLUGINS - END

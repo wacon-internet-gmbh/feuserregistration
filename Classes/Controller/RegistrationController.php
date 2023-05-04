@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the TYPO3 extension t3templates_base.
+ * This file is part of the TYPO3 extension feuserregistration.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
@@ -18,6 +18,7 @@ use Wacon\Feuserregistration\Domain\Repository\UserRepository;
 use TYPO3\CMS\Extbase\Annotation\Validate;
 use Wacon\Feuserregistration\Service\DoubleOptinService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Http\ForwardResponse;
 
 class RegistrationController extends BaseActionController {
     /**
@@ -56,15 +57,21 @@ class RegistrationController extends BaseActionController {
         // but we want to set something, because they are required in typo3
         $newUser->setUsername($newUser->getEmail());
         $newUser->setRandomPassword();
+        $newUser->setDisable(true);
 
         // send double opt in mail
-        $service = GeneralUtility::makeInstance(DoubleOptinService::class);
-        $doiHash = $service->sendMail($newUser);
-
-        // Create frontend user as hidden and without fe_group
-        // We save the doi hash in user db
-        $newUser->setDoiHash($doiHash);
-        $this->userRepository->add($newUser);
+        try {
+            $service = GeneralUtility::makeInstance(DoubleOptinService::class);
+            $doiHash = $service->sendMail($newUser);
+            $this->view->assign('mailResponse', $service->getResponse());
+        
+            // Create frontend user as hidden and without fe_group
+            // We save the doi hash in user db
+            $newUser->setDoiHash($doiHash);
+            $this->userRepository->add($newUser);
+        }catch(\Exception $e) {
+            $this->view->assign('error', $e->getMessage());
+        }
 
         $this->view->assign('newUser', $newUser);
         return $this->htmlResponse();
@@ -75,7 +82,33 @@ class RegistrationController extends BaseActionController {
      * @return ResponseInterface|string
      */
     public function doiAction() {
+        if (!$this->request->hasArgument('doihash')) {
+            return new ForwardResponse('nothing');
+        }
         
+        $querySettings = $this->userRepository->createQuery()->getQuerySettings();
+        $querySettings->setIgnoreEnableFields(true);
+        $querySettings->setEnableFieldsToBeIgnored(['disabled']);
+        $this->userRepository->setDefaultQuerySettings($querySettings);
+        $user = $this->userRepository->findByDoiHash($this->request->getArgument('doihash'))->current();
+        
+        if ($user) {
+            $user->setDisable(false);
+            $user->setDoiHash('');
+            $user->addFeGroup($this->settings['fegroups']['target']);
+            $this->userRepository->update($user);
+        }
+
+        $this->view->assign('user', $user);
+
+        return $this->htmlResponse();
+    }
+
+    /**
+     * Action to show nothing
+     * @return ResponseInterface|string
+     */
+    public function nothingAction() {
         return $this->htmlResponse();
     }
 }

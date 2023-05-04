@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the TYPO3 extension t3templates_base.
+ * This file is part of the TYPO3 extension feuserregistration.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
@@ -34,6 +34,16 @@ class User extends BaseEntity {
      * @var string
      */
     protected $password;
+
+    /**
+     * @var bool
+     */
+    protected $disable;
+
+    /**
+     * @var string
+     */
+    protected $usergroup;
 
     /**
      * Get the value of email
@@ -137,6 +147,69 @@ class User extends BaseEntity {
      */
     public function setRandomPassword() {
         $this->password = PasswordUtility::randomHash();
+    }
+
+    /**
+     * Get the value of disable
+     *
+     * @return  bool
+     */ 
+    public function getDisable()
+    {
+        return $this->disable;
+    }
+
+    /**
+     * Set the value of disable
+     *
+     * @param  bool  $disable
+     *
+     * @return  self
+     */ 
+    public function setDisable(bool $disable)
+    {
+        $this->disable = $disable;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of usergroup
+     *
+     * @return  string
+     */ 
+    public function getUsegroup()
+    {
+        return $this->usergroup;
+    }
+
+    /**
+     * Set the value of usergroup
+     *
+     * @param  string  $usergroup
+     *
+     * @return  self
+     */ 
+    public function setUsergroup(string $usergroup)
+    {
+        $this->usergroup = $usergroup;
+
+        return $this;
+    }
+
+    /**
+     * Add a usergroup
+     * @param string $newUsergroup
+     * @return self
+     */
+    public function addFeGroup(string $newUsergroup) {
+        if (!empty($this->usergroup)) {
+            $this->usergroup .= ',';
+        }
+
+        $this->usergroup = $newUsergroup;
+
+        return $this;
     }
 }
 

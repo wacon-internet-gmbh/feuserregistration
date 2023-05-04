@@ -17,6 +17,12 @@ defined('TYPO3') or die();
         'Register',
         'Display a simple registration form'
     );
+
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+        'Feuserregistration',
+        'Verify',
+        'Verify a registration.'
+    );
      /******************************************************************
      * FRONTEND PLUGINS - END
      *****************************************************************/

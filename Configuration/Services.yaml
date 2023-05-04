@@ -10,3 +10,6 @@ services:
 
   Wacon\Feuserregistration\Service\Validation\UserValidationService:  
     public: true
+
+  Wacon\Feuserregistration\Service\DoubleOptinService:  
+    public: true  

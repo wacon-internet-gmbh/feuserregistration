@@ -16,10 +16,21 @@ defined('TYPO3') or die();
         'Feuserregistration',
         'Register',
         [
-            \Wacon\Feuserregistration\Controller\RegistrationController::class => 'form, register,doi'
+            \Wacon\Feuserregistration\Controller\RegistrationController::class => 'form, register'
         ],
         [
-            \Wacon\Feuserregistration\Controller\RegistrationController::class => 'form, register,doi'
+            \Wacon\Feuserregistration\Controller\RegistrationController::class => 'form, register'
+        ]
+    );
+
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+        'Feuserregistration',
+        'Verify',
+        [
+            \Wacon\Feuserregistration\Controller\RegistrationController::class => 'doi'
+        ],
+        [
+            \Wacon\Feuserregistration\Controller\RegistrationController::class => 'doi'
         ]
     );
     /******************************************************************
