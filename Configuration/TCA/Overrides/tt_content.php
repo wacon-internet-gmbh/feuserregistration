@@ -14,8 +14,14 @@ defined('TYPO3') or die();
      *****************************************************************/
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
         'Feuserregistration',
+        'Subscribe',
+        'Display a email registration form'
+    );
+
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+        'Feuserregistration',
         'Register',
-        'Display a simple registration form'
+        'Display a registration form'
     );
 
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(

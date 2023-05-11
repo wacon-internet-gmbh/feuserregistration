@@ -17,8 +17,9 @@ use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 use TYPO3\CMS\Extbase\Error\Result;
 use TYPO3\CMS\Extbase\Error\Error;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use Wacon\Feuserregistration\Utility\Typo3\TypoScriptUtility;
 
-class UserValidationService extends AbstractValidationService {
+class RegisterValidationService extends RegisterEmailValidationService {
     /**
      * List of required fields of the BookingRequest Form
      * @var array
@@ -26,14 +27,10 @@ class UserValidationService extends AbstractValidationService {
     protected $requiredFields = ['email'];
 
     /**
-     * @var \TYPO3\CMS\Extbase\Validation\Validator\EmailAddressValidator $emailAddressValidator
+     * TypoScript Settings
+     * @var array
      */
-    protected $emailAddressValidator;
-
-    /**
-     * @var \Wacon\Feuserregistration\Domain\Repository\UserRepository $userRepository
-     */
-    protected $userRepository;
+    protected $settings = [];
 
     /**
      * Create a BookingRequestValidationService
@@ -46,6 +43,12 @@ class UserValidationService extends AbstractValidationService {
     ) {
         $this->emailAddressValidator = $emailAddressValidator;
         $this->userRepository = $userRepository;
+
+        $this->settings = TypoScriptUtility::getTypoScript('plugin.tx_feuserregistration.settings');
+        
+        if (!empty($this->settings['requiredFields'])) {
+            $this->requiredFields = GeneralUtility::trimExplode(',', $this->settings['requiredFields'], true);
+        }
     }
 
     /**
@@ -63,6 +66,12 @@ class UserValidationService extends AbstractValidationService {
 
         foreach($this->requiredFields as $fieldName) {
             $func = 'get' . ucfirst($fieldName);
+
+            // Make sure, the target func exists
+            if (!method_exists($value, $func)) {
+                continue;
+            }
+
             $val = $value->$func();
 
             if (empty($val)) {

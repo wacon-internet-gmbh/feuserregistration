@@ -1,0 +1,9 @@
+<f:layout name="Default" />
+
+<f:section name="Main">
+    <f:render partial="FormErrors" />
+    <f:form action="registerEmail" name="newUser" object="{newUser}" method="POST" enctype="multipart/form-data">
+        <f:render partial="Register/FormEmail" arguments="{_all}" />
+        <f:form.submit class="btn btn-primary" name="submit" value="{f:translate(key:'register.form.submit', extensionName: 'feuserregistration')}" />
+    </f:form>
+</f:section>

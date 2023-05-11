@@ -20,6 +20,16 @@ plugin.tx_feuserregistration {
         fegroups {
             target = 
         }
+
+        fields {
+            address = 1
+            phone = 1
+            fax = 1
+            website = 1
+            luxletter = 1
+        }
+
+        requiredFields = firstName,lastName,email
     }
 }
 /**************************************************************

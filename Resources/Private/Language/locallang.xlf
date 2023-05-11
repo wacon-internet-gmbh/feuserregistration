@@ -1,13 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" datatype="plaintext" original="EXT:feuserregistration/Resources/Private/Language/locallang.xlf" date="2023-05-01T10:59:51Z" product-name="alm_displaycustomers">
+    <file source-language="en" datatype="plaintext" original="EXT:feuserregistration/Resources/Private/Language/locallang.xlf" date="2023-05-01T10:59:51Z" product-name="feuserregistration">
         <header/>
         <body>
             <trans-unit id="register.form.submit" resname="register.form.submit">
                 <source>Register</source>
             </trans-unit>
             <trans-unit id="register.form.email" resname="register.form.email">
+                <source>Email</source>
+            </trans-unit>
+            <trans-unit id="register.form.email.placeholder" resname="register.form.email.placeholder">
                 <source>Enter you email address...</source>
+            </trans-unit>
+            <trans-unit id="register.form.firstName" resname="register.form.firstName">
+                <source>First name</source>
+            </trans-unit>
+            <trans-unit id="register.form.lastName" resname="register.form.lastName">
+                <source>Last name</source>
+            </trans-unit>
+            <trans-unit id="register.form.address" resname="register.form.address">
+                <source>Address</source>
+            </trans-unit>
+            <trans-unit id="register.form.zip" resname="register.form.zip">
+                <source>Postcode</source>
+            </trans-unit>
+            <trans-unit id="register.form.city" resname="register.form.city">
+                <source>City</source>
+            </trans-unit>
+            <trans-unit id="register.form.country" resname="register.form.country">
+                <source>Country</source>
+            </trans-unit>
+            <trans-unit id="register.form.phone" resname="register.form.phone">
+                <source>Phone</source>
+            </trans-unit>
+            <trans-unit id="register.form.fax" resname="register.form.fax">
+                <source>Fax</source>
+            </trans-unit>
+            <trans-unit id="register.form.website" resname="register.form.website">
+                <source>Website</source>
+            </trans-unit>
+            <trans-unit id="register.form.newsletterReceive" resname="register.form.newsletterReceive">
+                <source>Subscribe to our newsletter</source>
+            </trans-unit>
+            <trans-unit id="register.form.luxletterLanguage" resname="register.form.luxletterLanguage">
+                <source>Preferred language for newsletter</source>
             </trans-unit>
             <trans-unit id="register.form.text.afterRegistration" resname="register.form.text.afterRegistration">
                 <source>Thank you for your registration. We have sent you an email to complete the registration process. Please check your mailbox.</source>

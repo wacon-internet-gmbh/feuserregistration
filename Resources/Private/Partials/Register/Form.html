@@ -1,4 +1,60 @@
 <div class="mb-3">
-    <f:comment><label for="email" class="form-label"><f:translate key="register.form.email" extensionName="feuserregistration" /></label></f:comment>
-    <f:form.textfield property="email" class="form-control" placeholder="{f:translate(key:'register.form.email', extensionName: 'feuserregistration')}"/>    
+    <label for="firstName" class="form-label"><f:translate key="register.form.firstName" extensionName="feuserregistration" /></label>
+    <f:form.textfield property="firstName" class="form-control" />
 </div>
+<div class="mb-3">
+    <label for="lastName" class="form-label"><f:translate key="register.form.lastName" extensionName="feuserregistration" /></label>
+    <f:form.textfield property="lastName" class="form-control" />
+</div>
+<div class="mb-3">
+    <label for="email" class="form-label"><f:translate key="register.form.email" extensionName="feuserregistration" /></label>
+    <f:form.textfield property="email" class="form-control" />    
+</div>
+<f:if condition="{settings.fields.address}">
+    <div class="mb-3">
+        <label for="address" class="form-label"><f:translate key="register.form.address" extensionName="feuserregistration" /></label>
+        <f:form.textfield property="address" class="form-control" />
+    </div>
+    <div class="row mb-3">
+        <div class="col-sm-6">
+            <label for="zip" class="form-label"><f:translate key="register.form.zip" extensionName="feuserregistration" /></label>
+            <f:form.textfield property="zip" class="form-control" />
+        </div>
+        <div class="col-sm-6">
+            <label for="city" class="form-label"><f:translate key="register.form.city" extensionName="feuserregistration" /></label>
+            <f:form.textfield property="city" class="form-control" />
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="country" class="form-label"><f:translate key="register.form.country" extensionName="feuserregistration" /></label>
+        <f:form.textfield property="country" class="form-control" />
+    </div>
+</f:if>
+<f:if condition="{settings.fields.phone}">
+    <div class="mb-3">
+        <label for="phone" class="form-label"><f:translate key="register.form.phone" extensionName="feuserregistration" /></label>
+        <f:form.textfield property="phone" class="form-control" />
+    </div>
+</f:if>
+<f:if condition="{settings.fields.fax}">
+    <div class="mb-3">
+        <label for="fax" class="form-label"><f:translate key="register.form.fax" extensionName="feuserregistration" /></label>
+        <f:form.textfield property="fax" class="form-control" />
+    </div>
+</f:if>
+<f:if condition="{settings.fields.website}">
+    <div class="mb-3">
+        <label for="www" class="form-label"><f:translate key="register.form.website" extensionName="feuserregistration" /></label>
+        <f:form.textfield property="www" class="form-control" />
+    </div>
+</f:if>
+<f:if condition="{settings.fields.luxletter}">
+    <div class="form-check mb-3">
+        <f:form.checkbox property="newsletterReceive" class="form-check-input" value="1" />
+        <label for="newsletterReceive" class="form-check-label"><f:translate key="register.form.newsletterReceive" extensionName="feuserregistration" /></label>        
+    </div>
+    <div class="mb-3">
+        <label for="luxletterLanguage" class="form-label"><f:translate key="register.form.luxletterLanguage" extensionName="feuserregistration" /></label>
+        <f:form.select property="luxletterLanguage" class="form-select" options="{languages}" />
+    </div>
+</f:if>

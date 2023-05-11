@@ -15,8 +15,9 @@ namespace Wacon\Feuserregistration\Controller;
 use Psr\Http\Message\ResponseInterface;
 use Wacon\Feuserregistration\Domain\Model\User;
 use Wacon\Feuserregistration\Domain\Repository\UserRepository;
-use TYPO3\CMS\Extbase\Annotation\Validate;
 use Wacon\Feuserregistration\Service\DoubleOptinService;
+use Wacon\Feuserregistration\Utility\Typo3\SiteUtility;
+use TYPO3\CMS\Extbase\Annotation\Validate;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Http\ForwardResponse;
 
@@ -37,12 +38,24 @@ class RegistrationController extends BaseActionController {
     }
 
     /**
-     * Show a simple registration form
+     * Show a registration form
      * @return ResponseInterface|string
      */
     public function formAction() {
-        
+        $languages = SiteUtility::getAllLanguagesForSelect($this->request);
+        $this->view->assign('languages', $languages);
+        return $this->htmlResponse();
+    }
 
+    /**
+     * Show a registration form with just email field.
+     * Mainly used for NL subscriptions
+     * @return ResponseInterface|string
+     */
+    public function formEmailAction() {
+
+        $languages = SiteUtility::getAllLanguagesForSelect($this->request);
+        $this->view->assign('languages', $languages);
         return $this->htmlResponse();
     }
 
@@ -50,9 +63,40 @@ class RegistrationController extends BaseActionController {
      * Execute the Registration process
      * @param User $newUser
      * @return ResponseInterface|string
-     * @Validate(param="newUser", validator="Wacon\Feuserregistration\Domain\Validator\UserValidator")
+     * @Validate(param="newUser", validator="Wacon\Feuserregistration\Domain\Validator\RegisterValidator")
      */
     public function registerAction(User $newUser) {
+        // We don ask for username and password and we dont need it
+        // but we want to set something, because they are required in typo3
+        $newUser->setUsername($newUser->getEmail());
+        $newUser->setRandomPassword();
+        $newUser->setDisable(true);
+
+        // send double opt in mail
+        try {
+            $service = GeneralUtility::makeInstance(DoubleOptinService::class);
+            $doiHash = $service->sendMail($newUser);
+            $this->view->assign('mailResponse', $service->getResponse());
+        
+            // Create frontend user as hidden and without fe_group
+            // We save the doi hash in user db
+            $newUser->setDoiHash($doiHash);
+            $this->userRepository->add($newUser);
+        }catch(\Exception $e) {
+            $this->view->assign('error', $e->getMessage());
+        }
+
+        $this->view->assign('newUser', $newUser);
+        return $this->htmlResponse();
+    }
+
+    /**
+     * Execute the Registration process
+     * @param User $newUser
+     * @return ResponseInterface|string
+     * @Validate(param="newUser", validator="Wacon\Feuserregistration\Domain\Validator\RegisterEmailValidator")
+     */
+    public function registerEmailAction(User $newUser) {
         // We don ask for username and password and we dont need it
         // but we want to set something, because they are required in typo3
         $newUser->setUsername($newUser->getEmail());

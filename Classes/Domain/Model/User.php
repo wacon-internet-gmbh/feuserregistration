@@ -46,6 +46,61 @@ class User extends BaseEntity {
     protected $usergroup;
 
     /**
+     * @var string
+     */
+    protected $firstName;
+
+    /**
+     * @var string
+     */
+    protected $lastName;
+
+    /**
+     * @var string
+     */
+    protected $address;
+
+    /**
+     * @var string
+     */
+    protected $zip;
+
+    /**
+     * @var string
+     */
+    protected $city;
+
+    /**
+     * @var string
+     */
+    protected $country;
+
+    /**
+     * @var string
+     */
+    protected $phone;
+
+    /**
+     * @var string
+     */
+    protected $fax;
+
+    /**
+     * @var string
+     */
+    protected $www;
+
+    /**
+     * @var bool
+     */
+    protected $newsletterReceive;
+
+    /**
+     * @var string
+     */
+    protected $luxletterLanguage;
+
+    /**
      * Get the value of email
      *
      * @return  string
@@ -208,6 +263,270 @@ class User extends BaseEntity {
         }
 
         $this->usergroup = $newUsergroup;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of firstName
+     *
+     * @return  string
+     */ 
+    public function getFirstName()
+    {
+        return $this->firstName;
+    }
+
+    /**
+     * Set the value of firstName
+     *
+     * @param  string  $firstName
+     *
+     * @return  self
+     */ 
+    public function setFirstName(string $firstName)
+    {
+        $this->firstName = $firstName;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of lastName
+     *
+     * @return  string
+     */ 
+    public function getLastName()
+    {
+        return $this->lastName;
+    }
+
+    /**
+     * Set the value of lastName
+     *
+     * @param  string  $lastName
+     *
+     * @return  self
+     */ 
+    public function setLastName(string $lastName)
+    {
+        $this->lastName = $lastName;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of address
+     *
+     * @return  string
+     */ 
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * Set the value of address
+     *
+     * @param  string  $address
+     *
+     * @return  self
+     */ 
+    public function setAddress(string $address)
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of zip
+     *
+     * @return  string
+     */ 
+    public function getZip()
+    {
+        return $this->zip;
+    }
+
+    /**
+     * Set the value of zip
+     *
+     * @param  string  $zip
+     *
+     * @return  self
+     */ 
+    public function setZip(string $zip)
+    {
+        $this->zip = $zip;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of city
+     *
+     * @return  string
+     */ 
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * Set the value of city
+     *
+     * @param  string  $city
+     *
+     * @return  self
+     */ 
+    public function setCity(string $city)
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of country
+     *
+     * @return  string
+     */ 
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * Set the value of country
+     *
+     * @param  string  $country
+     *
+     * @return  self
+     */ 
+    public function setCountry(string $country)
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of phone
+     *
+     * @return  string
+     */ 
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+
+    /**
+     * Set the value of phone
+     *
+     * @param  string  $phone
+     *
+     * @return  self
+     */ 
+    public function setPhone(string $phone)
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of fax
+     *
+     * @return  string
+     */ 
+    public function getFax()
+    {
+        return $this->fax;
+    }
+
+    /**
+     * Set the value of fax
+     *
+     * @param  string  $fax
+     *
+     * @return  self
+     */ 
+    public function setFax(string $fax)
+    {
+        $this->fax = $fax;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of www
+     *
+     * @return  string
+     */ 
+    public function getWww()
+    {
+        return $this->www;
+    }
+
+    /**
+     * Set the value of www
+     *
+     * @param  string  $www
+     *
+     * @return  self
+     */ 
+    public function setWww(string $www)
+    {
+        $this->www = $www;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of newsletterReceive
+     *
+     * @return  bool
+     */ 
+    public function getNewsletterReceive()
+    {
+        return $this->newsletterReceive;
+    }
+
+    /**
+     * Set the value of newsletterReceive
+     *
+     * @param  bool  $newsletterReceive
+     *
+     * @return  self
+     */ 
+    public function setNewsletterReceive(bool $newsletterReceive)
+    {
+        $this->newsletterReceive = $newsletterReceive;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of luxletterLanguage
+     *
+     * @return  string
+     */ 
+    public function getLuxletterLanguage()
+    {
+        return $this->luxletterLanguage;
+    }
+
+    /**
+     * Set the value of luxletterLanguage
+     *
+     * @param  string  $luxletterLanguage
+     *
+     * @return  self
+     */ 
+    public function setLuxletterLanguage(string $luxletterLanguage)
+    {
+        $this->luxletterLanguage = $luxletterLanguage;
 
         return $this;
     }

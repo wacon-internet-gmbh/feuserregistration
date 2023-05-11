@@ -15,16 +15,16 @@ namespace Wacon\Feuserregistration\Domain\Validator;
 use TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-class UserValidator extends AbstractValidator
+class RegisterValidator extends AbstractValidator
 {
     /**
-     * @var \Wacon\Feuserregistration\Service\Validation\UserValidationService
+     * @var \Wacon\Feuserregistration\Service\Validation\RegisterValidationService
      */
-    protected $userValidationService;
+    protected $registerValidationService;
     
     protected function isValid($value): void
     {
-        $this->userValidationService = GeneralUtility::makeInstance(\Wacon\Feuserregistration\Service\Validation\UserValidationService::class);        
+        $this->registerValidationService = GeneralUtility::makeInstance(\Wacon\Feuserregistration\Service\Validation\RegisterValidationService::class);                
         $className = get_class($value);
 
         if ($className != \Wacon\Feuserregistration\Domain\Model\User::class) {
@@ -33,8 +33,8 @@ class UserValidator extends AbstractValidator
             $this->addError($errorString, time());
         }
 
-        if (!$this->userValidationService->isValid($value)) {
-            $propertiesWithError = $this->userValidationService->getPropertiesWithError();
+        if (!$this->registerValidationService->isValid($value)) {
+            $propertiesWithError = $this->registerValidationService->getPropertiesWithError();
             
             foreach($propertiesWithError as $propertyWithError) {
                 $this->addErrorForProperty($propertyWithError['name'], $propertyWithError['errorString'], $propertyWithError['errorCode']);

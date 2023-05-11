@@ -14,6 +14,17 @@ defined('TYPO3') or die();
      *****************************************************************/
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
         'Feuserregistration',
+        'Subscribe',
+        [
+            \Wacon\Feuserregistration\Controller\RegistrationController::class => 'formEmail, registerEmail'
+        ],
+        [
+            \Wacon\Feuserregistration\Controller\RegistrationController::class => 'formEmail, registerEmail'
+        ]
+    );
+
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+        'Feuserregistration',
         'Register',
         [
             \Wacon\Feuserregistration\Controller\RegistrationController::class => 'form, register'
