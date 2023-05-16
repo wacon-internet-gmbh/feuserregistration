@@ -20,6 +20,7 @@ use Wacon\Feuserregistration\Utility\Typo3\SiteUtility;
 use TYPO3\CMS\Extbase\Annotation\Validate;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Http\ForwardResponse;
+use Wacon\Feuserregistration\Utility\PasswordUtility;
 
 class RegistrationController extends BaseActionController {
     /**
@@ -75,6 +76,7 @@ class RegistrationController extends BaseActionController {
         // send double opt in mail
         try {
             $service = GeneralUtility::makeInstance(DoubleOptinService::class);
+            $service->setSettings($this->settings);
             $doiHash = $service->sendMail($newUser);
             $this->view->assign('mailResponse', $service->getResponse());
         
@@ -106,6 +108,7 @@ class RegistrationController extends BaseActionController {
         // send double opt in mail
         try {
             $service = GeneralUtility::makeInstance(DoubleOptinService::class);
+            $service->setSettings($this->settings);
             $doiHash = $service->sendMail($newUser);
             $this->view->assign('mailResponse', $service->getResponse());
         
@@ -140,7 +143,17 @@ class RegistrationController extends BaseActionController {
             $user->setDisable(false);
             $user->setDoiHash('');
             $user->addFeGroup($this->settings['fegroups']['target']);
+            $password = PasswordUtility::random();
+            $user->setPassword(PasswordUtility::hashPassword($password));
             $this->userRepository->update($user);
+
+            try {
+                $service = GeneralUtility::makeInstance(DoubleOptinService::class);
+                $service->setSettings($this->settings);
+                $service->sendCredentials($user, $password);
+            }catch(\Exception $e) {
+                $this->view->assign('error', $e->getMessage());
+            }
         }
 
         $this->view->assign('user', $user);

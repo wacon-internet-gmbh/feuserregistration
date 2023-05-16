@@ -29,6 +29,11 @@ plugin.tx_feuserregistration {
             luxletter = 1
         }
 
+        pages {
+            verificationPage =
+            loginPage =
+        }
+
         requiredFields = firstName,lastName,email
     }
 }

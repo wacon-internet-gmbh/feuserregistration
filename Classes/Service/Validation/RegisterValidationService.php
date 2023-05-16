@@ -18,6 +18,7 @@ use TYPO3\CMS\Extbase\Error\Result;
 use TYPO3\CMS\Extbase\Error\Error;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use Wacon\Feuserregistration\Utility\Typo3\TypoScriptUtility;
+use Wacon\Feuserregistration\Utility\Typo3\Extbase\PersistenceUtility;
 
 class RegisterValidationService extends RegisterEmailValidationService {
     /**
@@ -44,6 +45,8 @@ class RegisterValidationService extends RegisterEmailValidationService {
         $this->emailAddressValidator = $emailAddressValidator;
         $this->userRepository = $userRepository;
 
+        PersistenceUtility::removeAllRestrictions($this->userRepository, ['disabled', 'fe_group']);
+        
         $this->settings = TypoScriptUtility::getTypoScript('plugin.tx_feuserregistration.settings');
         
         if (!empty($this->settings['requiredFields'])) {

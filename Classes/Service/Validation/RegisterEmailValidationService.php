@@ -17,6 +17,7 @@ use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 use TYPO3\CMS\Extbase\Error\Result;
 use TYPO3\CMS\Extbase\Error\Error;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use Wacon\Feuserregistration\Utility\Typo3\Extbase\PersistenceUtility;
 
 class RegisterEmailValidationService extends AbstractValidationService {
     /**
@@ -46,6 +47,8 @@ class RegisterEmailValidationService extends AbstractValidationService {
     ) {
         $this->emailAddressValidator = $emailAddressValidator;
         $this->userRepository = $userRepository;
+
+        PersistenceUtility::removeAllRestrictions($this->userRepository, ['disabled', 'fe_group']);
     }
 
     /**

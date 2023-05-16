@@ -1,12 +1,19 @@
 <f:layout name="Default" />
 
 <f:section name="Main">
-    <f:if condition="{user}">
+    <f:if condition="{error}">
         <f:then>
-            <p class="alert alert-success"><f:translate key="register.form.text.afterDoi" extensionName="feuserregistration" /></p>
+            <p class="alert alert-danger">{error}</p>
         </f:then>
         <f:else>
-            <p class="alert alert-warning"><f:translate key="register.form.text.afterDoi.error" extensionName="feuserregistration" /></p>
+            <f:if condition="{user}">
+                <f:then>
+                    <p class="alert alert-success"><f:translate key="register.form.text.afterDoi" extensionName="feuserregistration" /></p>
+                </f:then>
+                <f:else>
+                    <p class="alert alert-warning"><f:translate key="register.form.text.afterDoi.error" extensionName="feuserregistration" /></p>
+                </f:else>
+            </f:if>    
         </f:else>
-    </f:if>    
+    </f:if>
 </f:section>

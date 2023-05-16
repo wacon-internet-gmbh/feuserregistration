@@ -19,7 +19,7 @@ declare(strict_types=1);
  use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
  use TYPO3\CMS\Core\Utility\MailUtility;
  use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
- use Wacon\Feuserregistration\Utility\SiteUtility;
+ use Wacon\Feuserregistration\Utility\Typo3\SiteUtility;
  use TYPO3\CMS\Extbase\Mvc\ExtbaseRequestParameters;
  use TYPO3\CMS\Extbase\Mvc\Request;
  use TYPO3\CMS\Extbase\Mvc\RequestInterface;
@@ -49,6 +49,12 @@ declare(strict_types=1);
      * @var mixed
      */
     protected $response;
+
+    /**
+     * TypoScript settings
+     * @var array
+     */
+    protected $settings;
 
     /**
      * Create a DoubleOptinService
@@ -90,11 +96,56 @@ declare(strict_types=1);
     }
 
     /**
+     * Send the Credentials to user
+     * @param User $user
+     * @param string $password
+     * @return string
+     */
+    public function sendCredentials(User $user, string $password) {
+        $this->user = $user;
+        
+        $from = MailUtility::getSystemFrom();
+        $fromAddress = null;
+
+        if (!array_key_exists(0, $from)) {
+            $fromAddress = new Address(current(array_keys($from)), current($from));
+        }else {
+            $fromAddress = new Address(current($from));
+        }
+
+        $this->response = $this->mail
+            ->from($fromAddress)
+            ->to(
+                new Address($this->user->getEmail())
+            )        
+            ->subject(LocalizationUtility::translate('register.mail.doi.credentials.subject', $this->extensionName, [SiteUtility::getDomain()]))
+            ->html($this->getBodyHtmlForCredentials($user, $password))
+            ->send();
+
+        return $this->hash;
+    }
+
+    /**
      * Return the last mail response
      * @return mixed
      */
     public function getResponse() {
         return $this->response;
+    }
+
+    /**
+     * Build the verification link
+     * @return string
+     */
+    protected function buildLoginUri() {
+        $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
+        $uriBuilder->setRequest($this->getExtbaseRequest());
+
+        return $uriBuilder
+            ->reset()
+            ->setTargetPageUid($this->getLoginPageUid())
+            ->setCreateAbsoluteUri(true)
+            ->build();
     }
 
     /**
@@ -107,7 +158,7 @@ declare(strict_types=1);
 
         return $uriBuilder
             ->reset()
-            ->setTargetPageUid($GLOBALS['TSFE']->id)
+            ->setTargetPageUid($this->getVerificationPageUid())
             ->setCreateAbsoluteUri(true)
             ->uriFor(
                 'doi',
@@ -119,6 +170,8 @@ declare(strict_types=1);
                 'verify'
             );
     }
+
+    
 
     /**
      * Return the body text
@@ -141,6 +194,26 @@ declare(strict_types=1);
     }
 
     /**
+     * Return the body text
+     * @TODO Use StandaloneView or FluidMail
+     * @param User $user
+     * @param string $password
+     * @return string
+     */
+    protected function getBodyHtmlForCredentials(User $user, $password) {
+        $uri = $this->buildLoginUri();
+
+        $html = '<p>' . LocalizationUtility::translate('register.mail.doi.text.salutation', $this->extensionName) . '</p>';
+        $html .= '<p>' . LocalizationUtility::translate('register.mail.doi.credentials.text.1', $this->extensionName) . '</p>';
+        $html .= '<p>' . LocalizationUtility::translate('register.mail.doi.credentials.text.2', $this->extensionName, [$user->getUsername(), $password]) . '</p>';
+        $html .= '<p><a href="' . $uri . '">' . $uri . '</a><br />';
+        $html .= '<p>' . LocalizationUtility::translate('register.mail.doi.text.greetings', $this->extensionName) . '</p>';
+        $html .= '<p>' . LocalizationUtility::translate('register.mail.doi.text.greetings.brand', $this->extensionName) . '</p>';
+
+        return $html;
+    }
+
+    /**
      * Return Extbase Request
      * @return RequestInterface
      */
@@ -153,5 +226,55 @@ declare(strict_types=1);
         return new Request(
             $request->withAttribute('extbase', new ExtbaseRequestParameters())
         );
+    }
+
+    /**
+     * Get typoScript settings
+     *
+     * @return  array
+     */ 
+    public function getSettings()
+    {
+        return $this->settings;
+    }
+
+    /**
+     * Set typoScript settings
+     *
+     * @param  array  $settings  TypoScript settings
+     *
+     * @return  self
+     */ 
+    public function setSettings(array $settings)
+    {
+        $this->settings = $settings;
+
+        return $this;
+    }
+
+    /**
+     * Return the page uid, where
+     * the verification plugin is located
+     * @return int
+     */
+    public function getLoginPageUid() {
+        if (!empty($this->settings) && array_key_exists('pages', $this->settings) && is_array($this->settings['pages']) && array_key_exists('loginPage', $this->settings['pages']) && !empty($this->settings['pages']['loginPage'])) {
+            return (int) $this->settings['pages']['loginPage'];
+        }
+
+        return $GLOBALS['TSFE']->id;
+    }
+
+    /**
+     * Return the page uid, where
+     * the verification plugin is located
+     * @return int
+     */
+    public function getVerificationPageUid() {
+        if (!empty($this->settings) && array_key_exists('pages', $this->settings) && is_array($this->settings['pages']) && array_key_exists('verificationPage', $this->settings['pages']) && !empty($this->settings['pages']['verificationPage'])) {
+            return (int) $this->settings['pages']['verificationPage'];
+        }
+
+        return $GLOBALS['TSFE']->id;
     }
  }

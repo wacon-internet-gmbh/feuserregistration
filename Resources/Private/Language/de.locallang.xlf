@@ -49,7 +49,7 @@
                 <target>Danke für deine Registrierung. Wir haben Ihnen eine E-Mail gesendet, um den Registrierungsprozess abzuschließen. Bitte überprüfen Sie Ihren Posteingang.</target>
             </trans-unit>
             <trans-unit id="register.form.text.afterDoi" resname="register.form.text.afterDoi">
-                <target>Ihre Registrierung ist abgeschlossen.</target>
+                <target>Ihre Registrierung ist abgeschlossen. Wir haben Ihre Zugangsdaten an die von Ihnen hinterlegte E-Mail Adresse geschickt.</target>
             </trans-unit>
             <trans-unit id="register.form.text.afterDoi.error" resname="register.form.text.afterDoi.error">
                 <target>Der Bestätigungslink ist abgelaufen.</target>
@@ -78,6 +78,16 @@
             </trans-unit>
             <trans-unit id="register.mail.doi.text.greetings.brand" resname="register.mail.doi.text.greetings.brand">
                 <target>WACON Internet GmbH</target>
+            </trans-unit>
+
+            <trans-unit id="register.mail.doi.credentials.subject" resname="register.mail.doi.credentials.subject">
+                <target>Ihre Zugangsdaten für %s</target>
+            </trans-unit>
+            <trans-unit id="register.mail.doi.credentials.text.1" resname="register.mail.doi.credentials.text.1">
+                <target>die Registrierung ist abgeschlossen. Sie können sich jetzt mit den folgenden Zugangsdaten anmelden:</target>
+            </trans-unit>
+            <trans-unit id="register.mail.doi.credentials.text.2" resname="register.mail.doi.credentials.text.2">
+                <target><![CDATA[<strong>Benutzername:</strong> %s<br /><strong>Passwort:</strong> %s]]></target>
             </trans-unit>
 
             <trans-unit id="validation.error.notempty" resname="validation.error.notempty">
