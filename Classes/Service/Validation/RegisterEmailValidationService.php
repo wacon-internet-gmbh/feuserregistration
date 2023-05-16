@@ -113,7 +113,7 @@ class RegisterEmailValidationService extends AbstractValidationService {
 
             // We only have an error, if user
             // does have the fegroup already and is enabled
-            if (in_array($this->settings['fegroups']['target']) && !$user->getDisable()) {
+            if (in_array($this->settings['fegroups']['target'], $usergroups)) {
                 $this->propertiesWithError[] = [
                     'name' => 'email',
                     'errorString' => LocalizationUtility::translate('validation.error.email.exists', $this->extensionName),

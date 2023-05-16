@@ -234,7 +234,7 @@ class User extends BaseEntity {
      *
      * @return  string
      */ 
-    public function getUsegroup()
+    public function getUsergroup()
     {
         return $this->usergroup;
     }

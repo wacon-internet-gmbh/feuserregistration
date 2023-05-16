@@ -100,11 +100,19 @@ class RegisterValidationService extends RegisterEmailValidationService {
         $exists = $this->userRepository->findByEmail($value->getEmail())->current();
 
         if ($exists) {
-            $this->propertiesWithError[] = [
-                'name' => 'email',
-                'errorString' => LocalizationUtility::translate('validation.error.email.exists', $this->extensionName),
-                'errorCode' => time()
-            ];
+            // If user exists, then check
+            // if standard fe group is set
+            $usergroups = GeneralUtility::intExplode(',', $exists->getUsergroup());
+
+            // We only have an error, if user
+            // does have the fegroup already and is enabled
+            if (in_array($this->settings['fegroups']['target'], $usergroups)) {
+                $this->propertiesWithError[] = [
+                    'name' => 'email',
+                    'errorString' => LocalizationUtility::translate('validation.error.email.exists', $this->extensionName),
+                    'errorCode' => time()
+                ];
+            }
         }
 
         if (count($errors) > 0) {

@@ -21,6 +21,7 @@ use TYPO3\CMS\Extbase\Annotation\Validate;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Http\ForwardResponse;
 use Wacon\Feuserregistration\Utility\PasswordUtility;
+use Wacon\Feuserregistration\Utility\Typo3\Extbase\PersistenceUtility;
 
 class RegistrationController extends BaseActionController {
     /**
@@ -67,23 +68,42 @@ class RegistrationController extends BaseActionController {
      * @Validate(param="newUser", validator="Wacon\Feuserregistration\Domain\Validator\RegisterValidator")
      */
     public function registerAction(User $newUser) {
+        $user = $newUser;
+
+        // We need to check, if user already exists
+        // that is possible, if user has not the 
+        // given feGroup and/or he is disabled
+        PersistenceUtility::removeAllRestrictions($this->userRepository, ['disabled', 'fe_group']);
+
+        $exists = $this->userRepository->findByEmail($newUser->getEmail())->current();
+        
+        // If user exists, then use it
+        if ($exists) {
+            $user = $exists;
+        }
+
         // We don ask for username and password and we dont need it
         // but we want to set something, because they are required in typo3
-        $newUser->setUsername($newUser->getEmail());
-        $newUser->setRandomPassword();
-        $newUser->setDisable(true);
+        $user->setUsername($user->getEmail());
+        $user->setRandomPassword();
+        $user->setDisable(true);
 
         // send double opt in mail
         try {
             $service = GeneralUtility::makeInstance(DoubleOptinService::class);
             $service->setSettings($this->settings);
-            $doiHash = $service->sendMail($newUser);
+            $doiHash = $service->sendMail($user);
             $this->view->assign('mailResponse', $service->getResponse());
         
             // Create frontend user as hidden and without fe_group
             // We save the doi hash in user db
-            $newUser->setDoiHash($doiHash);
-            $this->userRepository->add($newUser);
+            $user->setDoiHash($doiHash);
+            
+            if ($user->_isNew()) {
+                $this->userRepository->add($user);
+            }else {
+                $this->userRepository->update($user);
+            }
         }catch(\Exception $e) {
             $this->view->assign('error', $e->getMessage());
         }
@@ -99,33 +119,47 @@ class RegistrationController extends BaseActionController {
      * @Validate(param="newUser", validator="Wacon\Feuserregistration\Domain\Validator\RegisterEmailValidator")
      */
     public function registerEmailAction(User $newUser) {
+        $user = $newUser;
+
         // We need to check, if user already exists
         // that is possible, if user has not the 
         // given feGroup and/or he is disabled
-        // @TODO
+        PersistenceUtility::removeAllRestrictions($this->userRepository, ['disabled', 'fe_group']);
+
+        $exists = $this->userRepository->findByEmail($newUser->getEmail())->current();
+        
+        // If user exists, then use it
+        if ($exists) {
+            $user = $exists;
+        }
 
         // We don ask for username and password and we dont need it
         // but we want to set something, because they are required in typo3
-        $newUser->setUsername($newUser->getEmail());
-        $newUser->setRandomPassword();
-        $newUser->setDisable(true);
+        $user->setUsername($newUser->getEmail());
+        $user->setRandomPassword();
+        $user->setDisable(true);
 
         // send double opt in mail
         try {
             $service = GeneralUtility::makeInstance(DoubleOptinService::class);
             $service->setSettings($this->settings);
-            $doiHash = $service->sendMail($newUser);
+            $doiHash = $service->sendMail($user);
             $this->view->assign('mailResponse', $service->getResponse());
         
             // Create frontend user as hidden and without fe_group
             // We save the doi hash in user db
-            $newUser->setDoiHash($doiHash);
-            $this->userRepository->add($newUser);
+            $user->setDoiHash($doiHash);
+
+            if ($user->_isNew()) {
+                $this->userRepository->add($user);
+            }else {
+                $this->userRepository->update($user);
+            }
         }catch(\Exception $e) {
             $this->view->assign('error', $e->getMessage());
         }
 
-        $this->view->assign('newUser', $newUser);
+        $this->view->assign('newUser', $user);
         return $this->htmlResponse();
     }
 
