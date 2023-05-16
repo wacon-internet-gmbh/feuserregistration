@@ -99,6 +99,11 @@ class RegistrationController extends BaseActionController {
      * @Validate(param="newUser", validator="Wacon\Feuserregistration\Domain\Validator\RegisterEmailValidator")
      */
     public function registerEmailAction(User $newUser) {
+        // We need to check, if user already exists
+        // that is possible, if user has not the 
+        // given feGroup and/or he is disabled
+        // @TODO
+
         // We don ask for username and password and we dont need it
         // but we want to set something, because they are required in typo3
         $newUser->setUsername($newUser->getEmail());

@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace Wacon\Feuserregistration\Domain\Model;
 
 use Wacon\Feuserregistration\Utility\PasswordUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class User extends BaseEntity {
     /**
@@ -258,11 +259,12 @@ class User extends BaseEntity {
      * @return self
      */
     public function addFeGroup(string $newUsergroup) {
-        if (!empty($this->usergroup)) {
-            $this->usergroup .= ',';
-        }
+        $usergroup = GeneralUtility::intExplode(',', $this->usergroup);
 
-        $this->usergroup = $newUsergroup;
+        if (!in_array($newUsergroup, $usergroup)) {
+            $usergroup[] = $newUsergroup;
+            $this->usergroup = implode(',', $usergroup);
+        }
 
         return $this;
     }

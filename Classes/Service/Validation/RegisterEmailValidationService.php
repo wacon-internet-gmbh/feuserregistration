@@ -18,6 +18,7 @@ use TYPO3\CMS\Extbase\Error\Result;
 use TYPO3\CMS\Extbase\Error\Error;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use Wacon\Feuserregistration\Utility\Typo3\Extbase\PersistenceUtility;
+use Wacon\Feuserregistration\Utility\Typo3\TypoScriptUtility;
 
 class RegisterEmailValidationService extends AbstractValidationService {
     /**
@@ -25,6 +26,12 @@ class RegisterEmailValidationService extends AbstractValidationService {
      * @var array
      */
     protected $requiredFields = ['email'];
+
+    /**
+     * TypoScript Settings
+     * @var array
+     */
+    protected $settings = [];
 
     /**
      * @var \TYPO3\CMS\Extbase\Validation\Validator\EmailAddressValidator $emailAddressValidator
@@ -35,6 +42,7 @@ class RegisterEmailValidationService extends AbstractValidationService {
      * @var \Wacon\Feuserregistration\Domain\Repository\UserRepository $userRepository
      */
     protected $userRepository;
+    
 
     /**
      * Create a BookingRequestValidationService
@@ -49,6 +57,8 @@ class RegisterEmailValidationService extends AbstractValidationService {
         $this->userRepository = $userRepository;
 
         PersistenceUtility::removeAllRestrictions($this->userRepository, ['disabled', 'fe_group']);
+
+        $this->settings = TypoScriptUtility::getTypoScript('plugin.tx_feuserregistration.settings');
     }
 
     /**
@@ -97,11 +107,19 @@ class RegisterEmailValidationService extends AbstractValidationService {
         $exists = $this->userRepository->findByEmail($value->getEmail())->current();
 
         if ($exists) {
-            $this->propertiesWithError[] = [
-                'name' => 'email',
-                'errorString' => LocalizationUtility::translate('validation.error.email.exists', $this->extensionName),
-                'errorCode' => time()
-            ];
+            // If user exists, then check
+            // if standard fe group is set
+            $usergroups = GeneralUtility::intExplode(',', $exists->getUsergroup());
+
+            // We only have an error, if user
+            // does have the fegroup already and is enabled
+            if (in_array($this->settings['fegroups']['target']) && !$user->getDisable()) {
+                $this->propertiesWithError[] = [
+                    'name' => 'email',
+                    'errorString' => LocalizationUtility::translate('validation.error.email.exists', $this->extensionName),
+                    'errorCode' => time()
+                ];
+            }
         }
 
         if (count($errors) > 0) {

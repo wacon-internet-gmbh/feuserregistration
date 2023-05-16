@@ -28,12 +28,6 @@ class RegisterValidationService extends RegisterEmailValidationService {
     protected $requiredFields = ['email'];
 
     /**
-     * TypoScript Settings
-     * @var array
-     */
-    protected $settings = [];
-
-    /**
      * Create a BookingRequestValidationService
      * @param \TYPO3\CMS\Extbase\Validation\Validator\EmailAddressValidator $emailAddressValidator
      * @return void
