@@ -1,3 +1,6 @@
+# Version main-dev-3
+- [BUGFIX] RegisterValidationService.php: Check for usergroup, before using intExplode
+
 # Version main-dev-2
 - [BUGFIX] locallang.xlf: Entered correct product-name
 - [CHANGE] Rename Register Plugin to Subscribe
