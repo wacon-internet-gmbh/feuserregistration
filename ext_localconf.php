@@ -44,6 +44,19 @@ defined('TYPO3') or die();
             \Wacon\Feuserregistration\Controller\RegistrationController::class => 'doi'
         ]
     );
+
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+        'Feuserregistration',
+        'CaptchaMath',
+        [                
+            \Wacon\Feuserregistration\Controller\CaptchaController::class => 'mathImage'
+        ],
+        // non-cacheable actions
+        [
+            \Wacon\Feuserregistration\Controller\CaptchaController::class => 'mathImage'
+        ]
+    );
+
     /******************************************************************
      * FRONTEND PLUGINS - END
      *****************************************************************/

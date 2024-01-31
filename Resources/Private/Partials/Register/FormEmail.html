@@ -2,6 +2,9 @@
     <f:comment><label for="email" class="form-label"><f:translate key="register.form.email" extensionName="feuserregistration" /></label></f:comment>
     <f:form.textfield property="email" class="form-control" placeholder="{f:translate(key:'register.form.email.placeholder', extensionName: 'feuserregistration')}"/>    
 </div>
+<f:if condition="{settings.fields.captcha}">
+    <f:render partial="Captcha/Math" />
+</f:if>
 <f:if condition="{settings.fields.luxletter}">
     <div class="mb-3">
         <label for="luxletterLanguage" class="form-label"><f:translate key="register.form.luxletterLanguage" extensionName="feuserregistration" /></label>

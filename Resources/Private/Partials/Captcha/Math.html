@@ -1,0 +1,5 @@
+<div class="mb-3">
+    <label for="captcha" class="form-label d-block"><f:translate key="register.form.captcha_math" extensionName="feuserregistration" /></label>
+    <img class="img-captcha mb-3" src="{f:uri.page(pageType: settings.pagetypes.captcha, noCache: '1')}" />
+    <f:form.textfield property="captcha" class="form-control" value="" required="required" />
+</div>

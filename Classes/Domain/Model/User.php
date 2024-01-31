@@ -101,6 +101,8 @@ class User extends BaseEntity {
      */
     protected $luxletterLanguage;
 
+    protected string $captcha = '';
+
     /**
      * Get the value of email
      *
@@ -529,6 +531,26 @@ class User extends BaseEntity {
     public function setLuxletterLanguage(string $luxletterLanguage)
     {
         $this->luxletterLanguage = $luxletterLanguage;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of captcha
+     */ 
+    public function getCaptcha()
+    {
+        return $this->captcha;
+    }
+
+    /**
+     * Set the value of captcha
+     *
+     * @return  self
+     */ 
+    public function setCaptcha($captcha)
+    {
+        $this->captcha = $captcha;
 
         return $this;
     }

@@ -14,11 +14,10 @@ declare(strict_types=1);
  namespace Wacon\Feuserregistration\Service\Validation;
 
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
-use TYPO3\CMS\Extbase\Error\Result;
-use TYPO3\CMS\Extbase\Error\Error;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use Wacon\Feuserregistration\Utility\Typo3\Extbase\PersistenceUtility;
 use Wacon\Feuserregistration\Utility\Typo3\TypoScriptUtility;
+use Wacon\Feuserregistration\Controller\CaptchaController;
 
 class RegisterEmailValidationService extends AbstractValidationService {
     /**
@@ -107,16 +106,33 @@ class RegisterEmailValidationService extends AbstractValidationService {
         $exists = $this->userRepository->findByEmail($value->getEmail())->current();
 
         if ($exists) {
-            // If user exists, then check
-            // if standard fe group is set
-            $usergroups = GeneralUtility::intExplode(',', $exists->getUsergroup());
+            $groupFromUser = $exists->getUsergroup();
 
-            // We only have an error, if user
-            // does have the fegroup already and is enabled
-            if (in_array($this->settings['fegroups']['target'], $usergroups)) {
+            if ($groupFromUser) {
+                // If user exists, then check
+                // if standard fe group is set
+                $usergroups = GeneralUtility::intExplode(',', $exists->getUsergroup());
+
+                // We only have an error, if user
+                // does have the fegroup already and is enabled
+                if (in_array($this->settings['fegroups']['target'], $usergroups)) {
+                    $this->propertiesWithError[] = [
+                        'name' => 'email',
+                        'errorString' => LocalizationUtility::translate('validation.error.email.exists', $this->extensionName),
+                        'errorCode' => time()
+                    ];
+                }
+            }
+        }
+
+        if ($this->settings['fields']['captcha']) {
+            $frontendUser = $GLOBALS['TYPO3_REQUEST']->getAttribute('frontend.user');        
+            $sessionCaptcha = $frontendUser->getKey('ses', CaptchaController::class . '->mathImage');
+
+            if ($value->getCaptcha() == '' || $value->getCaptcha() != $sessionCaptcha) {
                 $this->propertiesWithError[] = [
-                    'name' => 'email',
-                    'errorString' => LocalizationUtility::translate('validation.error.email.exists', $this->extensionName),
+                    'name' => 'captcha',
+                    'errorString' => LocalizationUtility::translate('validation.error.captcha', $this->extensionName),
                     'errorCode' => time()
                 ];
             }

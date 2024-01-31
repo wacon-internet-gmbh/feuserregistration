@@ -145,7 +145,7 @@ class RegistrationController extends BaseActionController {
             $service->setSettings($this->settings);
             $doiHash = $service->sendMail($user);
             $this->view->assign('mailResponse', $service->getResponse());
-        
+            
             // Create frontend user as hidden and without fe_group
             // We save the doi hash in user db
             $user->setDoiHash($doiHash);

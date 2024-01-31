@@ -1,3 +1,7 @@
+# Version main-dev-4
+- [FEATURE] If Login Page is not set, then we send different text after DOI
+- [FEATURE] Add MathCaptcha to RegisterEmail
+
 # Version main-dev-3
 - [BUGFIX] RegisterValidationService.php: Check for usergroup, before using intExplode
 

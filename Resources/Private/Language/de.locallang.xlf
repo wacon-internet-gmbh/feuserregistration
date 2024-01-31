@@ -45,6 +45,10 @@
             <trans-unit id="register.form.luxletterLanguage" resname="register.form.luxletterLanguage">
                 <target>Bevorzugte Sprache für den Newsletter</target>
             </trans-unit>
+            <trans-unit id="register.form.captcha_math" resname="register.form.captcha_math">
+                <target>Bitte lösen Sie die untere Aufgabe</target>
+            </trans-unit>
+
             <trans-unit id="register.form.text.afterRegistration" resname="register.form.text.afterRegistration">
                 <target>Danke für deine Registrierung. Wir haben Ihnen eine E-Mail gesendet, um den Registrierungsprozess abzuschließen. Bitte überprüfen Sie Ihren Posteingang.</target>
             </trans-unit>
@@ -89,12 +93,18 @@
             <trans-unit id="register.mail.doi.credentials.text.2" resname="register.mail.doi.credentials.text.2">
                 <target><![CDATA[<strong>Benutzername:</strong> %s<br /><strong>Passwort:</strong> %s]]></target>
             </trans-unit>
+            <trans-unit id="register.mail.doi.non_credentials.text.1" resname="register.mail.doi.non_credentials.text.1">
+                <target>die Registrierung ist abgeschlossen. Sie erhalten nun unseren Newsletter.</target>
+            </trans-unit>
 
             <trans-unit id="validation.error.notempty" resname="validation.error.notempty">
                 <target>Das ist ein Pflichtfeld</target>
             </trans-unit>
             <trans-unit id="validation.error.email.exists" resname="validation.error.email.exists">
                 <target>Diese E-Mail ist bereits registriert.</target>
+            </trans-unit>
+            <trans-unit id="validation.error.captcha" resname="validation.error.captcha">
+                <target>Die Sicherheitsabfrage wurde nicht korrekt ausgefüllt.</target>
             </trans-unit>
         </body>
     </file>

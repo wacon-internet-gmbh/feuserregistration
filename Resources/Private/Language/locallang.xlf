@@ -45,6 +45,13 @@
             <trans-unit id="register.form.luxletterLanguage" resname="register.form.luxletterLanguage">
                 <source>Preferred language for newsletter</source>
             </trans-unit>
+            <trans-unit id="register.form.captcha_math" resname="register.form.captcha_math">
+                <source>Please solve the math function below</source>
+            </trans-unit>
+            <trans-unit id="register.form.captcha" resname="register.form.captcha">
+                <source>Captcha</source>
+            </trans-unit>
+
             <trans-unit id="register.form.text.afterRegistration" resname="register.form.text.afterRegistration">
                 <source>Thank you for your registration. We have sent you an email to complete the registration process. Please check your mailbox.</source>
             </trans-unit>
@@ -89,12 +96,18 @@
             <trans-unit id="register.mail.doi.credentials.text.2" resname="register.mail.doi.credentials.text.2">
                 <source><![CDATA[<strong>Username:</strong> %s<br /><strong>Password:</strong> %s]]></source>
             </trans-unit>
+            <trans-unit id="register.mail.doi.non_credentials.text.1" resname="register.mail.doi.non_credentials.text.1">
+                <source>the registration is completed. You will now receive our newsletter.</source>
+            </trans-unit>
 
             <trans-unit id="validation.error.notempty" resname="validation.error.notempty">
                 <source>This field is required.</source>
             </trans-unit>
             <trans-unit id="validation.error.email.exists" resname="validation.error.email.exists">
                 <source>This email is already registered.</source>
+            </trans-unit>
+            <trans-unit id="validation.error.captcha" resname="validation.error.captcha">
+                <source>The security question is wrong. Please try it again.</source>
             </trans-unit>
         </body>
     </file>

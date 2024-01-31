@@ -27,11 +27,16 @@ plugin.tx_feuserregistration {
             fax = 1
             website = 1
             luxletter = 1
+            captcha = 1
         }
 
         pages {
             verificationPage =
             loginPage =
+        }
+
+        pagetypes {
+            captcha = 1
         }
 
         requiredFields = firstName,lastName,email
@@ -46,6 +51,32 @@ plugin.tx_feuserregistration {
 page {
     includeCSS {
         feuserregistration = EXT:feuserregistration/Resources/Public/Css/style.css
+    }
+}
+
+pageCaptcha = PAGE
+pageCaptcha {
+    typeNum = 1
+
+    config {
+        no_cache = 1
+        disableAllHeaderCode = 1
+        additionalHeaders {
+            10.header = Content-type: image/png
+        }
+    }
+
+    10 = USER
+    10 {
+        userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+        extensionName = Feuserregistration
+        pluginName = CaptchaMath
+        vendorName = Wacon
+        controller = Captcha
+        action = mathImage
+        view < plugin.tx_feuserregistration.view
+        persistence < plugin.tx_feuserregistration.persistence
+        settings < plugin.tx_feuserregistration.settings
     }
 }
 /**************************************************************

@@ -113,13 +113,21 @@ declare(strict_types=1);
             $fromAddress = new Address(current($from));
         }
 
+        $bodytext = '';
+        
+        if ($this->hasLoginPage()) {
+            $bodytext = $this->getBodyHtmlForCredentials($user, $password);
+        }else {
+            $bodytext = $this->getBodyHtmlForNonCredentials($user);
+        }
+
         $this->response = $this->mail
             ->from($fromAddress)
             ->to(
                 new Address($this->user->getEmail())
             )        
             ->subject(LocalizationUtility::translate('register.mail.doi.credentials.subject', $this->extensionName, [SiteUtility::getDomain()]))
-            ->html($this->getBodyHtmlForCredentials($user, $password))
+            ->html($bodytext)
             ->send();
 
         return $this->hash;
@@ -214,6 +222,21 @@ declare(strict_types=1);
     }
 
     /**
+     * Return the body text, if no login page is set
+     * @TODO Use StandaloneView or FluidMail
+     * @param User $user
+     * @return string
+     */
+    protected function getBodyHtmlForNonCredentials(User $user) {
+        $html = '<p>' . LocalizationUtility::translate('register.mail.doi.text.salutation', $this->extensionName) . '</p>';
+        $html .= '<p>' . LocalizationUtility::translate('register.mail.doi.none_credentials.text.1', $this->extensionName) . '</p>';
+        $html .= '<p>' . LocalizationUtility::translate('register.mail.doi.text.greetings', $this->extensionName) . '</p>';
+        $html .= '<p>' . LocalizationUtility::translate('register.mail.doi.text.greetings.brand', $this->extensionName) . '</p>';
+
+        return $html;
+    }
+
+    /**
      * Return Extbase Request
      * @return RequestInterface
      */
@@ -262,7 +285,7 @@ declare(strict_types=1);
             return (int) $this->settings['pages']['loginPage'];
         }
 
-        return $GLOBALS['TSFE']->id;
+        return 0;
     }
 
     /**
@@ -276,5 +299,13 @@ declare(strict_types=1);
         }
 
         return $GLOBALS['TSFE']->id;
+    }
+
+    /**
+     * Return TRUE if login page is set in TypoScript
+     * @return bool
+     */
+    public function hasLoginPage(): bool {
+        return (int)$this->getLoginPageUid() > 0 ? true : false;
     }
  }
