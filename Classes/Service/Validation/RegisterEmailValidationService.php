@@ -138,6 +138,18 @@ class RegisterEmailValidationService extends AbstractValidationService {
             }
         }
 
+        if ($this->settings['fields']['privacy']) {
+            $privacy = $value->getPrivacy();
+
+            if (empty($privacy)) {
+                $this->propertiesWithError[] = [
+                    'name' => 'privacy',
+                    'errorString' => LocalizationUtility::translate('validation.error.privacy', $this->extensionName),
+                    'errorCode' => time()
+                ];
+            }
+        }
+
         if (count($errors) > 0) {
             foreach($errors as $fieldName => $errors) {
                 foreach($errors as $error) {

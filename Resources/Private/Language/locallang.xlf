@@ -51,6 +51,12 @@
             <trans-unit id="register.form.captcha" resname="register.form.captcha">
                 <source>Captcha</source>
             </trans-unit>
+            <trans-unit id="register.form.privacy" resname="register.form.privacy">
+                <source>Data protection</source>
+            </trans-unit>
+            <trans-unit id="register.form.privacy_long" resname="register.form.privacy_long">
+                <source><![CDATA[I agree that the operator and publisher may inform me about selected topics. My data will only be used for this purpose. In particular, no data will be passed on to unauthorized third parties. I am aware that I can revoke my consent at any time with effect for the future. The <a href="%s" target="_blank">data protection</a> declaration applies, which also contains further information about options for correcting, deleting and blocking my data.]]></source>
+            </trans-unit>
 
             <trans-unit id="register.form.text.afterRegistration" resname="register.form.text.afterRegistration">
                 <source>Thank you for your registration. We have sent you an email to complete the registration process. Please check your mailbox.</source>
@@ -108,6 +114,9 @@
             </trans-unit>
             <trans-unit id="validation.error.captcha" resname="validation.error.captcha">
                 <source>The security question is wrong. Please try it again.</source>
+            </trans-unit>
+            <trans-unit id="validation.error.privacy" resname="validation.error.privacy">
+                <source>We need your data protection consent.</source>
             </trans-unit>
         </body>
     </file>

@@ -6,6 +6,9 @@
             <trans-unit id="fe_users.doi_hash" resname="fe_users.doi_hash">
                 <source>DOI Hash</source>
             </trans-unit>
+            <trans-unit id="fe_users.privacy" resname="fe_users.privacy">
+                <source>Privacy consent</source>
+            </trans-unit>
         </body>
     </file>
 </xliff>

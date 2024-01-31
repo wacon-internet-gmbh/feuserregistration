@@ -103,6 +103,8 @@ class User extends BaseEntity {
 
     protected string $captcha = '';
 
+    protected bool $privacy = false;
+
     /**
      * Get the value of email
      *
@@ -551,6 +553,26 @@ class User extends BaseEntity {
     public function setCaptcha($captcha)
     {
         $this->captcha = $captcha;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of privacy
+     */ 
+    public function getPrivacy()
+    {
+        return $this->privacy;
+    }
+
+    /**
+     * Set the value of privacy
+     *
+     * @return  self
+     */ 
+    public function setPrivacy($privacy)
+    {
+        $this->privacy = $privacy;
 
         return $this;
     }

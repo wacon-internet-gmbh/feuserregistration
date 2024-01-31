@@ -1,3 +1,6 @@
+# Version main-dev-7
+- [FEATURE] Add Privacy Checkbox to RegisterEmail
+
 # Version main-dev-5
 - [BUGFIX] Correct language key, if DOI mail for none_credentials mode
 - [NOTICE] For the moment the DOI mail is disabled, when no login page is set

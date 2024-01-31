@@ -48,6 +48,12 @@
             <trans-unit id="register.form.captcha_math" resname="register.form.captcha_math">
                 <target>Bitte lösen Sie die untere Aufgabe</target>
             </trans-unit>
+            <trans-unit id="register.form.privacy_long" resname="register.form.privacy_long">
+                <target><![CDATA[Ich bin damit einverstanden, dass mich der Betreiber und Herausgeber über ausgewählte Themen informieren darf. Meine Daten werden ausschließlich zu diesem Zweck genutzt. Insbesondere erfolgt keine Weitergabe an unberechtigte Dritte. Mir ist bekannt, dass ich meine Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen kann. Es gilt die <a href="%s" target="_blank">Datenschutzerklärung</a>, die auch weitere Informationen über Möglichkeiten zur Berichtigung, Löschung und Sperrung meiner Daten beinhaltet.]]></target>
+            </trans-unit>
+            <trans-unit id="register.form.privacy" resname="register.form.privacy">
+                <source>Datenschutzerklärung</source>
+            </trans-unit>
 
             <trans-unit id="register.form.text.afterRegistration" resname="register.form.text.afterRegistration">
                 <target>Danke für deine Registrierung. Wir haben Ihnen eine E-Mail gesendet, um den Registrierungsprozess abzuschließen. Bitte überprüfen Sie Ihren Posteingang.</target>
@@ -105,6 +111,9 @@
             </trans-unit>
             <trans-unit id="validation.error.captcha" resname="validation.error.captcha">
                 <target>Die Sicherheitsabfrage wurde nicht korrekt ausgefüllt.</target>
+            </trans-unit>
+            <trans-unit id="validation.error.privacy" resname="validation.error.privacy">
+                <target>Wir benötigen Ihre datenschutzrechtliche Zustimmung.</target>
             </trans-unit>
         </body>
     </file>

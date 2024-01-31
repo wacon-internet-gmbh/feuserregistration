@@ -28,11 +28,13 @@ plugin.tx_feuserregistration {
             website = 1
             luxletter = 1
             captcha = 1
+            privacy = 1
         }
 
         pages {
             verificationPage =
             loginPage =
+            privacyPage =
         }
 
         pagetypes {

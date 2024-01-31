@@ -18,13 +18,21 @@ defined('TYPO3') or die();
                 ],
                 'exclude' => 1,                
                 'label' => 'LLL:EXT:feuserregistration/Resources/Private/Language/locallang_tca.xlf:fe_users.doi_hash'
+            ],
+            'privacy' =>[
+                'config' => [
+                    'type' => 'check',
+                    'readOnly' => true,
+                ],
+                'exclude' => 1,                
+                'label' => 'LLL:EXT:feuserregistration/Resources/Private/Language/locallang_tca.xlf:fe_users.privacy'
             ]
         ]
     );
 
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
         'fe_users',
-        'doi_hash',
+        'doi_hash,privacy',
         '',
         'after:lastlogin'
      );
