@@ -1,3 +1,6 @@
+# Version main-dev-8
+- [BUGFIX] de.locallang.xlf source-language attribute duplicate
+
 # Version main-dev-7
 - [FEATURE] Add Privacy Checkbox to RegisterEmail
 
