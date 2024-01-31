@@ -1,3 +1,7 @@
+# Version main-dev-5
+- [BUGFIX] Correct language key, if DOI mail for none_credentials mode
+- [NOTICE] For the moment the DOI mail is disabled, when no login page is set
+
 # Version main-dev-4
 - [FEATURE] If Login Page is not set, then we send different text after DOI
 - [FEATURE] Add MathCaptcha to RegisterEmail

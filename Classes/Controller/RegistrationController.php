@@ -186,12 +186,15 @@ class RegistrationController extends BaseActionController {
             $user->setPassword(PasswordUtility::hashPassword($password));
             $this->userRepository->update($user);
 
-            try {
-                $service = GeneralUtility::makeInstance(DoubleOptinService::class);
-                $service->setSettings($this->settings);
-                $service->sendCredentials($user, $password);
-            }catch(\Exception $e) {
-                $this->view->assign('error', $e->getMessage());
+            // if login page is set, then send credentials to user
+            if ($this->settings['pages']['loginPage']) {
+                try {
+                    $service = GeneralUtility::makeInstance(DoubleOptinService::class);
+                    $service->setSettings($this->settings);
+                    $service->sendCredentials($user, $password);
+                }catch(\Exception $e) {
+                    $this->view->assign('error', $e->getMessage());
+                }
             }
         }
 

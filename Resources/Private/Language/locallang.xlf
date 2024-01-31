@@ -96,7 +96,7 @@
             <trans-unit id="register.mail.doi.credentials.text.2" resname="register.mail.doi.credentials.text.2">
                 <source><![CDATA[<strong>Username:</strong> %s<br /><strong>Password:</strong> %s]]></source>
             </trans-unit>
-            <trans-unit id="register.mail.doi.non_credentials.text.1" resname="register.mail.doi.non_credentials.text.1">
+            <trans-unit id="register.mail.doi.none_credentials.text.1" resname="register.mail.doi.none_credentials.text.1">
                 <source>the registration is completed. You will now receive our newsletter.</source>
             </trans-unit>
 
