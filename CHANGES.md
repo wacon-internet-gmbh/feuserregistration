@@ -1,3 +1,6 @@
+# Version dev-1.1.0
+- [NOTICE] Create new branch to extend extension with a Service class to register user with DOI process from other extensions
+
 # Version 1.0.0
 - [IMPORTANT] First Stable release
 - [BUGFIX] de.locallang.xlf source-language attribute duplicate
