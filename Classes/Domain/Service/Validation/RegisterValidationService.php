@@ -11,7 +11,7 @@ declare(strict_types=1);
  */
 
 
- namespace Wacon\Feuserregistration\Service\Validation;
+ namespace Wacon\Feuserregistration\Domain\Service\Validation;
 
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 use TYPO3\CMS\Extbase\Error\Result;

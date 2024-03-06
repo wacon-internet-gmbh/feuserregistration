@@ -8,10 +8,10 @@ services:
   Wacon\Feuserregistration\:
     resource: '../Classes/*'
 
-  Wacon\Feuserregistration\Service\Validation\RegisterEmailValidationService:  
+  Wacon\Feuserregistration\Domain\Service\Validation\RegisterEmailValidationService:  
     public: true
 
-  Wacon\Feuserregistration\Service\Validation\RegisterValidationService:  
+  Wacon\Feuserregistration\Domain\Service\Validation\RegisterValidationService:  
     public: true  
 
   Wacon\Feuserregistration\Service\DoubleOptinService:  

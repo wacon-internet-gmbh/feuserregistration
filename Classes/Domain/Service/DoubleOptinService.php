@@ -10,7 +10,7 @@ declare(strict_types=1);
  *  (c) 2023 Kevin Chileong Lee, info@wacon.de, WACON Internet GmbH
  */
 
- namespace Wacon\Feuserregistration\Service;
+ namespace Wacon\Feuserregistration\Domain\Service;
  
  use Wacon\Feuserregistration\Domain\Model\User;
  use Symfony\Component\Mime\Address;
@@ -24,7 +24,8 @@ declare(strict_types=1);
  use TYPO3\CMS\Extbase\Mvc\Request;
  use TYPO3\CMS\Extbase\Mvc\RequestInterface;
  
- class DoubleOptinService {
+ class DoubleOptinService 
+ {
     /**
      * @var User
      */

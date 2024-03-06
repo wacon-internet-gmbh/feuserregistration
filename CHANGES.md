@@ -1,4 +1,6 @@
 # Version dev-1.1.0
+- [WIP] RegistrationService
+- [IMPORTANT] Moved Service folder to Domain, because they are all Domain related
 - [NOTICE] Create new branch to extend extension with a Service class to register user with DOI process from other extensions
 
 # Version 1.0.0

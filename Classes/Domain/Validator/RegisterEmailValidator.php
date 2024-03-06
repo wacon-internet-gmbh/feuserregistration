@@ -18,13 +18,13 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 class RegisterEmailValidator extends AbstractValidator
 {
     /**
-     * @var \Wacon\Feuserregistration\Service\Validation\RegisterEmailValidationService
+     * @var \Wacon\Feuserregistration\Domain\Service\Validation\RegisterEmailValidationService
      */
     protected $registerEmailValidationService;
     
     protected function isValid($value): void
     {
-        $this->registerEmailValidationService = GeneralUtility::makeInstance(\Wacon\Feuserregistration\Service\Validation\RegisterEmailValidationService::class);        
+        $this->registerEmailValidationService = GeneralUtility::makeInstance(\Wacon\Feuserregistration\Domain\Service\Validation\RegisterEmailValidationService::class);        
         $className = get_class($value);
 
         if ($className != \Wacon\Feuserregistration\Domain\Model\User::class) {

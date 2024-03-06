@@ -15,7 +15,7 @@ namespace Wacon\Feuserregistration\Controller;
 use Psr\Http\Message\ResponseInterface;
 use Wacon\Feuserregistration\Domain\Model\User;
 use Wacon\Feuserregistration\Domain\Repository\UserRepository;
-use Wacon\Feuserregistration\Service\DoubleOptinService;
+use Wacon\Feuserregistration\Domain\Service\DoubleOptinService;
 use Wacon\Feuserregistration\Utility\Typo3\SiteUtility;
 use TYPO3\CMS\Extbase\Annotation\Validate;
 use TYPO3\CMS\Core\Utility\GeneralUtility;

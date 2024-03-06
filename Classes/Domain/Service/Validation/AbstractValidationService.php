@@ -11,7 +11,7 @@ declare(strict_types=1);
  */
 
 
-namespace Wacon\Feuserregistration\Service\Validation;
+namespace Wacon\Feuserregistration\Domain\Service\Validation;
 
 abstract class AbstractValidationService {
     /**
