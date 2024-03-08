@@ -22,6 +22,9 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Http\ForwardResponse;
 use Wacon\Feuserregistration\Utility\PasswordUtility;
 use Wacon\Feuserregistration\Utility\Typo3\Extbase\PersistenceUtility;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
+use Wacon\Feuserregistration\Domain\Service\RegistrationService;
+use Wacon\Feuserregistration\Domain\Repository\UserRepository;
 
 class RegistrationController extends BaseActionController {
     /**
@@ -31,12 +34,12 @@ class RegistrationController extends BaseActionController {
 
     /**
      * Create an AdvertisingCooperationTableController
-     * @param \Wacon\Feuserregistration\Domain\Repository\UserRepository
      */
     public function __construct(
-        \Wacon\Feuserregistration\Domain\Repository\UserRepository $userRepository
+        protected readonly UserRepository $userRepository,
+        protected readonly RegistrationService $registrationService
     ) {
-        $this->userRepository = $userRepository;
+        
     }
 
     /**
@@ -67,43 +70,11 @@ class RegistrationController extends BaseActionController {
      * @return ResponseInterface|string
      * @Validate(param="newUser", validator="Wacon\Feuserregistration\Domain\Validator\RegisterValidator")
      */
-    public function registerAction(User $newUser) {
-        $user = $newUser;
-
-        // We need to check, if user already exists
-        // that is possible, if user has not the 
-        // given feGroup and/or he is disabled
-        PersistenceUtility::removeAllRestrictions($this->userRepository, ['disabled', 'fe_group']);
-
-        $exists = $this->userRepository->findByEmail($newUser->getEmail())->current();
-        
-        // If user exists, then use it
-        if ($exists) {
-            $user = $exists;
-        }
-
-        // We don ask for username and password and we dont need it
-        // but we want to set something, because they are required in typo3
-        $user->setUsername($user->getEmail());
-        $user->setRandomPassword();
-        $user->setDisable(true);
-
-        // send double opt in mail
+    public function registerAction(User $newUser) {        
         try {
-            $service = GeneralUtility::makeInstance(DoubleOptinService::class);
-            $service->setSettings($this->settings);
-            $doiHash = $service->sendMail($user);
-            $this->view->assign('mailResponse', $service->getResponse());
-        
-            // Create frontend user as hidden and without fe_group
-            // We save the doi hash in user db
-            $user->setDoiHash($doiHash);
-            
-            if ($user->_isNew()) {
-                $this->userRepository->add($user);
-            }else {
-                $this->userRepository->update($user);
-            }
+            // Register with DOI process
+            $newUser = $this->registrationService->registerSimple($newUser->getEmail(), current(GeneralUtility::intExplode(',', $this->configurationManager->getContentObject()->data['pages'], true)), $this->settings);
+            $this->view->assign('mailResponse', $this->registrationService->getMailResponseForDOI());
         }catch(\Exception $e) {
             $this->view->assign('error', $e->getMessage());
         }
@@ -119,47 +90,15 @@ class RegistrationController extends BaseActionController {
      * @Validate(param="newUser", validator="Wacon\Feuserregistration\Domain\Validator\RegisterEmailValidator")
      */
     public function registerEmailAction(User $newUser) {
-        $user = $newUser;
-
-        // We need to check, if user already exists
-        // that is possible, if user has not the 
-        // given feGroup and/or he is disabled
-        PersistenceUtility::removeAllRestrictions($this->userRepository, ['disabled', 'fe_group']);
-
-        $exists = $this->userRepository->findByEmail($newUser->getEmail())->current();
-        
-        // If user exists, then use it
-        if ($exists) {
-            $user = $exists;
-        }
-
-        // We don ask for username and password and we dont need it
-        // but we want to set something, because they are required in typo3
-        $user->setUsername($newUser->getEmail());
-        $user->setRandomPassword();
-        $user->setDisable(true);
-
-        // send double opt in mail
         try {
-            $service = GeneralUtility::makeInstance(DoubleOptinService::class);
-            $service->setSettings($this->settings);
-            $doiHash = $service->sendMail($user);
-            $this->view->assign('mailResponse', $service->getResponse());
-            
-            // Create frontend user as hidden and without fe_group
-            // We save the doi hash in user db
-            $user->setDoiHash($doiHash);
-
-            if ($user->_isNew()) {
-                $this->userRepository->add($user);
-            }else {
-                $this->userRepository->update($user);
-            }
+            // Register with DOI process
+            $newUser = $this->registrationService->registerSimple($newUser->getEmail(), current(GeneralUtility::intExplode(',', $this->configurationManager->getContentObject()->data['pages'], true)), $this->settings);
+            $this->view->assign('mailResponse', $this->registrationService->getMailResponseForDOI());
         }catch(\Exception $e) {
             $this->view->assign('error', $e->getMessage());
         }
 
-        $this->view->assign('newUser', $user);
+        $this->view->assign('newUser', $newUser);
         return $this->htmlResponse();
     }
 
@@ -195,7 +134,11 @@ class RegistrationController extends BaseActionController {
                 }catch(\Exception $e) {
                     $this->view->assign('error', $e->getMessage());
                 }
-            }
+
+                $this->view->assign('message', LocalizationUtility::translate('register.form.text.afterDoi', 'feuserregistration'));
+            }else {
+                $this->view->assign('message', LocalizationUtility::translate('register.form.text.afterDoi.noCredentials', 'feuserregistration'));
+            }            
         }
 
         $this->view->assign('user', $user);

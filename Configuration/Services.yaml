@@ -12,7 +12,10 @@ services:
     public: true
 
   Wacon\Feuserregistration\Domain\Service\Validation\RegisterValidationService:  
-    public: true  
+    public: true
 
-  Wacon\Feuserregistration\Service\DoubleOptinService:  
-    public: true  
+  Wacon\Feuserregistration\Domain\Service\DoubleOptinService:  
+    public: true
+
+  Wacon\Feuserregistration\Domain\Service\RegistrationService: 
+    public: true

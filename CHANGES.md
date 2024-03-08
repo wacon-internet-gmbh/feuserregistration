@@ -1,5 +1,6 @@
 # Version dev-1.1.0
-- [WIP] RegistrationService
+- [WIP] Test registration with new RegistrationService
+- [IMPORTANT] Create RegistrationService to do all registration with it. RegistrationService can be used in other extenions as well
 - [IMPORTANT] Moved Service folder to Domain, because they are all Domain related
 - [NOTICE] Create new branch to extend extension with a Service class to register user with DOI process from other extensions
 

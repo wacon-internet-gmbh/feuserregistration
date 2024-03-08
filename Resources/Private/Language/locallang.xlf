@@ -64,6 +64,9 @@
             <trans-unit id="register.form.text.afterDoi" resname="register.form.text.afterDoi">
                 <source>Your registration is completed. We have sent your credentials to your given email.</source>
             </trans-unit>
+            <trans-unit id="register.form.text.afterDoi.noCredentials" resname="register.form.text.afterDoi.noCredentials">
+                <source>Your registration is completed.</source>
+            </trans-unit>
             <trans-unit id="register.form.text.afterDoi.error" resname="register.form.text.afterDoi.error">
                 <source>The verification link has expired.</source>
             </trans-unit>

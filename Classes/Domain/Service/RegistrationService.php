@@ -20,10 +20,12 @@ declare(strict_types=1);
 
  class RegistrationService 
  {    
+    protected bool $mailResponseForDOI = false;
+
     public function __construct(
-        UserRepository $userRepository
+        protected readonly UserRepository $userRepository
     ) {
-        $this->userRepository = $userRepository;
+
     }
 
     /**
@@ -37,16 +39,20 @@ declare(strict_types=1);
         // given feGroup and/or he is disabled
         PersistenceUtility::removeAllRestrictions($this->userRepository, ['disabled', 'fe_group']);
 
-        $exists = $this->userRepository->findByEmail($email)->current();
-        
-        // If user exists, then use it
-        if ($exists) {
-            $user = $exists;
+        // Make sure pid is inside the StoragePages
+        PersistenceUtility::addStoragePageUids($this->userRepository, [$pid]);
+
+        $user = $this->userRepository->findByEmail($email)->current();
+
+        // if user does not exist, then create a new one
+        if (!$user) {
+            $user = GeneralUtility::makeInstance(User::class);
+            $user->setEmail($email);
         }
 
         // We don ask for username and password and we dont need it
-        // but we want to set something, because they are required in typo3
-        $user->setUsername($user->getEmail());
+        // but we want to set something, because they are required in typo3        
+        $user->setUsername($email);
         $user->setRandomPassword();
         $user->setDisable(true);
         $user->setPid($pid);
@@ -60,7 +66,7 @@ declare(strict_types=1);
             $service = GeneralUtility::makeInstance(DoubleOptinService::class);
             $service->setSettings($settings);
             $doiHash = $service->sendMail($user);
-            $this->view->assign('mailResponse', $service->getResponse());
+            $this->mailResponseForDOI = $service->getResponse();
         
             // Create frontend user as hidden and without fe_group
             // We save the doi hash in user db
@@ -72,9 +78,29 @@ declare(strict_types=1);
                 $this->userRepository->update($user);
             }
         }catch(\Exception $e) {
-            throw new DoiNotSendException('Error during DOI process of feuserregistration', time(), $e);
+            throw new DoiNotSendException('Error during DOI process of feuserregistration. Prior Message: ' . $e->getMessage(), time(), $e);
         }
 
         return $user;
+    }
+
+    /**
+     * Get the value of mailResponseForDOI
+     */ 
+    public function getMailResponseForDOI()
+    {
+        return $this->mailResponseForDOI;
+    }
+
+    /**
+     * Set the value of mailResponseForDOI
+     *
+     * @return  self
+     */ 
+    public function setMailResponseForDOI($mailResponseForDOI)
+    {
+        $this->mailResponseForDOI = $mailResponseForDOI;
+
+        return $this;
     }
  }
