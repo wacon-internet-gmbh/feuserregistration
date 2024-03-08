@@ -21,19 +21,12 @@ use TYPO3\CMS\Extbase\Annotation\Validate;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Http\ForwardResponse;
 use Wacon\Feuserregistration\Utility\PasswordUtility;
-use Wacon\Feuserregistration\Utility\Typo3\Extbase\PersistenceUtility;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 use Wacon\Feuserregistration\Domain\Service\RegistrationService;
-use Wacon\Feuserregistration\Domain\Repository\UserRepository;
 
 class RegistrationController extends BaseActionController {
     /**
-     * @var UserRepository
-     */
-    protected $userRepository;
-
-    /**
-     * Create an AdvertisingCooperationTableController
+     * Create an RegistrationController
      */
     public function __construct(
         protected readonly UserRepository $userRepository,
