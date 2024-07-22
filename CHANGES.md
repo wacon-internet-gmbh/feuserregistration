@@ -1,4 +1,6 @@
 # Version dev-1.1.0-1
+- [WIP] Test registration by email only with new RegistrationService
+- [IMPORTANT] Test registration with new RegistrationService
 - [FEATURE] Add new field: salutation in register form
 
 # Version dev-1.1.0-0
