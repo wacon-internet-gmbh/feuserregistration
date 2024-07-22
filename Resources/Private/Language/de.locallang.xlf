@@ -12,6 +12,18 @@
             <trans-unit id="register.form.email.placeholder" resname="register.form.email.placeholder">
                 <target>E-Mail Adresse eingeben...</target>
             </trans-unit>
+            <trans-unit id="register.form.salutation" resname="register.form.salutation">
+                <target>Anrede</target>
+            </trans-unit>
+            <trans-unit id="register.form.salutation.I.female" resname="register.form.salutation.I.female">
+                <target>Frau</target>
+            </trans-unit>
+            <trans-unit id="register.form.salutation.I.male" resname="register.form.salutation.I.male">
+                <target>Mann</target>
+            </trans-unit>
+            <trans-unit id="register.form.salutation.I.others" resname="register.form.salutation.I.others">
+                <target>Divers</target>
+            </trans-unit>
             <trans-unit id="register.form.firstName" resname="register.form.firstName">
                 <target>Vorname</target>
             </trans-unit>

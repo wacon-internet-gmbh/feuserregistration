@@ -1,4 +1,13 @@
 <div class="mb-3">
+    <label for="salutation" class="form-label"><f:translate key="register.form.salutation" extensionName="feuserregistration" /></label>
+    <f:form.select property="salutation" class="form-control">
+        <f:form.select.option value=""></f:form.select.option>
+        <f:form.select.option value="female"><f:translate key="register.form.salutation.I.female" extensionName="feuserregistration" /></f:form.select.option>
+        <f:form.select.option value="male"><f:translate key="register.form.salutation.I.male" extensionName="feuserregistration" /></f:form.select.option>
+        <f:form.select.option value="others"><f:translate key="register.form.salutation.I.others" extensionName="feuserregistration" /></f:form.select.option>
+    </f:form.select>
+</div>
+<div class="mb-3">
     <label for="firstName" class="form-label"><f:translate key="register.form.firstName" extensionName="feuserregistration" /></label>
     <f:form.textfield property="firstName" class="form-control" />
 </div>

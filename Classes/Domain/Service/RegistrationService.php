@@ -85,6 +85,55 @@ declare(strict_types=1);
     }
 
     /**
+     * Register a user and returns the frontend_user uid
+     * @param User $user
+     * @return User
+     * @throws DoiNotSendException
+     */
+    public function register(User $user, int $pid, array $settings, bool $privacy = true): User {
+        // We need to check, if user already exists
+        // that is possible, if user has not the 
+        // given feGroup and/or he is disabled
+        PersistenceUtility::removeAllRestrictions($this->userRepository, ['disabled', 'fe_group']);
+
+        // Make sure pid is inside the StoragePages
+        PersistenceUtility::addStoragePageUids($this->userRepository, [$pid]);
+
+        // We don ask for username and password and we dont need it
+        // but we want to set something, because they are required in typo3        
+        $user->setUsername($user->getEmail());
+        $user->setRandomPassword();
+        $user->setDisable(true);
+        $user->setPid($pid);
+
+        if ($privacy) {
+            $user->setPrivacy($privacy);
+        }
+
+        // send double opt in mail
+        try {
+            $service = GeneralUtility::makeInstance(DoubleOptinService::class);
+            $service->setSettings($settings);
+            $doiHash = $service->sendMail($user);
+            $this->mailResponseForDOI = $service->getResponse();
+        
+            // Create frontend user as hidden and without fe_group
+            // We save the doi hash in user db
+            $user->setDoiHash($doiHash);
+            
+            if ($user->_isNew()) {
+                $this->userRepository->add($user);
+            }else {
+                $this->userRepository->update($user);
+            }
+        }catch(\Exception $e) {
+            throw new DoiNotSendException('Error during DOI process of feuserregistration. Prior Message: ' . $e->getMessage(), time(), $e);
+        }
+
+        return $user;
+    }
+
+    /**
      * Get the value of mailResponseForDOI
      */ 
     public function getMailResponseForDOI()

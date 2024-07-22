@@ -12,6 +12,18 @@
             <trans-unit id="register.form.email.placeholder" resname="register.form.email.placeholder">
                 <source>Enter you email address...</source>
             </trans-unit>
+            <trans-unit id="register.form.salutation" resname="register.form.salutation">
+                <source>Salutation</source>
+            </trans-unit>
+            <trans-unit id="register.form.salutation.I.female" resname="register.form.salutation.I.female">
+                <source>Female</source>
+            </trans-unit>
+            <trans-unit id="register.form.salutation.I.male" resname="register.form.salutation.I.male">
+                <source>Male</source>
+            </trans-unit>
+            <trans-unit id="register.form.salutation.I.others" resname="register.form.salutation.I.others">
+                <source>Others</source>
+            </trans-unit>
             <trans-unit id="register.form.firstName" resname="register.form.firstName">
                 <source>First name</source>
             </trans-unit>

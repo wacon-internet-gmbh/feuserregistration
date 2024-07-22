@@ -19,87 +19,92 @@ class User extends BaseEntity {
     /**
      * @var string
      */
-    protected $email;
+    protected $email = '';
 
     /**
      * @var string
      */
-    protected $doiHash;
+    protected $doiHash = '';
 
     /**
      * @var string
      */
-    protected $username;
+    protected $username = '';
 
     /**
      * @var string
      */
-    protected $password;
+    protected $password = '';
 
     /**
      * @var bool
      */
-    protected $disable;
+    protected $disable = false;
 
     /**
      * @var string
      */
-    protected $usergroup;
+    protected $usergroup = '';
 
     /**
      * @var string
      */
-    protected $firstName;
+    protected $salutation = '';
 
     /**
      * @var string
      */
-    protected $lastName;
+    protected $firstName = '';
 
     /**
      * @var string
      */
-    protected $address;
+    protected $lastName = '';
 
     /**
      * @var string
      */
-    protected $zip;
+    protected $address = '';
 
     /**
      * @var string
      */
-    protected $city;
+    protected $zip = '';
 
     /**
      * @var string
      */
-    protected $country;
+    protected $city = '';
 
     /**
      * @var string
      */
-    protected $phone;
+    protected $country = '';
 
     /**
      * @var string
      */
-    protected $fax;
+    protected $phone = '';
 
     /**
      * @var string
      */
-    protected $www;
+    protected $fax = '';
+
+    /**
+     * @var string
+     */
+    protected $www = '';
 
     /**
      * @var bool
      */
-    protected $newsletterReceive;
+    protected $newsletterReceive = false;
 
     /**
      * @var string
      */
-    protected $luxletterLanguage;
+    protected $luxletterLanguage = 'en';
 
     protected string $captcha = '';
 
@@ -573,6 +578,30 @@ class User extends BaseEntity {
     public function setPrivacy($privacy)
     {
         $this->privacy = $privacy;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of salutation
+     *
+     * @return  string
+     */ 
+    public function getSalutation(): string
+    {
+        return $this->salutation;
+    }
+
+    /**
+     * Set the value of salutation
+     *
+     * @param  string  $salutation
+     *
+     * @return  self
+     */ 
+    public function setSalutation(string $salutation): self
+    {
+        $this->salutation = $salutation;
 
         return $this;
     }

@@ -1,4 +1,7 @@
-# Version dev-1.1.0
+# Version dev-1.1.0-1
+- [FEATURE] Add new field: salutation in register form
+
+# Version dev-1.1.0-0
 - [WIP] Test registration with new RegistrationService
 - [IMPORTANT] Create RegistrationService to do all registration with it. RegistrationService can be used in other extenions as well
 - [IMPORTANT] Moved Service folder to Domain, because they are all Domain related

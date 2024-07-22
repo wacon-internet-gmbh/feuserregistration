@@ -26,6 +26,32 @@ defined('TYPO3') or die();
                 ],
                 'exclude' => 1,                
                 'label' => 'LLL:EXT:feuserregistration/Resources/Private/Language/locallang_tca.xlf:fe_users.privacy'
+            ],
+            'salutation' =>[
+                'config' => [
+                    'type' => 'select',
+                    'renderType' => 'selectSingle',
+                    'items' => [
+                        [
+                            'label' => '',
+                            'value' => '',
+                        ],
+                        [
+                            'label' => 'LLL:EXT:feuserregistration/Resources/Private/Language/locallang.xlf:register.form.salutation.I.female',
+                            'value' => 'female',
+                        ],
+                        [
+                            'label' => 'LLL:EXT:feuserregistration/Resources/Private/Language/locallang.xlf:register.form.salutation.I.male',
+                            'value' => 'male',
+                        ],
+                        [
+                            'label' => 'LLL:EXT:feuserregistration/Resources/Private/Language/locallang.xlf:register.form.salutation.I.others',
+                            'value' => 'others',
+                        ],
+                    ],
+                ],
+                'exclude' => 1,                
+                'label' => 'LLL:EXT:feuserregistration/Resources/Private/Language/locallang.xlf:register.form.salutation'
             ]
         ]
     );
@@ -35,5 +61,12 @@ defined('TYPO3') or die();
         'doi_hash,privacy',
         '',
         'after:lastlogin'
+     );
+
+     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
+        'fe_users',
+        'salutation',
+        '',
+        'after:title'
      );
 })();
