@@ -1,3 +1,7 @@
+# Version 1.1.0
+- [IMPORTANT] Stable release 1.1.0
+- [IMPORTANT] Merge dev-1.1.0
+
 # Version dev-1.1.0-1
 - [WIP] Test registration by email only with new RegistrationService
 - [IMPORTANT] Test registration with new RegistrationService
