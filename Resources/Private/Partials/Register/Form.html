@@ -57,6 +57,9 @@
         <f:form.textfield property="www" class="form-control" />
     </div>
 </f:if>
+<f:if condition="{settings.fields.captcha}">
+    <f:render partial="Captcha/Math" />
+</f:if>
 <f:if condition="{settings.fields.luxletter}">
     <div class="form-check mb-3">
         <f:form.checkbox property="newsletterReceive" class="form-check-input" value="1" />
@@ -65,5 +68,11 @@
     <div class="mb-3">
         <label for="luxletterLanguage" class="form-label"><f:translate key="register.form.luxletterLanguage" extensionName="feuserregistration" /></label>
         <f:form.select property="luxletterLanguage" class="form-select" options="{languages}" />
+    </div>
+</f:if>
+<f:if condition="{settings.fields.privacy}">
+    <div class="mb-3 form-check">
+        <f:form.checkbox id="privacy" property="privacy" class="form-check-input" value="1" />
+        <label for="privacy" class="form-check-label"><f:format.raw><f:translate key="register.form.privacy_long" extensionName="feuserregistration" arguments="{0: '{f:uri.page(pageUid: \'{settings.pages.privacyPage}\')}'}" /></f:format.raw></label>        
     </div>
 </f:if>

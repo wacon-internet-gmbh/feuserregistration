@@ -115,6 +115,9 @@ class RegisterValidationService extends RegisterEmailValidationService {
             }
         }
 
+        $this->validateCaptcha($value);
+        $this->validatePrivacy($value);
+
         if (count($errors) > 0) {
             foreach($errors as $fieldName => $errors) {
                 foreach($errors as $error) {

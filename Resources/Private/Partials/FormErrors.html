@@ -4,7 +4,7 @@
     <f:form.validationResults>
         <f:if condition="{validationResults.flattenedErrors}">
             <div class="alert alert-danger">
-                <h2><f:translate key="validation.error.title" extensionName="alm_displaycustomers" /></h2>
+                <p class="h3"><f:translate key="validation.error.title" extensionName="feuserregistration" /></p>
                 <ul class="errors mb-0">
                     <f:for each="{validationResults.flattenedErrors}" as="errors" key="propertyPath">
                         <f:variable name="newPropertyPath" value="{wacon:format.replace(subject: propertyPath, replace: 'register.form.', search: 'newUser.')}" />

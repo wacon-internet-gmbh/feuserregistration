@@ -125,30 +125,8 @@ class RegisterEmailValidationService extends AbstractValidationService {
             }
         }
 
-        if ($this->settings['fields']['captcha']) {
-            $frontendUser = $GLOBALS['TYPO3_REQUEST']->getAttribute('frontend.user');        
-            $sessionCaptcha = $frontendUser->getKey('ses', CaptchaController::class . '->mathImage');
-
-            if ($value->getCaptcha() == '' || $value->getCaptcha() != $sessionCaptcha) {
-                $this->propertiesWithError[] = [
-                    'name' => 'captcha',
-                    'errorString' => LocalizationUtility::translate('validation.error.captcha', $this->extensionName),
-                    'errorCode' => time()
-                ];
-            }
-        }
-
-        if ($this->settings['fields']['privacy']) {
-            $privacy = $value->getPrivacy();
-
-            if (empty($privacy)) {
-                $this->propertiesWithError[] = [
-                    'name' => 'privacy',
-                    'errorString' => LocalizationUtility::translate('validation.error.privacy', $this->extensionName),
-                    'errorCode' => time()
-                ];
-            }
-        }
+        $this->validateCaptcha($value);
+        $this->validatePrivacy($value);
 
         if (count($errors) > 0) {
             foreach($errors as $fieldName => $errors) {
@@ -165,6 +143,44 @@ class RegisterEmailValidationService extends AbstractValidationService {
                         'errorCode' => time()
                     ];
                 }
+            }
+        }
+    }
+
+    /**
+     * Validate captcha field
+     * @param mixed $value
+     */
+    protected function validateCaptcha($value) {
+        if ($this->settings['fields']['captcha']) {
+            $frontendUser = $GLOBALS['TYPO3_REQUEST']->getAttribute('frontend.user');        
+            $sessionCaptcha = $frontendUser->getKey('ses', CaptchaController::class . '->mathImage');
+
+            if ($value->getCaptcha() == '' || $value->getCaptcha() != $sessionCaptcha) {
+                $this->propertiesWithError[] = [
+                    'name' => 'captcha',
+                    'errorString' => LocalizationUtility::translate('validation.error.captcha', $this->extensionName),
+                    'errorCode' => time()
+                ];
+            }
+        }
+    }
+
+    /**
+     * Validate privacy field
+     * @param mixed $value
+     */
+    protected function validatePrivacy($value)
+    {
+        if ($this->settings['fields']['privacy']) {
+            $privacy = $value->getPrivacy();
+
+            if (empty($privacy)) {
+                $this->propertiesWithError[] = [
+                    'name' => 'privacy',
+                    'errorString' => LocalizationUtility::translate('validation.error.privacy', $this->extensionName),
+                    'errorCode' => time()
+                ];
             }
         }
     }

@@ -1,3 +1,8 @@
+# Version 1.2.0
+- [FEATURE] Add privacy and captcha field to extender registration form
+- [BUGFIX] FormError Title is now p.h3 to avoid SEO conflicts
+- [BUGFIX] Add missing translation for FormError Title
+
 # Version 1.1.0
 - [IMPORTANT] Stable release 1.1.0
 - [IMPORTANT] Merge dev-1.1.0

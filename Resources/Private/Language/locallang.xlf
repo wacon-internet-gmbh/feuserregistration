@@ -133,6 +133,10 @@
             <trans-unit id="validation.error.privacy" resname="validation.error.privacy">
                 <source>We need your data protection consent.</source>
             </trans-unit>
+
+            <trans-unit id="validation.error.title" resname="validation.error.title">
+                <source>Please verify your input</source>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -130,6 +130,10 @@
             <trans-unit id="validation.error.privacy" resname="validation.error.privacy">
                 <target>Wir benötigen Ihre datenschutzrechtliche Zustimmung.</target>
             </trans-unit>
+
+            <trans-unit id="validation.error.title" resname="validation.error.title">
+                <target>Bitte, prüfen Sie Ihre Eingaben</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
