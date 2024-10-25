@@ -19,7 +19,7 @@
                 <target>Frau</target>
             </trans-unit>
             <trans-unit id="register.form.salutation.I.male" resname="register.form.salutation.I.male">
-                <target>Mann</target>
+                <target>Herr</target>
             </trans-unit>
             <trans-unit id="register.form.salutation.I.others" resname="register.form.salutation.I.others">
                 <target>Divers</target>

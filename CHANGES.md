@@ -1,3 +1,6 @@
+# Version 1.2.1
+- [BUGFIX] German translation of male is Herr
+
 # Version 1.2.0
 - [FEATURE] Add privacy and captcha field to extender registration form
 - [BUGFIX] FormError Title is now p.h3 to avoid SEO conflicts
