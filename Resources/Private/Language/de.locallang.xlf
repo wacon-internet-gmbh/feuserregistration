@@ -68,7 +68,7 @@
             </trans-unit>
 
             <trans-unit id="register.form.text.afterRegistration" resname="register.form.text.afterRegistration">
-                <target>Danke für deine Registrierung. Wir haben Ihnen eine E-Mail gesendet, um den Registrierungsprozess abzuschließen. Bitte überprüfen Sie Ihren Posteingang.</target>
+                <target>Danke für Ihre Registrierung. Wir haben Ihnen eine E-Mail gesendet, um den Registrierungsprozess abzuschließen. Bitte überprüfen Sie Ihren Posteingang.</target>
             </trans-unit>
             <trans-unit id="register.form.text.afterDoi" resname="register.form.text.afterDoi">
                 <target>Ihre Registrierung ist abgeschlossen. Wir haben Ihre Zugangsdaten an die von Ihnen hinterlegte E-Mail Adresse geschickt.</target>

@@ -1,3 +1,6 @@
+# Version 1.2.2
+- [BUGFIX] German translation of register.form.text.afterRegistration. deine to Ihre
+
 # Version 1.2.1
 - [BUGFIX] German translation of male is Herr
 
