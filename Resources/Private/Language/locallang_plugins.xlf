@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="EXT:feuserregistration/Resources/Private/Language/locallang.xlf" date="2023-05-01T10:59:51Z" product-name="feuserregistration">
+        <header/>
+        <body>
+            <trans-unit id="verify.pi_flexform.sheetGeneral" resname="verify.pi_flexform.sheetGeneral">
+                <source>General</source>
+            </trans-unit>
+            <trans-unit id="verify.pi_flexform.mode" resname="verify.pi_flexform.mode">
+                <source>Mode</source>
+            </trans-unit>
+            <trans-unit id="verify.pi_flexform.mode.I.auto" resname="verify.pi_flexform.mode.I.auto">
+                <source>Automatic</source>
+            </trans-unit>
+            <trans-unit id="verify.pi_flexform.mode.I.form" resname="verify.pi_flexform.mode.I.form">
+                <source>Form</source>
+            </trans-unit>
+            <trans-unit id="verify.pi_flexform.mode.text" resname="verify.pi_flexform.mode.text">
+                <source>Additional text displayed above the form</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

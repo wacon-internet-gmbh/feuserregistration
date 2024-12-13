@@ -121,6 +121,10 @@
                 <source>the registration is completed. You will now receive our newsletter.</source>
             </trans-unit>
 
+            <trans-unit id="verify.doiform.submit" resname="verify.doiform.submit">
+                <source>Complete verification</source>
+            </trans-unit>
+
             <trans-unit id="validation.error.notempty" resname="validation.error.notempty">
                 <source>This field is required.</source>
             </trans-unit>

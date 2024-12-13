@@ -24,10 +24,17 @@ defined('TYPO3') or die();
         'Display a registration form'
     );
 
-    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+    $pluginSignature = \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
         'Feuserregistration',
         'Verify',
         'Verify a registration.'
+    );
+
+    $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
+
+    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
+        $pluginSignature,
+        'FILE:EXT:' . $extensionName . '/Configuration/Flexforms/Verify.xml'
     );
      /******************************************************************
      * FRONTEND PLUGINS - END

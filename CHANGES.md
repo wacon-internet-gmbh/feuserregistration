@@ -1,3 +1,6 @@
+# Version 1.3.0
+- [FEATURE] Add new mode for verfication to verify by sending form instead. Useful for mailserver that opens email links for spamchecks.
+
 # Version 1.2.2
 - [BUGFIX] German translation of register.form.text.afterRegistration. deine to Ihre
 

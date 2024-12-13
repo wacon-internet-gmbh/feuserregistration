@@ -1,0 +1,14 @@
+<f:layout name="Default" />
+
+<f:section name="Main">
+    <f:if condition="{settings.modeText}">
+        <f:format.html>{settings.modeText}</f:format.html>
+    </f:if>
+    <f:form action="doi" method="POST">
+        <div class="form-buttons">
+            <f:form.hidden name="doihash" value="{doihash}" />
+            <f:form.hidden name="skipform" value="1" />
+            <f:form.submit name="submit" value="{f:translate(key: 'verify.doiform.submit', extensionName: 'feuserregistration')}" class="btn btn-primary" />
+        </div>
+    </f:form>
+</f:section>

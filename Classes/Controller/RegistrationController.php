@@ -16,6 +16,7 @@ use Psr\Http\Message\ResponseInterface;
 use Wacon\Feuserregistration\Domain\Model\User;
 use Wacon\Feuserregistration\Domain\Repository\UserRepository;
 use Wacon\Feuserregistration\Domain\Service\DoubleOptinService;
+use Wacon\Feuserregistration\Registry\SettingsRegistry;
 use Wacon\Feuserregistration\Utility\Typo3\SiteUtility;
 use TYPO3\CMS\Extbase\Annotation\Validate;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -103,6 +104,12 @@ class RegistrationController extends BaseActionController {
         if (!$this->request->hasArgument('doihash')) {
             return new ForwardResponse('nothing');
         }
+
+        // show form, if mode is form and it is a GET request
+        // because form just use this action also in POST to verify
+        if ($this->settings['mode'] == SettingsRegistry::MODE_FORM && (!$this->request->hasArgument('skipform') || $this->request->getArgument('skipform') == '0')) {
+            return new ForwardResponse('doiform');
+        }
         
         $querySettings = $this->userRepository->createQuery()->getQuerySettings();
         $querySettings->setIgnoreEnableFields(true);
@@ -136,6 +143,20 @@ class RegistrationController extends BaseActionController {
 
         $this->view->assign('user', $user);
 
+        return $this->htmlResponse();
+    }
+
+    /**
+     * Show doi form
+     * @return \Psr\Http\Message\ResponseInterface
+     */
+    public function doiformAction(): ResponseInterface
+    {
+        if (!$this->request->hasArgument('doihash')) {
+            return new ForwardResponse('nothing');
+        }
+
+        $this->view->assign('doihash', $this->request->getArgument('doihash'));
         return $this->htmlResponse();
     }
 

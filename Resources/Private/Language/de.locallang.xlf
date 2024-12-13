@@ -118,6 +118,10 @@
                 <target>die Registrierung ist abgeschlossen. Sie erhalten nun unseren Newsletter.</target>
             </trans-unit>
 
+            <trans-unit id="verify.doiform.submit" resname="verify.doiform.submit">
+                <target>Verifzierung abschließen</target>
+            </trans-unit>
+
             <trans-unit id="validation.error.notempty" resname="validation.error.notempty">
                 <target>Das ist ein Pflichtfeld</target>
             </trans-unit>
