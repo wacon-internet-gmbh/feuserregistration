@@ -3,9 +3,9 @@
     "type": "typo3-cms-extension",
     "description": "Extension to enable a frontend registration.",
     "license": "GPL-2.0-or-later",
-    "version": "1.3.0",
+    "version": "2.0.0",
     "require": {
-       "typo3/cms-core": "^12.4"
+       "typo3/cms-core": "^12.4 || ^13.4"
     },
     "autoload": {
        "psr-4": {

@@ -5,43 +5,46 @@ plugin.tx_feuserregistration {
     view {
         layoutRootPaths {
             0 = EXT:feuserregistration/Resources/Private/Layouts/
+            1 = {$plugin.tx_feuserregistration.view.layoutRootPath}
         }
 
         templateRootPaths {
             0 = EXT:feuserregistration/Resources/Private/Templates/
+            1 = {$plugin.tx_feuserregistration.view.templateRootPath}
         }
 
         partialRootPaths {
             0 = EXT:feuserregistration/Resources/Private/Partials/
+            0 = {$plugin.tx_feuserregistration.view.partialRootPath}
         }
     }
 
     settings {
         fegroups {
-            target = 
+            target = {$plugin.tx_feuserregistration.settings.fegroups.target}
         }
 
         fields {
-            address = 1
-            phone = 1
-            fax = 1
-            website = 1
-            luxletter = 1
-            captcha = 1
-            privacy = 1
+            address = {$plugin.tx_feuserregistration.settings.fields.address}
+            phone = {$plugin.tx_feuserregistration.settings.fields.phone}
+            fax = {$plugin.tx_feuserregistration.settings.fields.fax}
+            website = {$plugin.tx_feuserregistration.settings.fields.website}
+            luxletter = {$plugin.tx_feuserregistration.settings.fields.luxletter}
+            captcha = {$plugin.tx_feuserregistration.settings.fields.captcha}
+            privacy = {$plugin.tx_feuserregistration.settings.fields.privacy}
         }
 
         pages {
-            verificationPage =
-            loginPage =
-            privacyPage =
+            verificationPage = {$plugin.tx_feuserregistration.settings.pages.verificationPage}
+            loginPage = {$plugin.tx_feuserregistration.settings.pages.loginPage}
+            privacyPage = {$plugin.tx_feuserregistration.settings.pages.privacyPage}
         }
 
         pagetypes {
-            captcha = 1
+            captcha = {$plugin.tx_feuserregistration.settings.pagetypes.captcha}
         }
 
-        requiredFields = firstName,lastName,email
+        requiredFields = {$plugin.tx_feuserregistration.settings.requiredFields}
     }
 }
 /**************************************************************

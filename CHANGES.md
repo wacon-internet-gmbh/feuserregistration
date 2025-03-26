@@ -1,3 +1,8 @@
+# Version dev-2.0.0-0
+- [WIP] TYPO3 13 Support
+- [FEATURE] All TypoScript settings are now editable via constant editor
+- [CHANGE] We look up now all fe_users on registration to avoid conflicts with possible felogin procedures
+
 # Version 1.3.0
 - [FEATURE] Add new mode for verfication to verify by sending form instead. Useful for mailserver that opens email links for spamchecks.
 

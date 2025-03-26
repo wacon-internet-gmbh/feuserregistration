@@ -1,0 +1,52 @@
+# customsubcategory=view=View
+# customsubcategory=settings=Settings
+# customsubcategory=fields=Fields visibility
+# customsubcategory=pages=Pages
+
+plugin.tx_feuserregistration {
+    view {
+        # cat=plugin.tx_feuserregistration/view; type=string; label=Path to layouts (FE)
+        layoutRootPath = EXT:feuserregistration/Resources/Private/Layouts/
+        # cat=plugin.tx_feuserregistration/view; type=string; label=Path to templates (FE)
+        templateRootPath = EXT:feuserregistration/Resources/Private/Templates/
+        # cat=plugin.tx_feuserregistration/view; type=string; label=Path to partials (FE)
+        partialRootPath = EXT:feuserregistration/Resources/Private/Partials/
+    }
+
+    settings {
+        fegroups {
+            # cat=plugin.tx_feuserregistration/settings; type=string; label=The final target fe_group
+            target = 
+        }
+        fields {
+            # cat=plugin.tx_feuserregistration/fields; type=string; label=Show address field
+            address = 1
+            # cat=plugin.tx_feuserregistration/fields; type=string; label=Show phone field
+            phone = 1
+            # cat=plugin.tx_feuserregistration/fields; type=string; label=Show fax field
+            fax = 1
+            # cat=plugin.tx_feuserregistration/fields; type=string; label=Show website field
+            website = 1
+            # cat=plugin.tx_feuserregistration/fields; type=string; label=Show luxletter field
+            luxletter = 1
+            # cat=plugin.tx_feuserregistration/fields; type=string; label=Show captcha field
+            captcha = 1
+            # cat=plugin.tx_feuserregistration/fields; type=string; label=Show privacy field
+            privacy = 1
+        }
+        pages {
+            # cat=plugin.tx_feuserregistration/pages; type=string; label=Verification page
+            verificationPage =
+            # cat=plugin.tx_feuserregistration/pages; type=string; label=Login page (optional)
+            loginPage =
+            # cat=plugin.tx_feuserregistration/pages; type=string; label=Privacy page
+            privacyPage =
+        }
+        pagetypes {
+            # cat=plugin.tx_feuserregistration/settings; type=string; label=Captcha typeNum
+            captcha = 1
+        }
+        # cat=plugin.tx_feuserregistration/fields; type=string; label=List of required fields
+        requiredFields = firstName,lastName,email
+    }
+}

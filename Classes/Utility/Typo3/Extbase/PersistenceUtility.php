@@ -74,6 +74,7 @@ class PersistenceUtility {
         $querySettings = $repository->createQuery()->getQuerySettings();
         $querySettings->setEnableFieldsToBeIgnored($enabledFieldsToBeIgnored);
         $querySettings->setIgnoreEnableFields(true);
+        $querySettings->setRespectStoragePage(FALSE);
         $repository->setDefaultQuerySettings($querySettings);
     }
 }

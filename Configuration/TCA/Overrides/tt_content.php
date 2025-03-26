@@ -15,19 +15,19 @@ defined('TYPO3') or die();
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
         'Feuserregistration',
         'Subscribe',
-        'Display a email registration form'
+        'Feuserregistration: Display a email registration form'
     );
 
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
         'Feuserregistration',
         'Register',
-        'Display a registration form'
+        'Feuserregistration: Display a registration form'
     );
 
     $pluginSignature = \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
         'Feuserregistration',
         'Verify',
-        'Verify a registration.'
+        'Feuserregistration: Verify a registration.'
     );
 
     $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';

@@ -67,7 +67,7 @@ class RegistrationController extends BaseActionController {
     public function registerAction(User $newUser) {        
         try {
             // Register with DOI process
-            $newUser = $this->registrationService->register($newUser, current(GeneralUtility::intExplode(',', $this->configurationManager->getContentObject()->data['pages'], true)), $this->settings);
+            $newUser = $this->registrationService->register($newUser, (int)current(GeneralUtility::intExplode(',', $this->configurationManager->getContentObject()->data['pages'], true)), $this->settings);
             $this->view->assign('mailResponse', $this->registrationService->getMailResponseForDOI());
         }catch(\Exception $e) {
             $this->view->assign('error', $e->getMessage());
