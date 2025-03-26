@@ -1,3 +1,6 @@
+# Version dev-2.0.0-2
+- [BUGFIX] Exclude DoubleOptinService from Autowiring
+
 # Version dev-2.0.0-1
 - [FEATURE] TYPO3 13 Support
 

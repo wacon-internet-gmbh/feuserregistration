@@ -12,7 +12,6 @@ declare(strict_types=1);
 
  namespace Wacon\Feuserregistration\Domain\Service;
 
- use GuzzleHttp\Psr7\ServerRequest;
  use Psr\Http\Message\ServerRequestInterface;
  use Wacon\Feuserregistration\Domain\Model\User;
  use Symfony\Component\Mime\Address;
@@ -69,7 +68,6 @@ declare(strict_types=1);
      * Create a DoubleOptinService
      * @param MailMessage $mail
      * @param ServerRequestInterface $request
-     * @return void
      */
     public function __construct(ServerRequestInterface $request) {
         $this->mail = GeneralUtility::makeInstance(MailMessage::class);
