@@ -12,30 +12,34 @@ declare(strict_types=1);
 
  namespace Wacon\Feuserregistration\Domain\Service;
 
+ use Psr\Http\Message\ServerRequestInterface;
  use Wacon\Feuserregistration\Domain\Repository\UserRepository;
  use Wacon\Feuserregistration\Domain\Exception\DoiNotSendException;
  use Wacon\Feuserregistration\Domain\Model\User;
  use TYPO3\CMS\Core\Utility\GeneralUtility;
  use Wacon\Feuserregistration\Utility\Typo3\Extbase\PersistenceUtility;
 
- class RegistrationService 
- {    
+ class RegistrationService
+ {
     protected bool $mailResponseForDOI = false;
 
     public function __construct(
         protected readonly UserRepository $userRepository
-    ) {
-
-    }
+    ) {}
 
     /**
      * Register a user by email and returns the frontend_user uid
+     * @param string $email
+     * @param int $pid
+     * @param array $settings
+     * @param ServerRequestInterface $request
+     * @param bool $privacy
      * @return User
      * @throws DoiNotSendException
      */
-    public function registerSimple(string $email, int $pid, array $settings, bool $privacy = true): User {
+    public function registerSimple(string $email, int $pid, array $settings, ServerRequestInterface $request, bool $privacy = true): User {
         // We need to check, if user already exists
-        // that is possible, if user has not the 
+        // that is possible, if user has not the
         // given feGroup and/or he is disabled
         PersistenceUtility::removeAllRestrictions($this->userRepository, ['disabled', 'fe_group']);
 
@@ -51,7 +55,7 @@ declare(strict_types=1);
         }
 
         // We don ask for username and password and we dont need it
-        // but we want to set something, because they are required in typo3        
+        // but we want to set something, because they are required in typo3
         $user->setUsername($email);
         $user->setRandomPassword();
         $user->setDisable(true);
@@ -63,15 +67,15 @@ declare(strict_types=1);
 
         // send double opt in mail
         try {
-            $service = GeneralUtility::makeInstance(DoubleOptinService::class);
+            $service = GeneralUtility::makeInstance(DoubleOptinService::class, $request);
             $service->setSettings($settings);
             $doiHash = $service->sendMail($user);
             $this->mailResponseForDOI = $service->getResponse();
-        
+
             // Create frontend user as hidden and without fe_group
             // We save the doi hash in user db
             $user->setDoiHash($doiHash);
-            
+
             if ($user->_isNew()) {
                 $this->userRepository->add($user);
             }else {
@@ -87,12 +91,16 @@ declare(strict_types=1);
     /**
      * Register a user and returns the frontend_user uid
      * @param User $user
+     * @param int $pid
+     * @param array $settings
+     * @param ServerRequestInterface $request
+     * @param bool $privacy
      * @return User
      * @throws DoiNotSendException
      */
-    public function register(User $user, int $pid, array $settings, bool $privacy = true): User {
+    public function register(User $user, int $pid, array $settings, ServerRequestInterface $request, bool $privacy = true): User {
         // We need to check, if user already exists
-        // that is possible, if user has not the 
+        // that is possible, if user has not the
         // given feGroup and/or he is disabled
         PersistenceUtility::removeAllRestrictions($this->userRepository, ['disabled', 'fe_group']);
 
@@ -100,7 +108,7 @@ declare(strict_types=1);
         PersistenceUtility::addStoragePageUids($this->userRepository, [$pid]);
 
         // We don ask for username and password and we dont need it
-        // but we want to set something, because they are required in typo3        
+        // but we want to set something, because they are required in typo3
         $user->setUsername($user->getEmail());
         $user->setRandomPassword();
         $user->setDisable(true);
@@ -112,15 +120,15 @@ declare(strict_types=1);
 
         // send double opt in mail
         try {
-            $service = GeneralUtility::makeInstance(DoubleOptinService::class);
+            $service = GeneralUtility::makeInstance(DoubleOptinService::class, $request);
             $service->setSettings($settings);
             $doiHash = $service->sendMail($user);
             $this->mailResponseForDOI = $service->getResponse();
-        
+
             // Create frontend user as hidden and without fe_group
             // We save the doi hash in user db
             $user->setDoiHash($doiHash);
-            
+
             if ($user->_isNew()) {
                 $this->userRepository->add($user);
             }else {
@@ -135,7 +143,7 @@ declare(strict_types=1);
 
     /**
      * Get the value of mailResponseForDOI
-     */ 
+     */
     public function getMailResponseForDOI()
     {
         return $this->mailResponseForDOI;
@@ -145,7 +153,7 @@ declare(strict_types=1);
      * Set the value of mailResponseForDOI
      *
      * @return  self
-     */ 
+     */
     public function setMailResponseForDOI($mailResponseForDOI)
     {
         $this->mailResponseForDOI = $mailResponseForDOI;

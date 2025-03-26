@@ -33,7 +33,7 @@ class RegistrationController extends BaseActionController {
         protected readonly UserRepository $userRepository,
         protected readonly RegistrationService $registrationService
     ) {
-        
+
     }
 
     /**
@@ -64,10 +64,10 @@ class RegistrationController extends BaseActionController {
      * @return ResponseInterface|string
      * @Validate(param="newUser", validator="Wacon\Feuserregistration\Domain\Validator\RegisterValidator")
      */
-    public function registerAction(User $newUser) {        
+    public function registerAction(User $newUser) {
         try {
             // Register with DOI process
-            $newUser = $this->registrationService->register($newUser, (int)current(GeneralUtility::intExplode(',', $this->configurationManager->getContentObject()->data['pages'], true)), $this->settings);
+            $newUser = $this->registrationService->register($newUser, (int)current(GeneralUtility::intExplode(',', $this->request->getAttribute('currentContentObject')->data['pages'], true)), $this->settings, $this->request);
             $this->view->assign('mailResponse', $this->registrationService->getMailResponseForDOI());
         }catch(\Exception $e) {
             $this->view->assign('error', $e->getMessage());
@@ -86,7 +86,7 @@ class RegistrationController extends BaseActionController {
     public function registerEmailAction(User $newUser) {
         try {
             // Register with DOI process
-            $newUser = $this->registrationService->registerSimple($newUser->getEmail(), current(GeneralUtility::intExplode(',', $this->configurationManager->getContentObject()->data['pages'], true)), $this->settings);
+            $newUser = $this->registrationService->registerSimple($newUser->getEmail(), current(GeneralUtility::intExplode(',', $this->request->getAttribute('currentContentObject')->data['pages'], true)), $this->settings, $this->request);
             $this->view->assign('mailResponse', $this->registrationService->getMailResponseForDOI());
         }catch(\Exception $e) {
             $this->view->assign('error', $e->getMessage());
@@ -110,13 +110,13 @@ class RegistrationController extends BaseActionController {
         if ($this->settings['mode'] == SettingsRegistry::MODE_FORM && (!$this->request->hasArgument('skipform') || $this->request->getArgument('skipform') == '0')) {
             return new ForwardResponse('doiform');
         }
-        
+
         $querySettings = $this->userRepository->createQuery()->getQuerySettings();
         $querySettings->setIgnoreEnableFields(true);
         $querySettings->setEnableFieldsToBeIgnored(['disabled']);
         $this->userRepository->setDefaultQuerySettings($querySettings);
         $user = $this->userRepository->findByDoiHash($this->request->getArgument('doihash'))->current();
-        
+
         if ($user) {
             $user->setDisable(false);
             $user->setDoiHash('');
@@ -128,7 +128,7 @@ class RegistrationController extends BaseActionController {
             // if login page is set, then send credentials to user
             if ($this->settings['pages']['loginPage']) {
                 try {
-                    $service = GeneralUtility::makeInstance(DoubleOptinService::class);
+                    $service = GeneralUtility::makeInstance(DoubleOptinService::class, $this->request);
                     $service->setSettings($this->settings);
                     $service->sendCredentials($user, $password);
                 }catch(\Exception $e) {
@@ -138,7 +138,7 @@ class RegistrationController extends BaseActionController {
                 $this->view->assign('message', LocalizationUtility::translate('register.form.text.afterDoi', 'feuserregistration'));
             }else {
                 $this->view->assign('message', LocalizationUtility::translate('register.form.text.afterDoi.noCredentials', 'feuserregistration'));
-            }            
+            }
         }
 
         $this->view->assign('user', $user);

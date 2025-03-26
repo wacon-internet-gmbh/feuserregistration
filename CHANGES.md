@@ -1,3 +1,6 @@
+# Version dev-2.0.0-1
+- [FEATURE] TYPO3 13 Support
+
 # Version dev-2.0.0-0
 - [WIP] TYPO3 13 Support
 - [FEATURE] All TypoScript settings are now editable via constant editor

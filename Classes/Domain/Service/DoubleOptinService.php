@@ -11,7 +11,9 @@ declare(strict_types=1);
  */
 
  namespace Wacon\Feuserregistration\Domain\Service;
- 
+
+ use GuzzleHttp\Psr7\ServerRequest;
+ use Psr\Http\Message\ServerRequestInterface;
  use Wacon\Feuserregistration\Domain\Model\User;
  use Symfony\Component\Mime\Address;
  use TYPO3\CMS\Core\Mail\MailMessage;
@@ -23,8 +25,8 @@ declare(strict_types=1);
  use TYPO3\CMS\Extbase\Mvc\ExtbaseRequestParameters;
  use TYPO3\CMS\Extbase\Mvc\Request;
  use TYPO3\CMS\Extbase\Mvc\RequestInterface;
- 
- class DoubleOptinService 
+
+ class DoubleOptinService
  {
     /**
      * @var User
@@ -58,12 +60,20 @@ declare(strict_types=1);
     protected $settings;
 
     /**
+     * Current Request object
+     * @var ServerRequestInterface
+     */
+    protected ServerRequestInterface $request;
+
+    /**
      * Create a DoubleOptinService
      * @param MailMessage $mail
+     * @param ServerRequestInterface $request
      * @return void
      */
-    public function __construct(MailMessage $mail) {
-        $this->mail = $mail;
+    public function __construct(ServerRequestInterface $request) {
+        $this->mail = GeneralUtility::makeInstance(MailMessage::class);
+        $this->request = $request;
     }
 
     /**
@@ -74,7 +84,7 @@ declare(strict_types=1);
     public function sendMail(User $user) {
         $this->hash = md5(uniqid($user->getEmail()));
         $this->user = $user;
-        
+
         $from = MailUtility::getSystemFrom();
         $fromAddress = null;
 
@@ -88,7 +98,7 @@ declare(strict_types=1);
             ->from($fromAddress)
             ->to(
                 new Address($this->user->getEmail())
-            )        
+            )
             ->subject(LocalizationUtility::translate('register.mail.doi.subject', $this->extensionName, [SiteUtility::getDomain()]))
             ->html($this->getBodyHtml())
             ->send();
@@ -104,7 +114,7 @@ declare(strict_types=1);
      */
     public function sendCredentials(User $user, string $password) {
         $this->user = $user;
-        
+
         $from = MailUtility::getSystemFrom();
         $fromAddress = null;
 
@@ -115,7 +125,7 @@ declare(strict_types=1);
         }
 
         $bodytext = '';
-        
+
         if ($this->hasLoginPage()) {
             $bodytext = $this->getBodyHtmlForCredentials($user, $password);
         }else {
@@ -126,7 +136,7 @@ declare(strict_types=1);
             ->from($fromAddress)
             ->to(
                 new Address($this->user->getEmail())
-            )        
+            )
             ->subject(LocalizationUtility::translate('register.mail.doi.credentials.subject', $this->extensionName, [SiteUtility::getDomain()]))
             ->html($bodytext)
             ->send();
@@ -154,6 +164,7 @@ declare(strict_types=1);
             ->reset()
             ->setTargetPageUid($this->getLoginPageUid())
             ->setCreateAbsoluteUri(true)
+            ->setRequest($this->request)
             ->build();
     }
 
@@ -169,6 +180,7 @@ declare(strict_types=1);
             ->reset()
             ->setTargetPageUid($this->getVerificationPageUid())
             ->setCreateAbsoluteUri(true)
+            ->setRequest($this->request)
             ->uriFor(
                 'doi',
                 [
@@ -180,7 +192,7 @@ declare(strict_types=1);
             );
     }
 
-    
+
 
     /**
      * Return the body text
@@ -256,7 +268,7 @@ declare(strict_types=1);
      * Get typoScript settings
      *
      * @return  array
-     */ 
+     */
     public function getSettings()
     {
         return $this->settings;
@@ -268,7 +280,7 @@ declare(strict_types=1);
      * @param  array  $settings  TypoScript settings
      *
      * @return  self
-     */ 
+     */
     public function setSettings(array $settings)
     {
         $this->settings = $settings;
