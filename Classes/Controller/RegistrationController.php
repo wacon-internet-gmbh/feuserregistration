@@ -13,8 +13,10 @@ declare(strict_types=1);
 namespace Wacon\Feuserregistration\Controller;
 
 use Psr\Http\Message\ResponseInterface;
+use Wacon\Feuserregistration\Domain\Exception\AdminInfoMailNotSendException;
 use Wacon\Feuserregistration\Domain\Model\User;
 use Wacon\Feuserregistration\Domain\Repository\UserRepository;
+use Wacon\Feuserregistration\Domain\Service\AdminInfoMailService;
 use Wacon\Feuserregistration\Domain\Service\DoubleOptinService;
 use Wacon\Feuserregistration\Registry\SettingsRegistry;
 use Wacon\Feuserregistration\Utility\Typo3\SiteUtility;
@@ -67,10 +69,20 @@ class RegistrationController extends BaseActionController {
     public function registerAction(User $newUser) {
         try {
             // Register with DOI process
-            $newUser = $this->registrationService->register($newUser, (int)current(GeneralUtility::intExplode(',', $this->request->getAttribute('currentContentObject')->data['pages'], true)), $this->settings, $this->request);
+            $newUser = $this->registrationService->register($newUser, (int)current(GeneralUtility::intExplode(',', $this->request->getAttribute('currentContentObject')->data['pages'], true)), $this->settings, $this->request);            
             $this->view->assign('mailResponse', $this->registrationService->getMailResponseForDOI());
         }catch(\Exception $e) {
             $this->view->assign('error', $e->getMessage());
+        }
+
+        if (isset($this->settings['mails']['onRegistration']) && $this->settings['mails']['onRegistration']['enable'] == '1' && !empty($this->settings['mails']['onRegistration']['receivers'])) {
+            try {
+                $adminInfoMailService = GeneralUtility::makeInstance(AdminInfoMailService::class, $this->request);
+                $adminInfoMailService->setSettings($this->settings);
+                $adminInfoMailService->sendRegistrationMail($newUser);
+            } catch(\Exception $e) {
+                throw new AdminInfoMailNotSendException('Error during info mail for registration of feuserregistration. Prior Message: ' . $e->getMessage(), time(), $e);
+            }
         }
 
         $this->view->assign('newUser', $newUser);
@@ -90,6 +102,16 @@ class RegistrationController extends BaseActionController {
             $this->view->assign('mailResponse', $this->registrationService->getMailResponseForDOI());
         }catch(\Exception $e) {
             $this->view->assign('error', $e->getMessage());
+        }
+
+        if (isset($this->settings['mails']['onRegistration']) && $this->settings['mails']['onRegistration']['enable'] == '1' && !empty($this->settings['mails']['onRegistration']['receivers'])) {
+            try {
+                $adminInfoMailService = GeneralUtility::makeInstance(AdminInfoMailService::class, $this->request);
+                $adminInfoMailService->setSettings($this->settings);
+                $adminInfoMailService->sendRegistrationMail($newUser);
+            } catch(\Exception $e) {
+                throw new AdminInfoMailNotSendException('Error during info mail for registration of feuserregistration. Prior Message: ' . $e->getMessage(), time(), $e);
+            }
         }
 
         $this->view->assign('newUser', $newUser);
@@ -138,6 +160,16 @@ class RegistrationController extends BaseActionController {
                 $this->view->assign('message', LocalizationUtility::translate('register.form.text.afterDoi', 'feuserregistration'));
             }else {
                 $this->view->assign('message', LocalizationUtility::translate('register.form.text.afterDoi.noCredentials', 'feuserregistration'));
+            }
+
+            if (isset($this->settings['mails']['onVerification']) && $this->settings['mails']['onVerification']['enable'] == '1' && !empty($this->settings['mails']['onVerification']['receivers'])) {
+                try {
+                    $service = GeneralUtility::makeInstance(AdminInfoMailService::class, $this->request);
+                    $service->setSettings($this->settings);
+                    $service->sendVerificationMail($user);
+                }catch(\Exception $e) {
+                    $this->view->assign('error', $e->getMessage());
+                }
             }
         }
 

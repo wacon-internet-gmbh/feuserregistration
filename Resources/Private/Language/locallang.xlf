@@ -121,6 +121,28 @@
                 <source>the registration is completed. You will now receive our newsletter.</source>
             </trans-unit>
 
+            <trans-unit id="register.mail.adminInfo.subject.registration" resname="register.mail.adminInfo.subject.registration">
+                <source>New registration started at %s</source>
+            </trans-unit>
+            <trans-unit id="register.mail.adminInfo.subject.verification" resname="register.mail.adminInfo.subject.verification">
+                <source>New registration completed at %s</source>
+            </trans-unit>
+            <trans-unit id="register.mail.adminInfo.text.salutation" resname="register.mail.adminInfo.text.salutation">
+                <source>Dear admin,</source>
+            </trans-unit>
+            <trans-unit id="register.mail.adminInfo.text.registration" resname="register.mail.adminInfo.text.registration">
+                <source>a new user: '%s' started a registration on %s. The user has not verified the account yet.</source>
+            </trans-unit>
+            <trans-unit id="register.mail.adminInfo.text.verification" resname="register.mail.adminInfo.text.verification">
+                <source>a new user: '%s' completed the registration on %s. The user has just verified his account.</source>
+            </trans-unit>
+            <trans-unit id="register.mail.adminInfo.text.greetings" resname="register.mail.adminInfo.text.greetings">
+                <source>Best regards,</source>
+            </trans-unit>
+            <trans-unit id="register.mail.adminInfo.text.greetings.brand" resname="register.mail.adminInfo.text.greetings.brand">
+                <source>WACON Internet GmbH</source>
+            </trans-unit>
+
             <trans-unit id="verify.doiform.submit" resname="verify.doiform.submit">
                 <source>Complete verification</source>
             </trans-unit>

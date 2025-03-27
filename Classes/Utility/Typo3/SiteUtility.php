@@ -20,10 +20,20 @@ declare(strict_types=1);
      * Return the current domain
      * @return string
      */
-    public static function getDomain() {
+    public static function getDomain(): string
+    {
         $base = $GLOBALS['TYPO3_REQUEST']->getAttribute('site')->getBase();
         
         return $base->getAuthority();
+    }
+
+    /**
+     * Return base uri
+     * @return string
+     */
+    public static function getBaseUrl(): string
+    {
+        return $GLOBALS['TYPO3_REQUEST']->getAttribute('site')->getBase()->__toString();
     }
 
     /**

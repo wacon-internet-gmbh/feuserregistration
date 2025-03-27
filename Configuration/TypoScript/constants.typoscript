@@ -2,6 +2,7 @@
 # customsubcategory=settings=Settings
 # customsubcategory=fields=Fields visibility
 # customsubcategory=pages=Pages
+# customsubcategory=mails=Emails
 
 plugin.tx_feuserregistration {
     view {
@@ -48,5 +49,19 @@ plugin.tx_feuserregistration {
         }
         # cat=plugin.tx_feuserregistration/fields; type=string; label=List of required fields
         requiredFields = firstName,lastName,email
+        mails {
+            onRegistration {
+                # cat=plugin.tx_feuserregistration/mails; type=boolean; label=Enable info mail on registration
+                enable = 0
+                # cat=plugin.tx_feuserregistration/mails; type=string; label=CSV of receivers for info mail on registration
+                receivers =
+            }
+            onVerification {
+                # cat=plugin.tx_feuserregistration/mails; type=boolean; label=Enable info mail on verfication
+                enable = 0
+                # cat=plugin.tx_feuserregistration/mails; type=string; label=CSV of receivers for info mail on verfication
+                receivers =
+            }
+        }
     }
 }

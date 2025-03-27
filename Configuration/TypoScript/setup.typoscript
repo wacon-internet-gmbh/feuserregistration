@@ -45,6 +45,17 @@ plugin.tx_feuserregistration {
         }
 
         requiredFields = {$plugin.tx_feuserregistration.settings.requiredFields}
+
+        mails {
+            onRegistration {
+                enable = {$plugin.tx_feuserregistration.settings.mails.onRegistration.enable}
+                receivers = {$plugin.tx_feuserregistration.settings.mails.onRegistration.receivers}
+            }
+            onVerification {
+                enable = {$plugin.tx_feuserregistration.settings.mails.onVerification.enable}
+                receivers = {$plugin.tx_feuserregistration.settings.mails.onVerification.receivers}
+            }
+        }
     }
 }
 /**************************************************************

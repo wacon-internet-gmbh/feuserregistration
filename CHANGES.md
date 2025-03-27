@@ -1,3 +1,11 @@
+# Version dev-2.1.0-0
+- [FEATURE] Implement admin info mail for registration and verification
+
+# Version 2.0.0
+- [IMPORTANT] Release 2.0.0
+- [FEATURE] All TypoScript settings are now editable via constant editor
+- [FEATURE] TYPO3 13 Support
+  
 # Version dev-2.0.0-2
 - [BUGFIX] Exclude DoubleOptinService from Autowiring
 

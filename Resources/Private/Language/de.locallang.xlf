@@ -118,6 +118,28 @@
                 <target>die Registrierung ist abgeschlossen. Sie erhalten nun unseren Newsletter.</target>
             </trans-unit>
 
+            <trans-unit id="register.mail.adminInfo.subject.registration" resname="register.mail.adminInfo.subject.registration">
+                <target>Neue Registrierung gestartet auf %s</target>
+            </trans-unit>
+            <trans-unit id="register.mail.adminInfo.subject.verification" resname="register.mail.adminInfo.subject.verification">
+                <target>Neue Registrierung bestätigt auf %s</target>
+            </trans-unit>
+            <trans-unit id="register.mail.adminInfo.text.salutation" resname="register.mail.adminInfo.text.salutation">
+                <target>Sehr geehrte(r) Admin,</target>
+            </trans-unit>
+            <trans-unit id="register.mail.adminInfo.text.registration" resname="register.mail.adminInfo.text.registration">
+                <target>Ein neuer Benutzer: %s hat eine Registrierung auf %s gestartet. Der Benutzer hat das Konto noch nicht verifiziert.</target>
+            </trans-unit>
+            <trans-unit id="register.mail.adminInfo.text.verification" resname="register.mail.adminInfo.text.verification">
+                <target>Ein neuer Benutzer: %s hat die Registrierung am %s abgeschlossen. Der Benutzer hat gerade sein Konto verifiziert.</target>
+            </trans-unit>
+            <trans-unit id="register.mail.adminInfo.text.greetings" resname="register.mail.adminInfo.text.greetings">
+                <target>Mit freundlichen Grüßen</target>
+            </trans-unit>
+            <trans-unit id="register.mail.adminInfo.text.greetings.brand" resname="register.mail.adminInfo.text.greetings.brand">
+                <target>WACON Internet GmbH</target>
+            </trans-unit>
+
             <trans-unit id="verify.doiform.submit" resname="verify.doiform.submit">
                 <target>Verifzierung abschließen</target>
             </trans-unit>
