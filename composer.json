@@ -1,7 +1,7 @@
 {
     "name": "wacon/feuserregistration",
     "type": "typo3-cms-extension",
-    "description": "Extension to enable a frontend registration.",
+    "description": "TYPO3 extension to offer simple and easy to use frontend registration forms.",
     "license": "GPL-2.0-or-later",
     "version": "2.1.0",
     "require": {

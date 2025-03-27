@@ -1,7 +1,7 @@
 <?php
 $EM_CONF[$_EXTKEY] = [
     'title' => 'Frontend User Registration',
-    'description' => 'Extension to enable a frontend registration.',
+    'description' => 'TYPO3 extension to offer simple and easy to use frontend registration forms.',
     'category' => 'plugin',
     'author' => 'Kevin Chileong Lee',
     'author_email' => 'info@wacon.de',
