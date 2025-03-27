@@ -1,4 +1,4 @@
-# Version dev-2.1.0-0
+# Version 2.1.0
 - [FEATURE] Implement admin info mail for registration and verification
 
 # Version 2.0.0
