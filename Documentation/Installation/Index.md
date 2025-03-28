@@ -26,3 +26,6 @@ Execute the DB Analyzer inisde the Admin Tools -> Maintenance module
    1. Add the frontend plugin: Feuserregistration: Verify a registration. [feuserregistration_verify]
 4. Add the TypoScript static file from Feuserregistration to your TypoSript records (for instance on your root page)
    1. Configure feuserregistration via the constant editor
+
+## More information
+https://www.wacon.de/typo3-service/feuserregistration.html (german)
