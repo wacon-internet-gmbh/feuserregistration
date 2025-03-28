@@ -1,3 +1,6 @@
+# Version 2.1.1
+- [NOTICE] Add extension icon
+
 # Version 2.1.0
 - [FEATURE] Implement admin info mail for registration and verification
 
