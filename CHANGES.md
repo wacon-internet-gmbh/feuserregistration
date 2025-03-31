@@ -1,3 +1,7 @@
+# Version 2.1.2
+- [CHANGE] Some minor CSS improvements in error list
+- [BUGFIX] Add CSS var --bs-danger --bs-danger-light just in case user dont use bootstrap
+
 # Version 2.1.1
 - [NOTICE] Add extension icon
 

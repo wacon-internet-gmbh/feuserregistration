@@ -1,6 +1,6 @@
 <div class="mb-3">
     <f:comment><label for="email" class="form-label"><f:translate key="register.form.email" extensionName="feuserregistration" /></label></f:comment>
-    <f:form.textfield property="email" class="form-control" placeholder="{f:translate(key:'register.form.email.placeholder', extensionName: 'feuserregistration')}"/>    
+    <f:form.textfield property="email" class="form-control" placeholder="{f:translate(key:'register.form.email.placeholder', extensionName: 'feuserregistration')}" required="true" />    
 </div>
 <f:if condition="{settings.fields.captcha}">
     <f:render partial="Captcha/Math" />

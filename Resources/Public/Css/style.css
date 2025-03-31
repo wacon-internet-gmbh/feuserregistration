@@ -1,9 +1,25 @@
 /**************************************************
+ * ROOT - START
+ *************************************************/
+ .feuserregistration {
+    --bs-danger: #FF0000;
+    --bs-danger-rgb: 255, 0, 0;
+    --bs-danger-light: #FF9F9F;
+ } 
+/**************************************************
+ * ROOT - END
+ *************************************************/ 
+/**************************************************
  * ERRORS / MESSAGES - START
  *************************************************/
 .feuserregistration .f3-form-error {
     border: 1px solid var(--bs-danger);
-    background-color: rgba(var(--bs-danger-rgb), 0.25);
+    background-color: var(--bs-danger-light);
+}
+
+.feuserregistration .alert ul.errors ul,
+.feuserregistration .alert ul.errors li {
+    margin-bottom: 0;
 }
 /**************************************************
  * ERRORS / MESSAGES - END
