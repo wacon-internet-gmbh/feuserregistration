@@ -1,3 +1,6 @@
+# Version 2.1.3
+- [FEATURE] Add option to print out all fluid variables for logging on registration
+
 # Version 2.1.2
 - [CHANGE] Some minor CSS improvements in error list
 - [BUGFIX] Add CSS var --bs-danger --bs-danger-light just in case user dont use bootstrap
@@ -12,7 +15,7 @@
 - [IMPORTANT] Release 2.0.0
 - [FEATURE] All TypoScript settings are now editable via constant editor
 - [FEATURE] TYPO3 13 Support
-  
+
 # Version dev-2.0.0-2
 - [BUGFIX] Exclude DoubleOptinService from Autowiring
 

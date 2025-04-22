@@ -56,6 +56,9 @@ plugin.tx_feuserregistration {
                 receivers = {$plugin.tx_feuserregistration.settings.mails.onVerification.receivers}
             }
         }
+        dev {
+          enableLog = {$plugin.tx_feuserregistration.settings.dev.enableLog}
+        }
     }
 }
 /**************************************************************
@@ -97,4 +100,4 @@ pageCaptcha {
 }
 /**************************************************************
  * PAGE - END
- *************************************************************/ 
+ *************************************************************/

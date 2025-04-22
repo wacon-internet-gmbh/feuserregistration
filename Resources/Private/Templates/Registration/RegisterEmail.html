@@ -1,6 +1,7 @@
 <f:layout name="Default" />
 
 <f:section name="Main">
+    <f:render partial="Dev/Log" arguments="{_all}" />
     <f:if condition="{error}">
         <f:then>
             <p class="alert alert-danger">{error}</p>
@@ -8,5 +9,5 @@
         <f:else>
             <p><f:translate key="register.form.text.afterRegistration" extensionName="feuserregistration" /></p>
         </f:else>
-    </f:if>    
+    </f:if>
 </f:section>

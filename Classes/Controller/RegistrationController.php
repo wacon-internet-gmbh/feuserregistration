@@ -69,8 +69,9 @@ class RegistrationController extends BaseActionController {
     public function registerAction(User $newUser) {
         try {
             // Register with DOI process
-            $newUser = $this->registrationService->register($newUser, (int)current(GeneralUtility::intExplode(',', $this->request->getAttribute('currentContentObject')->data['pages'], true)), $this->settings, $this->request);            
+            $newUser = $this->registrationService->register($newUser, (int)current(GeneralUtility::intExplode(',', $this->request->getAttribute('currentContentObject')->data['pages'], true)), $this->settings, $this->request);
             $this->view->assign('mailResponse', $this->registrationService->getMailResponseForDOI());
+            $this->view->assign('enableLog', isset($this->settings['dev']['enableLog']) ? $this->settings['dev']['enableLog'] : 0);
         }catch(\Exception $e) {
             $this->view->assign('error', $e->getMessage());
         }
@@ -100,6 +101,7 @@ class RegistrationController extends BaseActionController {
             // Register with DOI process
             $newUser = $this->registrationService->registerSimple($newUser->getEmail(), current(GeneralUtility::intExplode(',', $this->request->getAttribute('currentContentObject')->data['pages'], true)), $this->settings, $this->request);
             $this->view->assign('mailResponse', $this->registrationService->getMailResponseForDOI());
+            $this->view->assign('enableLog', isset($this->settings['dev']['enableLog']) ? $this->settings['dev']['enableLog'] : 0);
         }catch(\Exception $e) {
             $this->view->assign('error', $e->getMessage());
         }

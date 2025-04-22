@@ -17,7 +17,7 @@ plugin.tx_feuserregistration {
     settings {
         fegroups {
             # cat=plugin.tx_feuserregistration/settings; type=string; label=The final target fe_group
-            target = 
+            target =
         }
         fields {
             # cat=plugin.tx_feuserregistration/fields; type=string; label=Show address field
@@ -62,6 +62,9 @@ plugin.tx_feuserregistration {
                 # cat=plugin.tx_feuserregistration/mails; type=string; label=CSV of receivers for info mail on verfication
                 receivers =
             }
+        }
+        dev {
+          enableLog = 0
         }
     }
 }
