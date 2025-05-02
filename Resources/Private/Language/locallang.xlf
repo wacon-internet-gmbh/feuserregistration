@@ -67,7 +67,10 @@
                 <source>Data protection</source>
             </trans-unit>
             <trans-unit id="register.form.privacy_long" resname="register.form.privacy_long">
-                <source><![CDATA[I agree that the operator and publisher may inform me about selected topics. My data will only be used for this purpose. In particular, no data will be passed on to unauthorized third parties. I am aware that I can revoke my consent at any time with effect for the future. The <a href="%s" target="_blank">data protection</a> declaration applies, which also contains further information about options for correcting, deleting and blocking my data.]]></source>
+                <source><![CDATA[I have read and accept the <a href="%s" target="_blank">Privacy Policy</a>.]]></source>
+            </trans-unit>
+			<trans-unit id="register.form.privacy_long.newsletter" resname="register.form.privacy_long.newsletter">
+                <source><![CDATA[I have read and accept the <a href="%s" target="_blank">Privacy Policy</a>. I consent to my data being processed for sending the newsletter.]]></source>
             </trans-unit>
 
             <trans-unit id="register.form.text.afterRegistration" resname="register.form.text.afterRegistration">

@@ -17,7 +17,7 @@
 </div>
 <div class="mb-3">
     <label for="email" class="form-label"><f:translate key="register.form.email" extensionName="feuserregistration" /></label>
-    <f:form.textfield property="email" class="form-control" />    
+    <f:form.textfield property="email" class="form-control" />
 </div>
 <f:if condition="{settings.fields.address}">
     <div class="mb-3">
@@ -63,7 +63,7 @@
 <f:if condition="{settings.fields.luxletter}">
     <div class="form-check mb-3">
         <f:form.checkbox property="newsletterReceive" class="form-check-input" value="1" />
-        <label for="newsletterReceive" class="form-check-label"><f:translate key="register.form.newsletterReceive" extensionName="feuserregistration" /></label>        
+        <label for="newsletterReceive" class="form-check-label"><f:translate key="register.form.newsletterReceive" extensionName="feuserregistration" /></label>
     </div>
     <div class="mb-3">
         <label for="luxletterLanguage" class="form-label"><f:translate key="register.form.luxletterLanguage" extensionName="feuserregistration" /></label>
@@ -73,6 +73,13 @@
 <f:if condition="{settings.fields.privacy}">
     <div class="mb-3 form-check">
         <f:form.checkbox id="privacy" property="privacy" class="form-check-input" value="1" />
-        <label for="privacy" class="form-check-label"><f:format.raw><f:translate key="register.form.privacy_long" extensionName="feuserregistration" arguments="{0: '{f:uri.page(pageUid: \'{settings.pages.privacyPage}\')}'}" /></f:format.raw></label>        
+        <f:if condition="{settings.fields.privacy.newsletter}">
+            <f:then>
+                <label for="privacy" class="form-check-label"><f:format.raw><f:translate key="register.form.privacy_long.newsletter" extensionName="feuserregistration" arguments="{0: '{f:uri.page(pageUid: \'{settings.pages.privacyPage}\')}'}" /></f:format.raw></label>
+            </f:then>
+            <f:else>
+                <label for="privacy" class="form-check-label"><f:format.raw><f:translate key="register.form.privacy_long" extensionName="feuserregistration" arguments="{0: '{f:uri.page(pageUid: \'{settings.pages.privacyPage}\')}'}" /></f:format.raw></label>
+            </f:else>
+        </f:if>
     </div>
 </f:if>

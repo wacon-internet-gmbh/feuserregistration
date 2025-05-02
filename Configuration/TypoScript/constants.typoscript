@@ -34,6 +34,10 @@ plugin.tx_feuserregistration {
             captcha = 1
             # cat=plugin.tx_feuserregistration/fields; type=string; label=Show privacy field
             privacy = 1
+            privacy {
+              # cat=plugin.tx_feuserregistration/fields; type=boolean; label=Show newsletter privacy label
+              newsletter = 0
+            }
         }
         pages {
             # cat=plugin.tx_feuserregistration/pages; type=string; label=Verification page

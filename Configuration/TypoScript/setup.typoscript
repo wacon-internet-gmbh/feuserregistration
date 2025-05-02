@@ -32,6 +32,9 @@ plugin.tx_feuserregistration {
             luxletter = {$plugin.tx_feuserregistration.settings.fields.luxletter}
             captcha = {$plugin.tx_feuserregistration.settings.fields.captcha}
             privacy = {$plugin.tx_feuserregistration.settings.fields.privacy}
+            privacy {
+              newsletter = {$plugin.tx_feuserregistration.settings.fields.privacy.newsletter}
+            }
         }
 
         pages {

@@ -1,3 +1,7 @@
+# Version 2.2.0
+- [FEATURE] Add option in constant editor to switch privacy checkbox label from normal to newsletter mode
+- [CHANGE] Shorten privacy checkbox label
+
 # Version 2.1.3
 - [FEATURE] Add option to print out all fluid variables for logging on registration
 

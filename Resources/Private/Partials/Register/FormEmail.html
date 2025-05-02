@@ -1,6 +1,6 @@
 <div class="mb-3">
     <f:comment><label for="email" class="form-label"><f:translate key="register.form.email" extensionName="feuserregistration" /></label></f:comment>
-    <f:form.textfield property="email" class="form-control" placeholder="{f:translate(key:'register.form.email.placeholder', extensionName: 'feuserregistration')}" required="true" />    
+    <f:form.textfield property="email" class="form-control" placeholder="{f:translate(key:'register.form.email.placeholder', extensionName: 'feuserregistration')}" required="true" />
 </div>
 <f:if condition="{settings.fields.captcha}">
     <f:render partial="Captcha/Math" />
@@ -14,6 +14,13 @@
 <f:if condition="{settings.fields.privacy}">
     <div class="mb-3 form-check">
         <f:form.checkbox id="privacy" property="privacy" class="form-check-input" value="1" />
-        <label for="privacy" class="form-check-label"><f:format.raw><f:translate key="register.form.privacy_long" extensionName="feuserregistration" arguments="{0: '{f:uri.page(pageUid: \'{settings.pages.privacyPage}\')}'}" /></f:format.raw></label>        
+        <f:if condition="{settings.fields.privacy.newsletter}">
+            <f:then>
+                <label for="privacy" class="form-check-label"><f:format.raw><f:translate key="register.form.privacy_long.newsletter" extensionName="feuserregistration" arguments="{0: '{f:uri.page(pageUid: \'{settings.pages.privacyPage}\')}'}" /></f:format.raw></label>
+            </f:then>
+            <f:else>
+                <label for="privacy" class="form-check-label"><f:format.raw><f:translate key="register.form.privacy_long" extensionName="feuserregistration" arguments="{0: '{f:uri.page(pageUid: \'{settings.pages.privacyPage}\')}'}" /></f:format.raw></label>
+            </f:else>
+        </f:if>
     </div>
 </f:if>
