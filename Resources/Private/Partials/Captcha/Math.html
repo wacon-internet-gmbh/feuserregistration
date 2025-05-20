@@ -1,7 +1,7 @@
 <div class="mb-3 row-captcha">
     <label for="captcha" class="form-label d-block"><f:translate key="register.form.captcha_math" extensionName="feuserregistration" /></label>
-    <div class="captcha-image-wrapper">
-        <img class="img-captcha mb-3" src="{f:uri.page(pageType: settings.pagetypes.captcha, noCache: '1')}" />
+    <div class="captcha-image-wrapper mb-3">
+        <img class="img-captcha" src="{f:uri.page(pageType: settings.pagetypes.captcha, noCache: '1')}" />
         <a class="captcha-readaloud{f:if(condition: settings.fields.captchaReadAloudAsIcon, then: ' text-decoration-none')}" href="javascript:void(0);" data-uri="{f:uri.page(pageType: settings.pagetypes.captcha, noCache: '1')}" title="{f:translate(key: 'register.form.captcha.readaloud', extensionName: 'feuserregistration')}">
             <f:if condition="{settings.fields.captchaReadAloudAsIcon}">
                 <f:then>

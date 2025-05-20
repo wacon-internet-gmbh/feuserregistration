@@ -1,3 +1,6 @@
+# Version 2.4.1
+- [BUGFIX] mb-3 on wrapper of catpcha
+
 # Version 2.4.0
 - [FEATURE] Add option to set read aloud function as icon
 - [CHANGE] Optimize html structure for captcha with read aloud function
