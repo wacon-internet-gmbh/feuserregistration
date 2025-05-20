@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Wacon\Feuserregistration\Utility\Typo3;
 
-use \Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Message\ServerRequestInterface;
 
 class SiteUtility
 {

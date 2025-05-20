@@ -214,7 +214,7 @@ trait TcaTrait
                 'type' => 'number',
                 'size' => $size,
                 'format' => 'decimal',
-            ]
+            ],
         ];
 
         if (!empty($additionalConfig)) {

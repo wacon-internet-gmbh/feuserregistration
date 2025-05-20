@@ -39,7 +39,7 @@ class PasswordUtility
      */
     public static function random($length = 9, $add_dashes = false, $available_sets = 'luds'): string
     {
-        $sets = array();
+        $sets = [];
         if (strpos($available_sets, 'l') !== false) {
             $sets[] = 'abcdefghjkmnpqrstuvwxyz';
         }

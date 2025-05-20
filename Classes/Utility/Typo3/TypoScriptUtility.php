@@ -21,11 +21,12 @@ class TypoScriptUtility implements \TYPO3\CMS\Core\SingletonInterface
      *
      * @param array $typoScriptArray The array to convert to string
      * @param string $addKey Prefix given values with given key (eg. lib.whatever = {...})
-     * @param integer $tab Internal
-     * @param boolean $init Internal
+     * @param int $tab Internal
+     * @param bool $init Internal
      * @return string TypoScript
      */
-    static public function convertArrayToTypoScript(array $typoScriptArray, $addKey = '', $tab = 0, $init = true) {
+    public static function convertArrayToTypoScript(array $typoScriptArray, $addKey = '', $tab = 0, $init = true)
+    {
         $typoScript = '';
         if ($addKey !== '') {
             $typoScript .= str_repeat("\t", ($tab === 0) ? $tab : $tab - 1) . $addKey . " {\n";
@@ -60,7 +61,8 @@ class TypoScriptUtility implements \TYPO3\CMS\Core\SingletonInterface
      * @param string $subPath
      * @return string|array|null
      */
-    public static function getTypoScript(string $subPath) {
+    public static function getTypoScript(string $subPath)
+    {
         $configurationManager = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Configuration\ConfigurationManager::class);
         $typoscript = $configurationManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT);
         $typoscriptService = GeneralUtility::makeInstance(\TYPO3\CMS\Core\TypoScript\TypoScriptService::class);

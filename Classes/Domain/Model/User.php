@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -209,7 +210,6 @@ class User extends BaseEntity
 
     /**
      * Set a random password
-     * @return string
      */
     public function setRandomPassword()
     {

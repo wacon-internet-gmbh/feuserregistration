@@ -126,7 +126,6 @@ class AdminInfoMailService
         }
 
         foreach ($receivers as $key => $receiver) {
-
             if ($key == 0) {
                 $this->mail->to(new Address($receiver));
             } else {
