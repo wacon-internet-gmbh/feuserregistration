@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -13,19 +14,19 @@ declare(strict_types=1);
 namespace Wacon\Feuserregistration\Domain\Service;
 
 use Psr\Http\Message\ServerRequestInterface;
-use Wacon\Feuserregistration\Bootstrap\Traits\ExtensionTrait;
-use Wacon\Feuserregistration\Domain\Model\User;
+
 use Symfony\Component\Mime\Address;
-use TYPO3\CMS\Core\Mail\MailMessage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Mail\MailMessage;
 use TYPO3\CMS\Core\Utility\MailUtility;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
+use Wacon\Feuserregistration\Bootstrap\Traits\ExtensionTrait;
+use Wacon\Feuserregistration\Domain\Model\User;
 use Wacon\Feuserregistration\Utility\Typo3\SiteUtility;
 
 class AdminInfoMailService
 {
     use ExtensionTrait;
-
     public static string $MODE_VERIFICATION = 'verification';
     public static string $MODE_REGISTRATION = 'registration';
 

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -15,7 +16,5 @@ namespace Wacon\Feuserregistration\Domain\Model;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
 class BaseEntity extends AbstractEntity
-{
-
-}
+{}
 

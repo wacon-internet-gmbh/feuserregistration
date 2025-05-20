@@ -35,7 +35,7 @@ class ValidatorClassNameCheckTest extends UnitTestCase
         $extendedUser = new ExtendedUser();
         $isInstanceOf = $extendedUser instanceof User;
 
-        $this->assertEquals(true, $isInstanceOf);
+        self::assertEquals(true, $isInstanceOf);
     }
 
     /**
@@ -48,7 +48,7 @@ class ValidatorClassNameCheckTest extends UnitTestCase
         $extendedUser = new User();
         $isInstanceOf = $extendedUser instanceof User;
 
-        $this->assertEquals(true, $isInstanceOf);
+        self::assertEquals(true, $isInstanceOf);
     }
 
     /**
@@ -61,6 +61,6 @@ class ValidatorClassNameCheckTest extends UnitTestCase
         $extendedUser = new NotExtendedUser();
         $isInstanceOf = $extendedUser instanceof User;
 
-        $this->assertEquals(false, $isInstanceOf);
+        self::assertEquals(false, $isInstanceOf);
     }
 }

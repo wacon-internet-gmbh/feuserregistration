@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Wacon\Feuserregistration\Utility\Typo3\Extbase;
@@ -24,24 +25,22 @@ class PersistenceUtility
     /**
      * Disable the RespectSysLanguage
      * @param \TYPO3\CMS\Extbase\Persistence\Repository $repository
-     * @return void
      */
     public static function disableRespectSysLanguage(\TYPO3\CMS\Extbase\Persistence\Repository &$repository)
     {
         $querySettings = $repository->createQuery()->getQuerySettings();
-        $querySettings->setRespectSysLanguage(FALSE);
+        $querySettings->setRespectSysLanguage(false);
         $repository->setDefaultQuerySettings($querySettings);
     }
 
     /**
      * Disable the RespectStoragePage
      * @param \TYPO3\CMS\Extbase\Persistence\Repository $repository
-     * @return void
      */
     public static function disableRespectStoragePage(\TYPO3\CMS\Extbase\Persistence\Repository &$repository)
     {
         $querySettings = $repository->createQuery()->getQuerySettings();
-        $querySettings->setRespectStoragePage(FALSE);
+        $querySettings->setRespectStoragePage(false);
         $repository->setDefaultQuerySettings($querySettings);
     }
 
@@ -60,7 +59,6 @@ class PersistenceUtility
     /**
      * Removes the access restriction
      * @param \TYPO3\CMS\Extbase\Persistence\Repository $repository
-     * @return void
      */
     public static function removeAccessRestriction(\TYPO3\CMS\Extbase\Persistence\Repository &$repository)
     {
@@ -74,14 +72,13 @@ class PersistenceUtility
      * Removes the access restriction
      * @param \TYPO3\CMS\Extbase\Persistence\Repository $repository
      * @param array $enabledFieldsToBeIgnored
-     * @return void
      */
     public static function removeAllRestrictions(\TYPO3\CMS\Extbase\Persistence\Repository &$repository, array $enabledFieldsToBeIgnored)
     {
         $querySettings = $repository->createQuery()->getQuerySettings();
         $querySettings->setEnableFieldsToBeIgnored($enabledFieldsToBeIgnored);
         $querySettings->setIgnoreEnableFields(true);
-        $querySettings->setRespectStoragePage(FALSE);
+        $querySettings->setRespectStoragePage(false);
         $repository->setDefaultQuerySettings($querySettings);
     }
 }

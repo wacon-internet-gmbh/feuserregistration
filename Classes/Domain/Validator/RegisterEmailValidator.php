@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -12,8 +13,8 @@ declare(strict_types=1);
 
 namespace Wacon\Feuserregistration\Domain\Validator;
 
-use TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator;
 
 class RegisterEmailValidator extends AbstractValidator
 {
@@ -39,8 +40,5 @@ class RegisterEmailValidator extends AbstractValidator
                 $this->addErrorForProperty($propertyWithError['name'], $propertyWithError['errorString'], $propertyWithError['errorCode']);
             }
         }
-
-        // check if user already exists with that email
-
     }
 }

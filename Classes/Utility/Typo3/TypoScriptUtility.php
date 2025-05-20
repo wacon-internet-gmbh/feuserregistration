@@ -3,10 +3,9 @@ declare(strict_types=1);
 
 namespace Wacon\Feuserregistration\Utility\Typo3;
 
+use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
-use TYPO3\CMS\Core\Database\ConnectionPool;
-use TYPO3\CMS\Core\Database\Connection;
 
 /*
  * This file is part of the TYPO3 extension t3templates_base.
@@ -36,14 +35,14 @@ class TypoScriptUtility implements \TYPO3\CMS\Core\SingletonInterface
         $tab++;
         foreach($typoScriptArray as $key => $value) {
             if (!is_array($value)) {
-                if (strpos($value, "\n") === FALSE) {
+                if (strpos($value, "\n") === false) {
                     $typoScript .= str_repeat("\t", ($tab === 0) ? $tab : $tab - 1) . "$key = $value\n";
                 } else {
                     $typoScript .= str_repeat("\t", ($tab === 0) ? $tab : $tab - 1) . "$key (\n$value\n" . str_repeat("\t", ($tab === 0) ? $tab : $tab - 1) . ")\n";
                 }
 
             } else {
-                $typoScript .= self::convertArrayToTypoScript($value, $key, $tab, FALSE);
+                $typoScript .= self::convertArrayToTypoScript($value, $key, $tab, false);
             }
         }
         if ($addKey !== '') {
@@ -80,7 +79,7 @@ class TypoScriptUtility implements \TYPO3\CMS\Core\SingletonInterface
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getConnectionForTable('sys_template')->createQueryBuilder();
         return $queryBuilder->select('*')->from('sys_template')->where(
             $queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pageUid, \PDO::PARAM_INT))
-        )->execute()->fetch();
+        )->executeQuery()->fetchAssociative()
     }
 
     /**
@@ -100,7 +99,7 @@ class TypoScriptUtility implements \TYPO3\CMS\Core\SingletonInterface
 
         $result = false;
 
-        $versionInformation = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Information\Typo3Version::class);        
+        $versionInformation = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Information\Typo3Version::class);
         if ($versionInformation->getMajorVersion() < 11) {
             $result = $queryBuilder->execute();
         }else {
@@ -127,7 +126,7 @@ class TypoScriptUtility implements \TYPO3\CMS\Core\SingletonInterface
                 return null;
             }
         }
-        
+
         return $array;
     }
 }

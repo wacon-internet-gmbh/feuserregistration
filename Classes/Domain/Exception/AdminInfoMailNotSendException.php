@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -13,6 +14,4 @@ declare(strict_types=1);
 namespace Wacon\Feuserregistration\Domain\Exception;
 
 class AdminInfoMailNotSendException extends \Exception
-{
-
-}
+{}

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -13,10 +14,10 @@ declare(strict_types=1);
 
 namespace Wacon\Feuserregistration\Domain\Service\Validation;
 
-use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use Wacon\Feuserregistration\Utility\Typo3\TypoScriptUtility;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 use Wacon\Feuserregistration\Utility\Typo3\Extbase\PersistenceUtility;
+use Wacon\Feuserregistration\Utility\Typo3\TypoScriptUtility;
 
 class RegisterValidationService extends RegisterEmailValidationService
 {
@@ -29,7 +30,6 @@ class RegisterValidationService extends RegisterEmailValidationService
     /**
      * Create a BookingRequestValidationService
      * @param \TYPO3\CMS\Extbase\Validation\Validator\EmailAddressValidator $emailAddressValidator
-     * @return void
      */
     public function __construct(
         \TYPO3\CMS\Extbase\Validation\Validator\EmailAddressValidator $emailAddressValidator,
@@ -50,7 +50,6 @@ class RegisterValidationService extends RegisterEmailValidationService
     /**
      * Check if object is valid
      * @param mixed $value
-     * @return bool
      */
     public function isValid($value)
     {
@@ -91,7 +90,7 @@ class RegisterValidationService extends RegisterEmailValidationService
                 $this->propertiesWithError[] = [
                     'name' => $field,
                     'errorString' => LocalizationUtility::translate('validation.error.notempty', $this->extensionName),
-                    'errorCode' => time()
+                    'errorCode' => time(),
                 ];
             }
         }
@@ -110,7 +109,7 @@ class RegisterValidationService extends RegisterEmailValidationService
                 $this->propertiesWithError[] = [
                     'name' => 'email',
                     'errorString' => LocalizationUtility::translate('validation.error.email.exists', $this->extensionName),
-                    'errorCode' => time()
+                    'errorCode' => time(),
                 ];
             }
         }
@@ -130,7 +129,7 @@ class RegisterValidationService extends RegisterEmailValidationService
                     $this->propertiesWithError[] = [
                         'name' => $fieldName,
                         'errorString' => $errorString,
-                        'errorCode' => time()
+                        'errorCode' => time(),
                     ];
                 }
             }

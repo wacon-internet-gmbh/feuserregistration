@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -15,6 +16,4 @@ namespace Wacon\Feuserregistration\Domain\Repository;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 
 class BaseRepository extends Repository
-{
-
-}
+{}

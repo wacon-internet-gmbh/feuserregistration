@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -13,11 +14,11 @@ declare(strict_types=1);
 
 namespace Wacon\Feuserregistration\Domain\Service\Validation;
 
-use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
+use Wacon\Feuserregistration\Controller\CaptchaController;
 use Wacon\Feuserregistration\Utility\Typo3\Extbase\PersistenceUtility;
 use Wacon\Feuserregistration\Utility\Typo3\TypoScriptUtility;
-use Wacon\Feuserregistration\Controller\CaptchaController;
 
 class RegisterEmailValidationService extends AbstractValidationService
 {
@@ -47,7 +48,6 @@ class RegisterEmailValidationService extends AbstractValidationService
     /**
      * Create a BookingRequestValidationService
      * @param \TYPO3\CMS\Extbase\Validation\Validator\EmailAddressValidator $emailAddressValidator
-     * @return void
      */
     public function __construct(
         \TYPO3\CMS\Extbase\Validation\Validator\EmailAddressValidator $emailAddressValidator,
@@ -64,7 +64,6 @@ class RegisterEmailValidationService extends AbstractValidationService
     /**
      * Check if object is valid
      * @param mixed $value
-     * @return bool
      */
     public function isValid($value)
     {
@@ -99,7 +98,7 @@ class RegisterEmailValidationService extends AbstractValidationService
                 $this->propertiesWithError[] = [
                     'name' => $field,
                     'errorString' => LocalizationUtility::translate('validation.error.notempty', $this->extensionName),
-                    'errorCode' => time()
+                    'errorCode' => time(),
                 ];
             }
         }
@@ -121,7 +120,7 @@ class RegisterEmailValidationService extends AbstractValidationService
                     $this->propertiesWithError[] = [
                         'name' => 'email',
                         'errorString' => LocalizationUtility::translate('validation.error.email.exists', $this->extensionName),
-                        'errorCode' => time()
+                        'errorCode' => time(),
                     ];
                 }
             }
@@ -142,7 +141,7 @@ class RegisterEmailValidationService extends AbstractValidationService
                     $this->propertiesWithError[] = [
                         'name' => $fieldName,
                         'errorString' => $errorString,
-                        'errorCode' => time()
+                        'errorCode' => time(),
                     ];
                 }
             }
@@ -163,7 +162,7 @@ class RegisterEmailValidationService extends AbstractValidationService
                 $this->propertiesWithError[] = [
                     'name' => 'captcha',
                     'errorString' => LocalizationUtility::translate('validation.error.captcha', $this->extensionName),
-                    'errorCode' => time()
+                    'errorCode' => time(),
                 ];
             }
         }
@@ -182,7 +181,7 @@ class RegisterEmailValidationService extends AbstractValidationService
                 $this->propertiesWithError[] = [
                     'name' => 'privacy',
                     'errorString' => LocalizationUtility::translate('validation.error.privacy', $this->extensionName),
-                    'errorCode' => time()
+                    'errorCode' => time(),
                 ];
             }
         }

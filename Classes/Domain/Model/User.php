@@ -12,8 +12,8 @@ declare(strict_types=1);
 
 namespace Wacon\Feuserregistration\Domain\Model;
 
-use Wacon\Feuserregistration\Utility\PasswordUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use Wacon\Feuserregistration\Utility\PasswordUtility;
 
 class User extends BaseEntity
 {

@@ -98,7 +98,6 @@ trait ExtensionTrait
      * Register a flexform
      * @param string $pluginSignature
      * @param string $fileName
-     * @return void
      */
     protected function registerFlexform(string $pluginSignature, string $fileName)
     {
@@ -114,7 +113,6 @@ trait ExtensionTrait
      * Register a flexform to a CType
      * @param string $cType
      * @param string $fileName
-     * @return void
      */
     protected function registerFlexformToCType(string $cType, string $fileName)
     {
@@ -128,7 +126,6 @@ trait ExtensionTrait
     /**
      * Set $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature]
      * @param string $value
-     * @return void
      */
     protected function setSubtypesExcludelist(string $pluginSignature, string $value)
     {

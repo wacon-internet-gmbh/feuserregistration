@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -13,19 +14,19 @@ declare(strict_types=1);
 namespace Wacon\Feuserregistration\Controller;
 
 use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Annotation\Validate;
+use TYPO3\CMS\Extbase\Http\ForwardResponse;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 use Wacon\Feuserregistration\Domain\Exception\AdminInfoMailNotSendException;
 use Wacon\Feuserregistration\Domain\Model\User;
 use Wacon\Feuserregistration\Domain\Repository\UserRepository;
 use Wacon\Feuserregistration\Domain\Service\AdminInfoMailService;
 use Wacon\Feuserregistration\Domain\Service\DoubleOptinService;
-use Wacon\Feuserregistration\Registry\SettingsRegistry;
-use Wacon\Feuserregistration\Utility\Typo3\SiteUtility;
-use TYPO3\CMS\Extbase\Annotation\Validate;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Http\ForwardResponse;
-use Wacon\Feuserregistration\Utility\PasswordUtility;
-use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 use Wacon\Feuserregistration\Domain\Service\RegistrationService;
+use Wacon\Feuserregistration\Registry\SettingsRegistry;
+use Wacon\Feuserregistration\Utility\PasswordUtility;
+use Wacon\Feuserregistration\Utility\Typo3\SiteUtility;
 
 class RegistrationController extends BaseActionController
 {
@@ -35,9 +36,7 @@ class RegistrationController extends BaseActionController
     public function __construct(
         protected readonly UserRepository $userRepository,
         protected readonly RegistrationService $registrationService
-    ) {
-
-    }
+    ) {}
 
     /**
      * Show a registration form
@@ -57,7 +56,6 @@ class RegistrationController extends BaseActionController
      */
     public function formEmailAction()
     {
-
         $languages = SiteUtility::getAllLanguagesForSelect($this->request);
         $this->view->assign('languages', $languages);
         return $this->htmlResponse();
@@ -73,7 +71,11 @@ class RegistrationController extends BaseActionController
     {
         try {
             // Register with DOI process
-            $newUser = $this->registrationService->register($newUser, (int) current(GeneralUtility::intExplode(',', $this->request->getAttribute('currentContentObject')->data['pages'], true)), $this->settings, $this->request);
+            $newUser = $this->registrationService->register(
+                $newUser,
+                (int)current(GeneralUtility::intExplode(',', $this->request->getAttribute('currentContentObject')->data['pages'], true)),
+                $this->settings, $this->request
+            );
             $this->view->assign('mailResponse', $this->registrationService->getMailResponseForDOI());
             $this->view->assign('enableLog', isset($this->settings['dev']['enableLog']) ? $this->settings['dev']['enableLog'] : 0);
         } catch (\Exception $e) {

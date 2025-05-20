@@ -47,7 +47,7 @@ trait TcaTrait
             'config' => [
                 'type' => 'datetime',
                 'size' => $size,
-                'readOnly' => 1
+                'readOnly' => 1,
             ],
         ];
 
@@ -162,7 +162,7 @@ trait TcaTrait
                 'type' => 'input',
                 'size' => $size,
                 'eval' => 'trim',
-                'required' => $required ? 1 : 0
+                'required' => $required ? 1 : 0,
             ],
         ];
 
@@ -213,7 +213,7 @@ trait TcaTrait
             'config' => [
                 'type' => 'number',
                 'size' => $size,
-                'format' => 'decimal'
+                'format' => 'decimal',
             ]
         ];
 
@@ -432,7 +432,7 @@ trait TcaTrait
         $default = [
             'exclude' => true,
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.language',
-            'config' => ['type' => 'language']
+            'config' => ['type' => 'language'],
         ];
 
         if (!empty($additionalConfig)) {

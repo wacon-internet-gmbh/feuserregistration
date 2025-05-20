@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Wacon\Feuserregistration\Controller;
@@ -49,13 +50,13 @@ class CaptchaController extends BaseActionController
         $formula = '';
 
         for ($i = 0; $i < $amountOfOperators; $i++) {
-            $currentOperator = (string) $operators[rand(0, $operatorsCount - 1)];
+            $currentOperator = (string)$operators[rand(0, $operatorsCount - 1)];
             $num1 = rand(1, 10);
             $num2 = rand(1, 10);
-            $formula .= (string) $num1 . ' ' . $currentOperator . ' ' . (string) $num2;
+            $formula .= (string)$num1 . ' ' . $currentOperator . ' ' . (string)$num2;
 
             if (($i + 1) < $amountOfOperators) {
-                $formula .= ' ' . (string) $operators[rand(0, $operatorsCount - 1)] . ' ';
+                $formula .= ' ' . (string)$operators[rand(0, $operatorsCount - 1)] . ' ';
             }
         }
 

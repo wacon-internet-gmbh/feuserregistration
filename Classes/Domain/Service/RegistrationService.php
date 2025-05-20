@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -15,9 +16,9 @@ namespace Wacon\Feuserregistration\Domain\Service;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use Wacon\Feuserregistration\Bootstrap\Traits\ExtensionTrait;
-use Wacon\Feuserregistration\Domain\Repository\UserRepository;
 use Wacon\Feuserregistration\Domain\Exception\DoiNotSendException;
 use Wacon\Feuserregistration\Domain\Model\User;
+use Wacon\Feuserregistration\Domain\Repository\UserRepository;
 use Wacon\Feuserregistration\Utility\Typo3\Extbase\PersistenceUtility;
 
 class RegistrationService
@@ -28,8 +29,7 @@ class RegistrationService
 
     public function __construct(
         protected readonly UserRepository $userRepository
-    ) {
-    }
+    ) {}
 
     /**
      * Register a user by email and returns the frontend_user uid

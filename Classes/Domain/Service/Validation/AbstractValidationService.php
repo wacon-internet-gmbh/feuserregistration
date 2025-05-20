@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -30,7 +31,6 @@ abstract class AbstractValidationService
     /**
      * Check if object is valid
      * @param mixed $value
-     * @return bool
      */
     abstract public function isValid($value);
 
@@ -45,7 +45,6 @@ abstract class AbstractValidationService
 
     /**
      * Reset the object
-     * @return void
      */
     public function reset()
     {

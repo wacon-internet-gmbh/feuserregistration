@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -13,17 +14,17 @@ declare(strict_types=1);
 namespace Wacon\Feuserregistration\Domain\Service;
 
 use Psr\Http\Message\ServerRequestInterface;
-use Wacon\Feuserregistration\Domain\Model\User;
 use Symfony\Component\Mime\Address;
 use TYPO3\CMS\Core\Mail\MailMessage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
 use TYPO3\CMS\Core\Utility\MailUtility;
-use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
-use Wacon\Feuserregistration\Utility\Typo3\SiteUtility;
 use TYPO3\CMS\Extbase\Mvc\ExtbaseRequestParameters;
 use TYPO3\CMS\Extbase\Mvc\Request;
 use TYPO3\CMS\Extbase\Mvc\RequestInterface;
+use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
+use Wacon\Feuserregistration\Domain\Model\User;
+use Wacon\Feuserregistration\Utility\Typo3\SiteUtility;
 
 class DoubleOptinService
 {
@@ -80,7 +81,7 @@ class DoubleOptinService
      * @param User $user
      * @return string
      */
-    public function sendMail(User $user)
+    public function sendMail(User $user): string
     {
         $this->hash = md5(uniqid($user->getEmail()));
         $this->user = $user;
@@ -112,7 +113,7 @@ class DoubleOptinService
      * @param string $password
      * @return string
      */
-    public function sendCredentials(User $user, string $password)
+    public function sendCredentials(User $user, string $password): string
     {
         $this->user = $user;
 
@@ -149,7 +150,7 @@ class DoubleOptinService
      * Return the last mail response
      * @return mixed
      */
-    public function getResponse()
+    public function getResponse(): mixed
     {
         return $this->response;
     }
@@ -158,7 +159,7 @@ class DoubleOptinService
      * Build the verification link
      * @return string
      */
-    protected function buildLoginUri()
+    protected function buildLoginUri(): string
     {
         $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
         $uriBuilder->setRequest($this->getExtbaseRequest());
@@ -175,7 +176,7 @@ class DoubleOptinService
      * Build the verification link
      * @return string
      */
-    protected function buildVerificationUri()
+    protected function buildVerificationUri(): string
     {
         $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
         $uriBuilder->setRequest($this->getExtbaseRequest());
@@ -188,7 +189,7 @@ class DoubleOptinService
             ->uriFor(
                 'doi',
                 [
-                    'doihash' => $this->hash
+                    'doihash' => $this->hash,
                 ],
                 'Registration',
                 'feuserregistration',
@@ -203,7 +204,7 @@ class DoubleOptinService
      * @TODO Use StandaloneView or FluidMail
      * @return string
      */
-    protected function getBodyHtml()
+    protected function getBodyHtml(): string
     {
         $uri = $this->buildVerificationUri();
 
@@ -226,7 +227,7 @@ class DoubleOptinService
      * @param string $password
      * @return string
      */
-    protected function getBodyHtmlForCredentials(User $user, $password)
+    protected function getBodyHtmlForCredentials(User $user, $password): string
     {
         $uri = $this->buildLoginUri();
 
@@ -246,7 +247,7 @@ class DoubleOptinService
      * @param User $user
      * @return string
      */
-    protected function getBodyHtmlForNonCredentials(User $user)
+    protected function getBodyHtmlForNonCredentials(User $user): string
     {
         $html = '<p>' . LocalizationUtility::translate('register.mail.doi.text.salutation', $this->extensionName) . '</p>';
         $html .= '<p>' . LocalizationUtility::translate('register.mail.doi.none_credentials.text.1', $this->extensionName) . '</p>';
@@ -274,9 +275,9 @@ class DoubleOptinService
     /**
      * Get typoScript settings
      *
-     * @return  array
+     * @return array
      */
-    public function getSettings()
+    public function getSettings(): array
     {
         return $this->settings;
     }
@@ -284,11 +285,11 @@ class DoubleOptinService
     /**
      * Set typoScript settings
      *
-     * @param  array  $settings  TypoScript settings
+     * @param array  $settings  TypoScript settings
      *
-     * @return  self
+     * @return self
      */
-    public function setSettings(array $settings)
+    public function setSettings(array $settings): self
     {
         $this->settings = $settings;
 
@@ -300,10 +301,10 @@ class DoubleOptinService
      * the verification plugin is located
      * @return int
      */
-    public function getLoginPageUid()
+    public function getLoginPageUid(): int
     {
         if (!empty($this->settings) && array_key_exists('pages', $this->settings) && is_array($this->settings['pages']) && array_key_exists('loginPage', $this->settings['pages']) && !empty($this->settings['pages']['loginPage'])) {
-            return (int) $this->settings['pages']['loginPage'];
+            return (int)$this->settings['pages']['loginPage'];
         }
 
         return 0;
@@ -314,10 +315,10 @@ class DoubleOptinService
      * the verification plugin is located
      * @return int
      */
-    public function getVerificationPageUid()
+    public function getVerificationPageUid(): int
     {
         if (!empty($this->settings) && array_key_exists('pages', $this->settings) && is_array($this->settings['pages']) && array_key_exists('verificationPage', $this->settings['pages']) && !empty($this->settings['pages']['verificationPage'])) {
-            return (int) $this->settings['pages']['verificationPage'];
+            return (int)$this->settings['pages']['verificationPage'];
         }
 
         return $GLOBALS['TSFE']->id;
@@ -329,6 +330,6 @@ class DoubleOptinService
      */
     public function hasLoginPage(): bool
     {
-        return (int) $this->getLoginPageUid() > 0 ? true : false;
+        return (int)$this->getLoginPageUid() > 0 ? true : false;
     }
 }
