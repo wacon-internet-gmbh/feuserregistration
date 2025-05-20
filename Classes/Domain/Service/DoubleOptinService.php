@@ -197,8 +197,6 @@ class DoubleOptinService
             );
     }
 
-
-
     /**
      * Return the body text
      * @TODO Use StandaloneView or FluidMail
