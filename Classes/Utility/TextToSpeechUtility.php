@@ -10,12 +10,12 @@ declare(strict_types=1);
  *  (c) 2023 Kevin Chileong Lee, info@wacon.de, WACON Internet GmbH
  */
 
- namespace Wacon\Feuserregistration\Utility;
+namespace Wacon\Feuserregistration\Utility;
 
- use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
- class TextToSpeechUtility
- {
+class TextToSpeechUtility
+{
     /**
      * Format math formulate for text-to-speech
      * @param string $formula
@@ -32,4 +32,4 @@ declare(strict_types=1);
 
         return $formula;
     }
- }
+}

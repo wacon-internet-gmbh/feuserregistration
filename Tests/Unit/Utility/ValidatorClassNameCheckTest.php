@@ -45,7 +45,7 @@ class ValidatorClassNameCheckTest extends UnitTestCase
     #[Test]
     public function modelIsAUserModelTest()
     {
-        $extendedUser =  new User();
+        $extendedUser = new User();
         $isInstanceOf = $extendedUser instanceof User;
 
         $this->assertEquals(true, $isInstanceOf);

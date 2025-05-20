@@ -26,7 +26,7 @@ class CaptchaController extends BaseActionController
      * @param bool $returnCode
      * @return ResponseInterface
      */
-    public function mathImageAction():ResponseInterface
+    public function mathImageAction(): ResponseInterface
     {
         $postArguments = json_decode($this->request->getBody()->getContents(), true);
         if (is_array($postArguments) && array_key_exists('returnCode', $postArguments) && $postArguments['returnCode'] === true) {
@@ -48,14 +48,14 @@ class CaptchaController extends BaseActionController
         $amountOfOperators = rand(1, $operatorsCount);
         $formula = '';
 
-        for($i = 0; $i < $amountOfOperators; $i++) {
-            $currentOperator = (string)$operators[rand(0, $operatorsCount-1)];
-            $num1=rand(1, 10);
-            $num2=rand(1, 10);
-            $formula .= (string)$num1 . ' ' . $currentOperator . ' ' . (string)$num2;
+        for ($i = 0; $i < $amountOfOperators; $i++) {
+            $currentOperator = (string) $operators[rand(0, $operatorsCount - 1)];
+            $num1 = rand(1, 10);
+            $num2 = rand(1, 10);
+            $formula .= (string) $num1 . ' ' . $currentOperator . ' ' . (string) $num2;
 
-            if (($i+1) < $amountOfOperators) {
-                $formula .= ' ' . (string)$operators[rand(0, $operatorsCount-1)] . ' ';
+            if (($i + 1) < $amountOfOperators) {
+                $formula .= ' ' . (string) $operators[rand(0, $operatorsCount - 1)] . ' ';
             }
         }
 
@@ -64,11 +64,11 @@ class CaptchaController extends BaseActionController
         $lastOperator = false;
         $mathResult = 0;
 
-        foreach($formularAsArray as $value) {
+        foreach ($formularAsArray as $value) {
             if (in_array($value, $operators)) {
                 $lastOperator = $value;
-            }elseif($lastOperator) {
-                switch($lastOperator) {
+            } elseif ($lastOperator) {
+                switch ($lastOperator) {
                     case '+':
                         $mathResult = $mathResult + $value;
                         break;
@@ -76,7 +76,7 @@ class CaptchaController extends BaseActionController
                         $mathResult = $mathResult - $value;
                         break;
                 }
-            }else {
+            } else {
                 $mathResult = $value;
             }
         }
@@ -91,8 +91,8 @@ class CaptchaController extends BaseActionController
         $color = imagecolorallocate($image, 0, 100, 90);
         $white = imagecolorallocate($image, 0, 26, 26);
 
-        imagefilledrectangle($image,0,0,399,99,$white);
-        imagettftext ($image, 30, 0, 20, 25, $color, $font, $formula );//Change the numbers to adjust the font-size
+        imagefilledrectangle($image, 0, 0, 399, 99, $white);
+        imagettftext($image, 30, 0, 20, 25, $color, $font, $formula);//Change the numbers to adjust the font-size
 
         imagepng($image);
 

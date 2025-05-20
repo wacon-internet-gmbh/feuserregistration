@@ -155,7 +155,7 @@ trait TcaTrait
      */
     protected function getInputTCADef(bool $exclude, string $label, $size = 30, bool $required = true, array $additionalConfig = []): array
     {
-        $default =  [
+        $default = [
             'exclude' => $exclude ? 1 : 0,
             'label' => $label,
             'config' => [
@@ -405,7 +405,7 @@ trait TcaTrait
      */
     protected function getJsonTCADef(bool $exclude, string $label, bool $required, array $additionalConfig = []): array
     {
-        $default =  [
+        $default = [
             'exclude' => $exclude ? 1 : 0,
             'label' => $label,
             'config' => [

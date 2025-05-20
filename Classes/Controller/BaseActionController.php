@@ -14,6 +14,7 @@ namespace Wacon\Feuserregistration\Controller;
 
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
-class BaseActionController extends ActionController {
+class BaseActionController extends ActionController
+{
     protected $extensionName = 'feuserregistration';
 }

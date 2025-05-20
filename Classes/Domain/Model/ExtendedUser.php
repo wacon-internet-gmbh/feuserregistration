@@ -13,4 +13,5 @@ declare(strict_types=1);
 namespace Wacon\Feuserregistration\Domain\Model;
 
 class ExtendedUser extends \Wacon\Feuserregistration\Domain\Model\User
-{}
+{
+}

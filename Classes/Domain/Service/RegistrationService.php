@@ -10,25 +10,26 @@ declare(strict_types=1);
  *  (c) 2023 Kevin Chileong Lee, info@wacon.de, WACON Internet GmbH
  */
 
- namespace Wacon\Feuserregistration\Domain\Service;
+namespace Wacon\Feuserregistration\Domain\Service;
 
- use Psr\Http\Message\ServerRequestInterface;
- use TYPO3\CMS\Core\Utility\GeneralUtility;
- use Wacon\Feuserregistration\Bootstrap\Traits\ExtensionTrait;
- use Wacon\Feuserregistration\Domain\Repository\UserRepository;
- use Wacon\Feuserregistration\Domain\Exception\DoiNotSendException;
- use Wacon\Feuserregistration\Domain\Model\User;
- use Wacon\Feuserregistration\Utility\Typo3\Extbase\PersistenceUtility;
+use Psr\Http\Message\ServerRequestInterface;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use Wacon\Feuserregistration\Bootstrap\Traits\ExtensionTrait;
+use Wacon\Feuserregistration\Domain\Repository\UserRepository;
+use Wacon\Feuserregistration\Domain\Exception\DoiNotSendException;
+use Wacon\Feuserregistration\Domain\Model\User;
+use Wacon\Feuserregistration\Utility\Typo3\Extbase\PersistenceUtility;
 
- class RegistrationService
- {
+class RegistrationService
+{
     use ExtensionTrait;
 
     protected bool $mailResponseForDOI = false;
 
     public function __construct(
         protected readonly UserRepository $userRepository
-    ) {}
+    ) {
+    }
 
     /**
      * Register a user by email and returns the frontend_user uid
@@ -40,7 +41,8 @@ declare(strict_types=1);
      * @return User
      * @throws DoiNotSendException
      */
-    public function registerSimple(string $email, int $pid, array $settings, ServerRequestInterface $request, bool $privacy = true): User {
+    public function registerSimple(string $email, int $pid, array $settings, ServerRequestInterface $request, bool $privacy = true): User
+    {
         // We need to check, if user already exists
         // that is possible, if user has not the
         // given feGroup and/or he is disabled
@@ -81,10 +83,10 @@ declare(strict_types=1);
 
             if ($user->_isNew()) {
                 $this->userRepository->add($user);
-            }else {
+            } else {
                 $this->userRepository->update($user);
             }
-        }catch(\Exception $e) {
+        } catch (\Exception $e) {
             throw new DoiNotSendException('Error during DOI process of feuserregistration. Prior Message: ' . $e->getMessage(), time(), $e);
         }
 
@@ -101,7 +103,8 @@ declare(strict_types=1);
      * @return User
      * @throws DoiNotSendException
      */
-    public function register(User $user, int $pid, array $settings, ServerRequestInterface $request, bool $privacy = true): User {
+    public function register(User $user, int $pid, array $settings, ServerRequestInterface $request, bool $privacy = true): User
+    {
         // We need to check, if user already exists
         // that is possible, if user has not the
         // given feGroup and/or he is disabled
@@ -134,10 +137,10 @@ declare(strict_types=1);
 
             if ($user->_isNew()) {
                 $this->userRepository->add($user);
-            }else {
+            } else {
                 $this->userRepository->update($user);
             }
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             throw new DoiNotSendException('Error during DOI process of feuserregistration. Prior Message: ' . $e->getMessage(), time(), $e);
         }
 
@@ -163,4 +166,4 @@ declare(strict_types=1);
 
         return $this;
     }
- }
+}

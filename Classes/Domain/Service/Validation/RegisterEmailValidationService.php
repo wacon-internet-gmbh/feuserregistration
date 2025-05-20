@@ -11,7 +11,7 @@ declare(strict_types=1);
  */
 
 
- namespace Wacon\Feuserregistration\Domain\Service\Validation;
+namespace Wacon\Feuserregistration\Domain\Service\Validation;
 
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -19,7 +19,8 @@ use Wacon\Feuserregistration\Utility\Typo3\Extbase\PersistenceUtility;
 use Wacon\Feuserregistration\Utility\Typo3\TypoScriptUtility;
 use Wacon\Feuserregistration\Controller\CaptchaController;
 
-class RegisterEmailValidationService extends AbstractValidationService {
+class RegisterEmailValidationService extends AbstractValidationService
+{
     /**
      * List of required fields of the BookingRequest Form
      * @var array
@@ -41,7 +42,7 @@ class RegisterEmailValidationService extends AbstractValidationService {
      * @var \Wacon\Feuserregistration\Domain\Repository\UserRepository $userRepository
      */
     protected $userRepository;
-    
+
 
     /**
      * Create a BookingRequestValidationService
@@ -65,35 +66,36 @@ class RegisterEmailValidationService extends AbstractValidationService {
      * @param mixed $value
      * @return bool
      */
-    public function isValid($value) {        
+    public function isValid($value)
+    {
         /**
          * @var User $value
          */
-        $this->reset();        
+        $this->reset();
         $requiredFieldsThatAreEmpty = [];
         $errors = [];
 
-        foreach($this->requiredFields as $fieldName) {
+        foreach ($this->requiredFields as $fieldName) {
             $func = 'get' . ucfirst($fieldName);
             $val = $value->$func();
 
             if (empty($val)) {
                 $requiredFieldsThatAreEmpty[] = $fieldName;
-            }else {
-                switch($fieldName) {
+            } else {
+                switch ($fieldName) {
                     case 'email':
                         $result = $this->emailAddressValidator->validate($val);
-                        
+
                         if ($result->hasErrors()) {
                             $errors[$fieldName] = $result->getErrors();
                         }
-                        break; 
+                        break;
                 }
             }
         }
 
-        if(count($requiredFieldsThatAreEmpty) > 0) {
-            foreach($requiredFieldsThatAreEmpty as $field) {
+        if (count($requiredFieldsThatAreEmpty) > 0) {
+            foreach ($requiredFieldsThatAreEmpty as $field) {
                 $this->propertiesWithError[] = [
                     'name' => $field,
                     'errorString' => LocalizationUtility::translate('validation.error.notempty', $this->extensionName),
@@ -129,10 +131,10 @@ class RegisterEmailValidationService extends AbstractValidationService {
         $this->validatePrivacy($value);
 
         if (count($errors) > 0) {
-            foreach($errors as $fieldName => $errors) {
-                foreach($errors as $error) {
+            foreach ($errors as $fieldName => $errors) {
+                foreach ($errors as $error) {
                     $errorString = LocalizationUtility::translate($error->getMessage(), $this->extensionName);
-                    
+
                     if (empty($errorString)) {
                         $errorString = $error->getMessage();
                     }
@@ -151,9 +153,10 @@ class RegisterEmailValidationService extends AbstractValidationService {
      * Validate captcha field
      * @param mixed $value
      */
-    protected function validateCaptcha($value) {
+    protected function validateCaptcha($value)
+    {
         if ($this->settings['fields']['captcha']) {
-            $frontendUser = $GLOBALS['TYPO3_REQUEST']->getAttribute('frontend.user');        
+            $frontendUser = $GLOBALS['TYPO3_REQUEST']->getAttribute('frontend.user');
             $sessionCaptcha = $frontendUser->getKey('ses', CaptchaController::class . '->mathImage');
 
             if ($value->getCaptcha() == '' || $value->getCaptcha() != $sessionCaptcha) {

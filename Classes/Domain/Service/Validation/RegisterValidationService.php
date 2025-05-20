@@ -11,14 +11,15 @@ declare(strict_types=1);
  */
 
 
- namespace Wacon\Feuserregistration\Domain\Service\Validation;
+namespace Wacon\Feuserregistration\Domain\Service\Validation;
 
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use Wacon\Feuserregistration\Utility\Typo3\TypoScriptUtility;
 use Wacon\Feuserregistration\Utility\Typo3\Extbase\PersistenceUtility;
 
-class RegisterValidationService extends RegisterEmailValidationService {
+class RegisterValidationService extends RegisterEmailValidationService
+{
     /**
      * List of required fields of the BookingRequest Form
      * @var array
@@ -38,9 +39,9 @@ class RegisterValidationService extends RegisterEmailValidationService {
         $this->userRepository = $userRepository;
 
         PersistenceUtility::removeAllRestrictions($this->userRepository, ['disabled', 'fe_group']);
-        
+
         $this->settings = TypoScriptUtility::getTypoScript('plugin.tx_feuserregistration.settings');
-        
+
         if (!empty($this->settings['requiredFields'])) {
             $this->requiredFields = GeneralUtility::trimExplode(',', $this->settings['requiredFields'], true);
         }
@@ -51,15 +52,16 @@ class RegisterValidationService extends RegisterEmailValidationService {
      * @param mixed $value
      * @return bool
      */
-    public function isValid($value) {        
+    public function isValid($value)
+    {
         /**
          * @var User $value
          */
-        $this->reset();        
+        $this->reset();
         $requiredFieldsThatAreEmpty = [];
         $errors = [];
 
-        foreach($this->requiredFields as $fieldName) {
+        foreach ($this->requiredFields as $fieldName) {
             $func = 'get' . ucfirst($fieldName);
 
             // Make sure, the target func exists
@@ -71,21 +73,21 @@ class RegisterValidationService extends RegisterEmailValidationService {
 
             if (empty($val)) {
                 $requiredFieldsThatAreEmpty[] = $fieldName;
-            }else {
-                switch($fieldName) {
+            } else {
+                switch ($fieldName) {
                     case 'email':
                         $result = $this->emailAddressValidator->validate($val);
-                        
+
                         if ($result->hasErrors()) {
                             $errors[$fieldName] = $result->getErrors();
                         }
-                        break; 
+                        break;
                 }
             }
         }
 
-        if(count($requiredFieldsThatAreEmpty) > 0) {
-            foreach($requiredFieldsThatAreEmpty as $field) {
+        if (count($requiredFieldsThatAreEmpty) > 0) {
+            foreach ($requiredFieldsThatAreEmpty as $field) {
                 $this->propertiesWithError[] = [
                     'name' => $field,
                     'errorString' => LocalizationUtility::translate('validation.error.notempty', $this->extensionName),
@@ -117,10 +119,10 @@ class RegisterValidationService extends RegisterEmailValidationService {
         $this->validatePrivacy($value);
 
         if (count($errors) > 0) {
-            foreach($errors as $fieldName => $errors) {
-                foreach($errors as $error) {
+            foreach ($errors as $fieldName => $errors) {
+                foreach ($errors as $error) {
                     $errorString = LocalizationUtility::translate($error->getMessage(), $this->extensionName);
-                    
+
                     if (empty($errorString)) {
                         $errorString = $error->getMessage();
                     }

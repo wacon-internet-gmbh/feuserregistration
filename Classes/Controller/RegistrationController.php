@@ -27,7 +27,8 @@ use Wacon\Feuserregistration\Utility\PasswordUtility;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 use Wacon\Feuserregistration\Domain\Service\RegistrationService;
 
-class RegistrationController extends BaseActionController {
+class RegistrationController extends BaseActionController
+{
     /**
      * Create an RegistrationController
      */
@@ -42,7 +43,8 @@ class RegistrationController extends BaseActionController {
      * Show a registration form
      * @return ResponseInterface|string
      */
-    public function formAction() {
+    public function formAction()
+    {
         $languages = SiteUtility::getAllLanguagesForSelect($this->request);
         $this->view->assign('languages', $languages);
         return $this->htmlResponse();
@@ -53,7 +55,8 @@ class RegistrationController extends BaseActionController {
      * Mainly used for NL subscriptions
      * @return ResponseInterface|string
      */
-    public function formEmailAction() {
+    public function formEmailAction()
+    {
 
         $languages = SiteUtility::getAllLanguagesForSelect($this->request);
         $this->view->assign('languages', $languages);
@@ -66,13 +69,14 @@ class RegistrationController extends BaseActionController {
      * @return ResponseInterface|string
      * @Validate(param="newUser", validator="Wacon\Feuserregistration\Domain\Validator\RegisterValidator")
      */
-    public function registerAction(User $newUser) {
+    public function registerAction(User $newUser)
+    {
         try {
             // Register with DOI process
-            $newUser = $this->registrationService->register($newUser, (int)current(GeneralUtility::intExplode(',', $this->request->getAttribute('currentContentObject')->data['pages'], true)), $this->settings, $this->request);
+            $newUser = $this->registrationService->register($newUser, (int) current(GeneralUtility::intExplode(',', $this->request->getAttribute('currentContentObject')->data['pages'], true)), $this->settings, $this->request);
             $this->view->assign('mailResponse', $this->registrationService->getMailResponseForDOI());
             $this->view->assign('enableLog', isset($this->settings['dev']['enableLog']) ? $this->settings['dev']['enableLog'] : 0);
-        }catch(\Exception $e) {
+        } catch (\Exception $e) {
             $this->view->assign('error', $e->getMessage());
         }
 
@@ -81,7 +85,7 @@ class RegistrationController extends BaseActionController {
                 $adminInfoMailService = GeneralUtility::makeInstance(AdminInfoMailService::class, $this->request);
                 $adminInfoMailService->setSettings($this->settings);
                 $adminInfoMailService->sendRegistrationMail($newUser);
-            } catch(\Exception $e) {
+            } catch (\Exception $e) {
                 throw new AdminInfoMailNotSendException('Error during info mail for registration of feuserregistration. Prior Message: ' . $e->getMessage(), time(), $e);
             }
         }
@@ -96,13 +100,14 @@ class RegistrationController extends BaseActionController {
      * @return ResponseInterface|string
      * @Validate(param="newUser", validator="Wacon\Feuserregistration\Domain\Validator\RegisterEmailValidator")
      */
-    public function registerEmailAction(User $newUser) {
+    public function registerEmailAction(User $newUser)
+    {
         try {
             // Register with DOI process
             $newUser = $this->registrationService->registerSimple($newUser->getEmail(), current(GeneralUtility::intExplode(',', $this->request->getAttribute('currentContentObject')->data['pages'], true)), $this->settings, $this->request);
             $this->view->assign('mailResponse', $this->registrationService->getMailResponseForDOI());
             $this->view->assign('enableLog', isset($this->settings['dev']['enableLog']) ? $this->settings['dev']['enableLog'] : 0);
-        }catch(\Exception $e) {
+        } catch (\Exception $e) {
             $this->view->assign('error', $e->getMessage());
         }
 
@@ -111,7 +116,7 @@ class RegistrationController extends BaseActionController {
                 $adminInfoMailService = GeneralUtility::makeInstance(AdminInfoMailService::class, $this->request);
                 $adminInfoMailService->setSettings($this->settings);
                 $adminInfoMailService->sendRegistrationMail($newUser);
-            } catch(\Exception $e) {
+            } catch (\Exception $e) {
                 throw new AdminInfoMailNotSendException('Error during info mail for registration of feuserregistration. Prior Message: ' . $e->getMessage(), time(), $e);
             }
         }
@@ -124,7 +129,8 @@ class RegistrationController extends BaseActionController {
      * Validates the user through double opt in
      * @return ResponseInterface|string
      */
-    public function doiAction() {
+    public function doiAction()
+    {
         if (!$this->request->hasArgument('doihash')) {
             return new ForwardResponse('nothing');
         }
@@ -155,12 +161,12 @@ class RegistrationController extends BaseActionController {
                     $service = GeneralUtility::makeInstance(DoubleOptinService::class, $this->request);
                     $service->setSettings($this->settings);
                     $service->sendCredentials($user, $password);
-                }catch(\Exception $e) {
+                } catch (\Exception $e) {
                     $this->view->assign('error', $e->getMessage());
                 }
 
                 $this->view->assign('message', LocalizationUtility::translate('register.form.text.afterDoi', 'feuserregistration'));
-            }else {
+            } else {
                 $this->view->assign('message', LocalizationUtility::translate('register.form.text.afterDoi.noCredentials', 'feuserregistration'));
             }
 
@@ -169,7 +175,7 @@ class RegistrationController extends BaseActionController {
                     $service = GeneralUtility::makeInstance(AdminInfoMailService::class, $this->request);
                     $service->setSettings($this->settings);
                     $service->sendVerificationMail($user);
-                }catch(\Exception $e) {
+                } catch (\Exception $e) {
                     $this->view->assign('error', $e->getMessage());
                 }
             }
@@ -198,7 +204,8 @@ class RegistrationController extends BaseActionController {
      * Action to show nothing
      * @return ResponseInterface|string
      */
-    public function nothingAction() {
+    public function nothingAction()
+    {
         return $this->htmlResponse();
     }
 }

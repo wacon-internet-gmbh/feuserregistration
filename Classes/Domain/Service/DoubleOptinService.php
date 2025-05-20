@@ -10,23 +10,23 @@ declare(strict_types=1);
  *  (c) 2023 Kevin Chileong Lee, info@wacon.de, WACON Internet GmbH
  */
 
- namespace Wacon\Feuserregistration\Domain\Service;
+namespace Wacon\Feuserregistration\Domain\Service;
 
- use Psr\Http\Message\ServerRequestInterface;
- use Wacon\Feuserregistration\Domain\Model\User;
- use Symfony\Component\Mime\Address;
- use TYPO3\CMS\Core\Mail\MailMessage;
- use TYPO3\CMS\Core\Utility\GeneralUtility;
- use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
- use TYPO3\CMS\Core\Utility\MailUtility;
- use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
- use Wacon\Feuserregistration\Utility\Typo3\SiteUtility;
- use TYPO3\CMS\Extbase\Mvc\ExtbaseRequestParameters;
- use TYPO3\CMS\Extbase\Mvc\Request;
- use TYPO3\CMS\Extbase\Mvc\RequestInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use Wacon\Feuserregistration\Domain\Model\User;
+use Symfony\Component\Mime\Address;
+use TYPO3\CMS\Core\Mail\MailMessage;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
+use TYPO3\CMS\Core\Utility\MailUtility;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
+use Wacon\Feuserregistration\Utility\Typo3\SiteUtility;
+use TYPO3\CMS\Extbase\Mvc\ExtbaseRequestParameters;
+use TYPO3\CMS\Extbase\Mvc\Request;
+use TYPO3\CMS\Extbase\Mvc\RequestInterface;
 
- class DoubleOptinService
- {
+class DoubleOptinService
+{
     /**
      * @var User
      */
@@ -69,7 +69,8 @@ declare(strict_types=1);
      * @param MailMessage $mail
      * @param ServerRequestInterface $request
      */
-    public function __construct(ServerRequestInterface $request) {
+    public function __construct(ServerRequestInterface $request)
+    {
         $this->mail = GeneralUtility::makeInstance(MailMessage::class);
         $this->request = $request;
     }
@@ -79,7 +80,8 @@ declare(strict_types=1);
      * @param User $user
      * @return string
      */
-    public function sendMail(User $user) {
+    public function sendMail(User $user)
+    {
         $this->hash = md5(uniqid($user->getEmail()));
         $this->user = $user;
 
@@ -88,7 +90,7 @@ declare(strict_types=1);
 
         if (!array_key_exists(0, $from)) {
             $fromAddress = new Address(current(array_keys($from)), current($from));
-        }else {
+        } else {
             $fromAddress = new Address(current($from));
         }
 
@@ -110,7 +112,8 @@ declare(strict_types=1);
      * @param string $password
      * @return string
      */
-    public function sendCredentials(User $user, string $password) {
+    public function sendCredentials(User $user, string $password)
+    {
         $this->user = $user;
 
         $from = MailUtility::getSystemFrom();
@@ -118,7 +121,7 @@ declare(strict_types=1);
 
         if (!array_key_exists(0, $from)) {
             $fromAddress = new Address(current(array_keys($from)), current($from));
-        }else {
+        } else {
             $fromAddress = new Address(current($from));
         }
 
@@ -126,7 +129,7 @@ declare(strict_types=1);
 
         if ($this->hasLoginPage()) {
             $bodytext = $this->getBodyHtmlForCredentials($user, $password);
-        }else {
+        } else {
             $bodytext = $this->getBodyHtmlForNonCredentials($user);
         }
 
@@ -146,7 +149,8 @@ declare(strict_types=1);
      * Return the last mail response
      * @return mixed
      */
-    public function getResponse() {
+    public function getResponse()
+    {
         return $this->response;
     }
 
@@ -154,7 +158,8 @@ declare(strict_types=1);
      * Build the verification link
      * @return string
      */
-    protected function buildLoginUri() {
+    protected function buildLoginUri()
+    {
         $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
         $uriBuilder->setRequest($this->getExtbaseRequest());
 
@@ -170,7 +175,8 @@ declare(strict_types=1);
      * Build the verification link
      * @return string
      */
-    protected function buildVerificationUri() {
+    protected function buildVerificationUri()
+    {
         $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
         $uriBuilder->setRequest($this->getExtbaseRequest());
 
@@ -197,7 +203,8 @@ declare(strict_types=1);
      * @TODO Use StandaloneView or FluidMail
      * @return string
      */
-    protected function getBodyHtml() {
+    protected function getBodyHtml()
+    {
         $uri = $this->buildVerificationUri();
 
         $html = '<p>' . LocalizationUtility::translate('register.mail.doi.text.salutation', $this->extensionName) . '</p>';
@@ -219,7 +226,8 @@ declare(strict_types=1);
      * @param string $password
      * @return string
      */
-    protected function getBodyHtmlForCredentials(User $user, $password) {
+    protected function getBodyHtmlForCredentials(User $user, $password)
+    {
         $uri = $this->buildLoginUri();
 
         $html = '<p>' . LocalizationUtility::translate('register.mail.doi.text.salutation', $this->extensionName) . '</p>';
@@ -238,7 +246,8 @@ declare(strict_types=1);
      * @param User $user
      * @return string
      */
-    protected function getBodyHtmlForNonCredentials(User $user) {
+    protected function getBodyHtmlForNonCredentials(User $user)
+    {
         $html = '<p>' . LocalizationUtility::translate('register.mail.doi.text.salutation', $this->extensionName) . '</p>';
         $html .= '<p>' . LocalizationUtility::translate('register.mail.doi.none_credentials.text.1', $this->extensionName) . '</p>';
         $html .= '<p>' . LocalizationUtility::translate('register.mail.doi.text.greetings', $this->extensionName) . '</p>';
@@ -291,7 +300,8 @@ declare(strict_types=1);
      * the verification plugin is located
      * @return int
      */
-    public function getLoginPageUid() {
+    public function getLoginPageUid()
+    {
         if (!empty($this->settings) && array_key_exists('pages', $this->settings) && is_array($this->settings['pages']) && array_key_exists('loginPage', $this->settings['pages']) && !empty($this->settings['pages']['loginPage'])) {
             return (int) $this->settings['pages']['loginPage'];
         }
@@ -304,7 +314,8 @@ declare(strict_types=1);
      * the verification plugin is located
      * @return int
      */
-    public function getVerificationPageUid() {
+    public function getVerificationPageUid()
+    {
         if (!empty($this->settings) && array_key_exists('pages', $this->settings) && is_array($this->settings['pages']) && array_key_exists('verificationPage', $this->settings['pages']) && !empty($this->settings['pages']['verificationPage'])) {
             return (int) $this->settings['pages']['verificationPage'];
         }
@@ -316,7 +327,8 @@ declare(strict_types=1);
      * Return TRUE if login page is set in TypoScript
      * @return bool
      */
-    public function hasLoginPage(): bool {
-        return (int)$this->getLoginPageUid() > 0 ? true : false;
+    public function hasLoginPage(): bool
+    {
+        return (int) $this->getLoginPageUid() > 0 ? true : false;
     }
- }
+}

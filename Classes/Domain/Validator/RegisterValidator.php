@@ -29,14 +29,14 @@ class RegisterValidator extends AbstractValidator
 
         if (($value instanceof \Wacon\Feuserregistration\Domain\Model\User) !== true) {
             $errorString = 'The user validator can only handle object of class ' . \Wacon\Feuserregistration\Domain\Model\User::class . ', '
-                . get_class($value). ' given instead.';
+                . get_class($value) . ' given instead.';
             $this->addError($errorString, time());
         }
 
         if (!$this->registerValidationService->isValid($value)) {
             $propertiesWithError = $this->registerValidationService->getPropertiesWithError();
 
-            foreach($propertiesWithError as $propertyWithError) {
+            foreach ($propertiesWithError as $propertyWithError) {
                 $this->addErrorForProperty($propertyWithError['name'], $propertyWithError['errorString'], $propertyWithError['errorCode']);
             }
         }

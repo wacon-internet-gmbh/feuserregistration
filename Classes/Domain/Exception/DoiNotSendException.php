@@ -10,9 +10,9 @@ declare(strict_types=1);
  *  (c) 2023 Kevin Chileong Lee, info@wacon.de, WACON Internet GmbH
  */
 
- namespace Wacon\Feuserregistration\Domain\Exception;
+namespace Wacon\Feuserregistration\Domain\Exception;
 
- class DoiNotSendException extends \Exception
- {
-    
- }
+class DoiNotSendException extends \Exception
+{
+
+}

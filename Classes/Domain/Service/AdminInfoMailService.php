@@ -10,20 +10,20 @@ declare(strict_types=1);
  *  (c) 2023 Kevin Chileong Lee, info@wacon.de, WACON Internet GmbH
  */
 
- namespace Wacon\Feuserregistration\Domain\Service;
+namespace Wacon\Feuserregistration\Domain\Service;
 
- use Psr\Http\Message\ServerRequestInterface;
- use Wacon\Feuserregistration\Bootstrap\Traits\ExtensionTrait;
- use Wacon\Feuserregistration\Domain\Model\User;
- use Symfony\Component\Mime\Address;
- use TYPO3\CMS\Core\Mail\MailMessage;
- use TYPO3\CMS\Core\Utility\GeneralUtility;
- use TYPO3\CMS\Core\Utility\MailUtility;
- use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
- use Wacon\Feuserregistration\Utility\Typo3\SiteUtility;
+use Psr\Http\Message\ServerRequestInterface;
+use Wacon\Feuserregistration\Bootstrap\Traits\ExtensionTrait;
+use Wacon\Feuserregistration\Domain\Model\User;
+use Symfony\Component\Mime\Address;
+use TYPO3\CMS\Core\Mail\MailMessage;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\MailUtility;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
+use Wacon\Feuserregistration\Utility\Typo3\SiteUtility;
 
- class AdminInfoMailService
- {
+class AdminInfoMailService
+{
     use ExtensionTrait;
 
     public static string $MODE_VERIFICATION = 'verification';
@@ -56,7 +56,8 @@ declare(strict_types=1);
      * @param MailMessage $mail
      * @param ServerRequestInterface $request
      */
-    public function __construct(ServerRequestInterface $request) {
+    public function __construct(ServerRequestInterface $request)
+    {
         $this->mail = GeneralUtility::makeInstance(MailMessage::class);
         $this->request = $request;
     }
@@ -73,7 +74,7 @@ declare(strict_types=1);
 
         if (!array_key_exists(0, $from)) {
             $fromAddress = new Address(current(array_keys($from)), current($from));
-        }else {
+        } else {
             $fromAddress = new Address(current($from));
         }
 
@@ -91,7 +92,7 @@ declare(strict_types=1);
                 $this->mail->to(new Address($receiver));
             } else {
                 $this->mail->addCc(new Address($receiver));
-            }            
+            }
         }
 
         return $this->mail
@@ -112,7 +113,7 @@ declare(strict_types=1);
 
         if (!array_key_exists(0, $from)) {
             $fromAddress = new Address(current(array_keys($from)), current($from));
-        }else {
+        } else {
             $fromAddress = new Address(current($from));
         }
 
@@ -130,7 +131,7 @@ declare(strict_types=1);
                 $this->mail->to(new Address($receiver));
             } else {
                 $this->mail->addCc(new Address($receiver));
-            }            
+            }
         }
 
         return $this->mail
@@ -181,4 +182,4 @@ declare(strict_types=1);
 
         return $this;
     }
- }
+}

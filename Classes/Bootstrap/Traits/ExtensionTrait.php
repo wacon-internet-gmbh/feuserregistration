@@ -175,6 +175,6 @@ trait ExtensionTrait
         }
 
         return GeneralUtility::makeInstance(ExtensionConfiguration::class)
-                ->get($this->extensionKey);
+            ->get($this->extensionKey);
     }
 }

@@ -14,6 +14,7 @@ namespace Wacon\Feuserregistration\Domain\Repository;
 
 use TYPO3\CMS\Extbase\Persistence\Repository;
 
-class BaseRepository extends Repository {
-    
+class BaseRepository extends Repository
+{
+
 }

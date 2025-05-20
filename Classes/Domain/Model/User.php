@@ -15,7 +15,8 @@ namespace Wacon\Feuserregistration\Domain\Model;
 use Wacon\Feuserregistration\Utility\PasswordUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-class User extends BaseEntity {
+class User extends BaseEntity
+{
     /**
      * @var string
      */
@@ -114,7 +115,7 @@ class User extends BaseEntity {
      * Get the value of email
      *
      * @return  string
-     */ 
+     */
     public function getEmail()
     {
         return $this->email;
@@ -126,7 +127,7 @@ class User extends BaseEntity {
      * @param  string  $email
      *
      * @return  self
-     */ 
+     */
     public function setEmail(string $email)
     {
         $this->email = $email;
@@ -138,7 +139,7 @@ class User extends BaseEntity {
      * Get the value of doiHash
      *
      * @return  string
-     */ 
+     */
     public function getDoiHash()
     {
         return $this->doiHash;
@@ -150,7 +151,7 @@ class User extends BaseEntity {
      * @param  string  $doiHash
      *
      * @return  self
-     */ 
+     */
     public function setDoiHash(string $doiHash)
     {
         $this->doiHash = $doiHash;
@@ -162,7 +163,7 @@ class User extends BaseEntity {
      * Get the value of username
      *
      * @return  string
-     */ 
+     */
     public function getUsername()
     {
         return $this->username;
@@ -174,7 +175,7 @@ class User extends BaseEntity {
      * @param  string  $username
      *
      * @return  self
-     */ 
+     */
     public function setUsername(string $username)
     {
         $this->username = $username;
@@ -186,7 +187,7 @@ class User extends BaseEntity {
      * Get the value of password
      *
      * @return  string
-     */ 
+     */
     public function getPassword()
     {
         return $this->password;
@@ -198,7 +199,7 @@ class User extends BaseEntity {
      * @param  string  $password
      *
      * @return  self
-     */ 
+     */
     public function setPassword(string $password)
     {
         $this->password = $password;
@@ -210,7 +211,8 @@ class User extends BaseEntity {
      * Set a random password
      * @return string
      */
-    public function setRandomPassword() {
+    public function setRandomPassword()
+    {
         $this->password = PasswordUtility::randomHash();
     }
 
@@ -218,7 +220,7 @@ class User extends BaseEntity {
      * Get the value of disable
      *
      * @return  bool
-     */ 
+     */
     public function getDisable()
     {
         return $this->disable;
@@ -230,7 +232,7 @@ class User extends BaseEntity {
      * @param  bool  $disable
      *
      * @return  self
-     */ 
+     */
     public function setDisable(bool $disable)
     {
         $this->disable = $disable;
@@ -242,7 +244,7 @@ class User extends BaseEntity {
      * Get the value of usergroup
      *
      * @return  string
-     */ 
+     */
     public function getUsergroup()
     {
         return $this->usergroup;
@@ -254,7 +256,7 @@ class User extends BaseEntity {
      * @param  string  $usergroup
      *
      * @return  self
-     */ 
+     */
     public function setUsergroup(string $usergroup)
     {
         $this->usergroup = $usergroup;
@@ -267,7 +269,8 @@ class User extends BaseEntity {
      * @param string $newUsergroup
      * @return self
      */
-    public function addFeGroup(string $newUsergroup) {
+    public function addFeGroup(string $newUsergroup)
+    {
         $usergroup = GeneralUtility::intExplode(',', $this->usergroup);
 
         if (!in_array($newUsergroup, $usergroup)) {
@@ -282,7 +285,7 @@ class User extends BaseEntity {
      * Get the value of firstName
      *
      * @return  string
-     */ 
+     */
     public function getFirstName()
     {
         return $this->firstName;
@@ -294,7 +297,7 @@ class User extends BaseEntity {
      * @param  string  $firstName
      *
      * @return  self
-     */ 
+     */
     public function setFirstName(string $firstName)
     {
         $this->firstName = $firstName;
@@ -306,7 +309,7 @@ class User extends BaseEntity {
      * Get the value of lastName
      *
      * @return  string
-     */ 
+     */
     public function getLastName()
     {
         return $this->lastName;
@@ -318,7 +321,7 @@ class User extends BaseEntity {
      * @param  string  $lastName
      *
      * @return  self
-     */ 
+     */
     public function setLastName(string $lastName)
     {
         $this->lastName = $lastName;
@@ -330,7 +333,7 @@ class User extends BaseEntity {
      * Get the value of address
      *
      * @return  string
-     */ 
+     */
     public function getAddress()
     {
         return $this->address;
@@ -342,7 +345,7 @@ class User extends BaseEntity {
      * @param  string  $address
      *
      * @return  self
-     */ 
+     */
     public function setAddress(string $address)
     {
         $this->address = $address;
@@ -354,7 +357,7 @@ class User extends BaseEntity {
      * Get the value of zip
      *
      * @return  string
-     */ 
+     */
     public function getZip()
     {
         return $this->zip;
@@ -366,7 +369,7 @@ class User extends BaseEntity {
      * @param  string  $zip
      *
      * @return  self
-     */ 
+     */
     public function setZip(string $zip)
     {
         $this->zip = $zip;
@@ -378,7 +381,7 @@ class User extends BaseEntity {
      * Get the value of city
      *
      * @return  string
-     */ 
+     */
     public function getCity()
     {
         return $this->city;
@@ -390,7 +393,7 @@ class User extends BaseEntity {
      * @param  string  $city
      *
      * @return  self
-     */ 
+     */
     public function setCity(string $city)
     {
         $this->city = $city;
@@ -402,7 +405,7 @@ class User extends BaseEntity {
      * Get the value of country
      *
      * @return  string
-     */ 
+     */
     public function getCountry()
     {
         return $this->country;
@@ -414,7 +417,7 @@ class User extends BaseEntity {
      * @param  string  $country
      *
      * @return  self
-     */ 
+     */
     public function setCountry(string $country)
     {
         $this->country = $country;
@@ -426,7 +429,7 @@ class User extends BaseEntity {
      * Get the value of phone
      *
      * @return  string
-     */ 
+     */
     public function getPhone()
     {
         return $this->phone;
@@ -438,7 +441,7 @@ class User extends BaseEntity {
      * @param  string  $phone
      *
      * @return  self
-     */ 
+     */
     public function setPhone(string $phone)
     {
         $this->phone = $phone;
@@ -450,7 +453,7 @@ class User extends BaseEntity {
      * Get the value of fax
      *
      * @return  string
-     */ 
+     */
     public function getFax()
     {
         return $this->fax;
@@ -462,7 +465,7 @@ class User extends BaseEntity {
      * @param  string  $fax
      *
      * @return  self
-     */ 
+     */
     public function setFax(string $fax)
     {
         $this->fax = $fax;
@@ -474,7 +477,7 @@ class User extends BaseEntity {
      * Get the value of www
      *
      * @return  string
-     */ 
+     */
     public function getWww()
     {
         return $this->www;
@@ -486,7 +489,7 @@ class User extends BaseEntity {
      * @param  string  $www
      *
      * @return  self
-     */ 
+     */
     public function setWww(string $www)
     {
         $this->www = $www;
@@ -498,7 +501,7 @@ class User extends BaseEntity {
      * Get the value of newsletterReceive
      *
      * @return  bool
-     */ 
+     */
     public function getNewsletterReceive()
     {
         return $this->newsletterReceive;
@@ -510,7 +513,7 @@ class User extends BaseEntity {
      * @param  bool  $newsletterReceive
      *
      * @return  self
-     */ 
+     */
     public function setNewsletterReceive(bool $newsletterReceive)
     {
         $this->newsletterReceive = $newsletterReceive;
@@ -522,7 +525,7 @@ class User extends BaseEntity {
      * Get the value of luxletterLanguage
      *
      * @return  string
-     */ 
+     */
     public function getLuxletterLanguage()
     {
         return $this->luxletterLanguage;
@@ -534,7 +537,7 @@ class User extends BaseEntity {
      * @param  string  $luxletterLanguage
      *
      * @return  self
-     */ 
+     */
     public function setLuxletterLanguage(string $luxletterLanguage)
     {
         $this->luxletterLanguage = $luxletterLanguage;
@@ -544,7 +547,7 @@ class User extends BaseEntity {
 
     /**
      * Get the value of captcha
-     */ 
+     */
     public function getCaptcha()
     {
         return $this->captcha;
@@ -554,7 +557,7 @@ class User extends BaseEntity {
      * Set the value of captcha
      *
      * @return  self
-     */ 
+     */
     public function setCaptcha($captcha)
     {
         $this->captcha = $captcha;
@@ -564,7 +567,7 @@ class User extends BaseEntity {
 
     /**
      * Get the value of privacy
-     */ 
+     */
     public function getPrivacy()
     {
         return $this->privacy;
@@ -574,7 +577,7 @@ class User extends BaseEntity {
      * Set the value of privacy
      *
      * @return  self
-     */ 
+     */
     public function setPrivacy($privacy)
     {
         $this->privacy = $privacy;
@@ -586,7 +589,7 @@ class User extends BaseEntity {
      * Get the value of salutation
      *
      * @return  string
-     */ 
+     */
     public function getSalutation(): string
     {
         return $this->salutation;
@@ -598,7 +601,7 @@ class User extends BaseEntity {
      * @param  string  $salutation
      *
      * @return  self
-     */ 
+     */
     public function setSalutation(string $salutation): self
     {
         $this->salutation = $salutation;

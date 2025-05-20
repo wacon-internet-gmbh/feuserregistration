@@ -10,12 +10,12 @@ declare(strict_types=1);
  *  (c) 2023 Kevin Chileong Lee, info@wacon.de, WACON Internet GmbH
  */
 
- namespace Wacon\Feuserregistration\Utility\Typo3;
+namespace Wacon\Feuserregistration\Utility\Typo3;
 
- use TYPO3\CMS\Core\Utility\GeneralUtility;
- use \Psr\Http\Message\ServerRequestInterface;
+use \Psr\Http\Message\ServerRequestInterface;
 
- class SiteUtility {
+class SiteUtility
+{
     /**
      * Return the current domain
      * @return string
@@ -23,7 +23,7 @@ declare(strict_types=1);
     public static function getDomain(): string
     {
         $base = $GLOBALS['TYPO3_REQUEST']->getAttribute('site')->getBase();
-        
+
         return $base->getAuthority();
     }
 
@@ -41,7 +41,8 @@ declare(strict_types=1);
      * @param ServerRequestInterface $request
      * @return array
      */
-    public static function getAllLanguagesForSelect(ServerRequestInterface $request = null) {
+    public static function getAllLanguagesForSelect(ServerRequestInterface $request = null)
+    {
         if (!$request) {
             $request = $GLOBALS['TYPO3_REQUEST'];
         }
@@ -50,10 +51,10 @@ declare(strict_types=1);
         $siteLanguages = $site->getLanguages();
         $options = [];
 
-        foreach($siteLanguages as $siteLanguage) {
+        foreach ($siteLanguages as $siteLanguage) {
             $options[$siteLanguage->getLanguageId()] = $siteLanguage->getNavigationTitle() ? $siteLanguage->getNavigationTitle() : $siteLanguage->getTitle();
         }
 
         return $options;
     }
- }
+}

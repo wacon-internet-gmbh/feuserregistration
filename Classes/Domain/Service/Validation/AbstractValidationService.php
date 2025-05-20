@@ -13,7 +13,8 @@ declare(strict_types=1);
 
 namespace Wacon\Feuserregistration\Domain\Service\Validation;
 
-abstract class AbstractValidationService {
+abstract class AbstractValidationService
+{
     /**
      * @var string
      */
@@ -24,8 +25,8 @@ abstract class AbstractValidationService {
      * error message and code
      * @var array
      */
-    protected $propertiesWithError = [];    
-    
+    protected $propertiesWithError = [];
+
     /**
      * Check if object is valid
      * @param mixed $value
@@ -37,7 +38,8 @@ abstract class AbstractValidationService {
      * Return $propertiesWithError
      * @return array
      */
-    public function getPropertiesWithError() {
+    public function getPropertiesWithError()
+    {
         return $this->propertiesWithError;
     }
 
@@ -45,7 +47,8 @@ abstract class AbstractValidationService {
      * Reset the object
      * @return void
      */
-    public function reset() {
+    public function reset()
+    {
         $this->propertiesWithError = [];
     }
 }

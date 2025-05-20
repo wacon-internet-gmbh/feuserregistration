@@ -10,9 +10,9 @@ declare(strict_types=1);
  *  (c) 2023 Kevin Chileong Lee, info@wacon.de, WACON Internet GmbH
  */
 
- namespace Wacon\Feuserregistration\Domain\Exception;
+namespace Wacon\Feuserregistration\Domain\Exception;
 
- class AdminInfoMailNotSendException extends \Exception
- {
-    
- }
+class AdminInfoMailNotSendException extends \Exception
+{
+
+}
