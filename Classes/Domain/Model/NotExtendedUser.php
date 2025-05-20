@@ -15,5 +15,4 @@ namespace Wacon\Feuserregistration\Domain\Model;
 
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
-class NotExtendedUser extends AbstractEntity
-{}
+class NotExtendedUser extends AbstractEntity {}

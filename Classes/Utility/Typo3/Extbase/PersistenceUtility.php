@@ -6,7 +6,6 @@ namespace Wacon\Feuserregistration\Utility\Typo3\Extbase;
 
 class PersistenceUtility
 {
-
     /**
      * Add pid to pid list
      * @param \TYPO3\CMS\Extbase\Persistence\Repository $repository

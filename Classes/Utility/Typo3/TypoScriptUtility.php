@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Wacon\Feuserregistration\Utility\Typo3;
@@ -24,23 +25,22 @@ class TypoScriptUtility implements \TYPO3\CMS\Core\SingletonInterface
      * @param boolean $init Internal
      * @return string TypoScript
      */
-    static public function convertArrayToTypoScript(array $typoScriptArray, $addKey = '', $tab = 0, $init = TRUE) {
+    static public function convertArrayToTypoScript(array $typoScriptArray, $addKey = '', $tab = 0, $init = true) {
         $typoScript = '';
         if ($addKey !== '') {
             $typoScript .= str_repeat("\t", ($tab === 0) ? $tab : $tab - 1) . $addKey . " {\n";
-            if ($init === TRUE) {
+            if ($init === true) {
                 $tab++;
             }
         }
         $tab++;
-        foreach($typoScriptArray as $key => $value) {
+        foreach ($typoScriptArray as $key => $value) {
             if (!is_array($value)) {
                 if (strpos($value, "\n") === false) {
                     $typoScript .= str_repeat("\t", ($tab === 0) ? $tab : $tab - 1) . "$key = $value\n";
                 } else {
                     $typoScript .= str_repeat("\t", ($tab === 0) ? $tab : $tab - 1) . "$key (\n$value\n" . str_repeat("\t", ($tab === 0) ? $tab : $tab - 1) . ")\n";
                 }
-
             } else {
                 $typoScript .= self::convertArrayToTypoScript($value, $key, $tab, false);
             }
@@ -48,7 +48,7 @@ class TypoScriptUtility implements \TYPO3\CMS\Core\SingletonInterface
         if ($addKey !== '') {
             $tab--;
             $typoScript .= str_repeat("\t", ($tab === 0) ? $tab : $tab - 1) . '}';
-            if ($init !== TRUE) {
+            if ($init !== true) {
                 $typoScript .= "\n";
             }
         }
@@ -75,7 +75,8 @@ class TypoScriptUtility implements \TYPO3\CMS\Core\SingletonInterface
      * @param int $pageUid
      * @return array|bool
      */
-    public static function getTypoScriptTemplate(int $pageUid) {
+    public static function getTypoScriptTemplate(int $pageUid)
+    {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getConnectionForTable('sys_template')->createQueryBuilder();
         return $queryBuilder->select('*')->from('sys_template')->where(
             $queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pageUid, \PDO::PARAM_INT))
@@ -89,7 +90,8 @@ class TypoScriptUtility implements \TYPO3\CMS\Core\SingletonInterface
      * @param string type, setup or constants
      * @return array|bool
      */
-    public static function updateTypoScriptTemplate(array $typoScript, int $pageUid, $type = 'setup') {
+    public static function updateTypoScriptTemplate(array $typoScript, int $pageUid, $type = 'setup')
+    {
         $typoScriptAsString = self::convertArrayToTypoScript($typoScript);
 
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getConnectionForTable('sys_template')->createQueryBuilder();
@@ -99,10 +101,10 @@ class TypoScriptUtility implements \TYPO3\CMS\Core\SingletonInterface
 
         $result = false;
 
-        $versionInformation = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Information\Typo3Version::class);
+        $versionInformation = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Information\Typo3Version::class);
         if ($versionInformation->getMajorVersion() < 11) {
             $result = $queryBuilder->execute();
-        }else {
+        } else {
             $result = $queryBuilder->executeStatement();
         }
 
@@ -116,13 +118,14 @@ class TypoScriptUtility implements \TYPO3\CMS\Core\SingletonInterface
      * @param int $loop
      * @return string|array|null
      */
-    public static function traverseArray(array $array, array $subPath) {
+    public static function traverseArray(array $array, array $subPath)
+    {
         $subPathLength = count($subPath);
 
-        foreach($subPath as $keyToFind) {
+        foreach ($subPath as $keyToFind) {
             if (is_array($array) && array_key_exists($keyToFind, $array)) {
                 $array = $array[$keyToFind];
-            }else {
+            } else {
                 return null;
             }
         }

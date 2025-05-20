@@ -23,7 +23,6 @@ class ReplaceViewHelper extends AbstractViewHelper
 
     /**
      * Init new arguments
-     * @return void
      */
     public function initializeArguments()
     {

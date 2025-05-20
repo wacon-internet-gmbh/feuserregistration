@@ -16,8 +16,8 @@ namespace Wacon\Feuserregistration\Domain\Service;
 use Psr\Http\Message\ServerRequestInterface;
 
 use Symfony\Component\Mime\Address;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Mail\MailMessage;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\MailUtility;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 use Wacon\Feuserregistration\Bootstrap\Traits\ExtensionTrait;
@@ -88,7 +88,6 @@ class AdminInfoMailService
         }
 
         foreach ($receivers as $key => $receiver) {
-
             if ($key == 0) {
                 $this->mail->to(new Address($receiver));
             } else {

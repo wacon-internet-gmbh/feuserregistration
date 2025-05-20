@@ -11,7 +11,6 @@ declare(strict_types=1);
  *  (c) 2023 Kevin Chileong Lee, info@wacon.de, WACON Internet GmbH
  */
 
-
 namespace Wacon\Feuserregistration\Domain\Service\Validation;
 
 abstract class AbstractValidationService

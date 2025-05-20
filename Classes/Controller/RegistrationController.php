@@ -74,7 +74,8 @@ class RegistrationController extends BaseActionController
             $newUser = $this->registrationService->register(
                 $newUser,
                 (int)current(GeneralUtility::intExplode(',', $this->request->getAttribute('currentContentObject')->data['pages'], true)),
-                $this->settings, $this->request
+                $this->settings,
+                $this->request
             );
             $this->view->assign('mailResponse', $this->registrationService->getMailResponseForDOI());
             $this->view->assign('enableLog', isset($this->settings['dev']['enableLog']) ? $this->settings['dev']['enableLog'] : 0);

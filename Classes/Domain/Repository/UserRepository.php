@@ -13,5 +13,4 @@ declare(strict_types=1);
 
 namespace Wacon\Feuserregistration\Domain\Repository;
 
-class UserRepository extends BaseRepository
-{}
+class UserRepository extends BaseRepository {}

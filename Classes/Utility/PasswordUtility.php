@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Wacon\Feuserregistration\Utility;
 
-
 use TYPO3\CMS\Core\Crypto\PasswordHashing\PasswordHashFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -62,13 +61,15 @@ class PasswordUtility
         }
 
         $all = str_split($all);
-        for ($i = 0; $i < $length - count($sets); $i++)
+        for ($i = 0; $i < $length - count($sets); $i++) {
             $password .= $all[array_rand($all)];
+        }
 
         $password = str_shuffle($password);
 
-        if (!$add_dashes)
+        if (!$add_dashes) {
             return $password;
+        }
 
         $dash_len = floor(sqrt($length));
         $dash_str = '';

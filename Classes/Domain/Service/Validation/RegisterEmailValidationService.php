@@ -11,7 +11,6 @@ declare(strict_types=1);
  *  (c) 2023 Kevin Chileong Lee, info@wacon.de, WACON Internet GmbH
  */
 
-
 namespace Wacon\Feuserregistration\Domain\Service\Validation;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -43,7 +42,6 @@ class RegisterEmailValidationService extends AbstractValidationService
      * @var \Wacon\Feuserregistration\Domain\Repository\UserRepository $userRepository
      */
     protected $userRepository;
-
 
     /**
      * Create a BookingRequestValidationService

@@ -13,5 +13,4 @@ declare(strict_types=1);
 
 namespace Wacon\Feuserregistration\Domain\Exception;
 
-class DoiNotSendException extends \Exception
-{}
+class DoiNotSendException extends \Exception {}
