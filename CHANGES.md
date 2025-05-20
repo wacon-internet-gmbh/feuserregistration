@@ -1,3 +1,7 @@
+# Version 2.4.0
+- [FEATURE] Add option to set read aloud function as icon
+- [CHANGE] Optimize html structure for captcha with read aloud function
+
 # Version 2.3.0
 - [FEATURE] Add UnitTest for class check in Valditors
 - [FEATURE] Add readaloud function via SpeechSynthesisUtterance

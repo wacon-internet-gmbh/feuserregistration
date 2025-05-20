@@ -31,6 +31,7 @@ plugin.tx_feuserregistration {
             website = {$plugin.tx_feuserregistration.settings.fields.website}
             luxletter = {$plugin.tx_feuserregistration.settings.fields.luxletter}
             captcha = {$plugin.tx_feuserregistration.settings.fields.captcha}
+            captchaReadAloudAsIcon = {$plugin.tx_feuserregistration.settings.fields.captchaReadAloudAsIcon}
             privacy = {$plugin.tx_feuserregistration.settings.fields.privacy}
             privacy {
               newsletter = {$plugin.tx_feuserregistration.settings.fields.privacy.newsletter}

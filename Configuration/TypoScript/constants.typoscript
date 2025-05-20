@@ -32,6 +32,8 @@ plugin.tx_feuserregistration {
             luxletter = 1
             # cat=plugin.tx_feuserregistration/fields; type=string; label=Show captcha field
             captcha = 1
+            # cat=plugin.tx_feuserregistration/fields; type=boolean; label=Show read aloud as icon
+            captchaReadAloudAsIcon = 0
             # cat=plugin.tx_feuserregistration/fields; type=string; label=Show privacy field
             privacy = 1
             privacy {

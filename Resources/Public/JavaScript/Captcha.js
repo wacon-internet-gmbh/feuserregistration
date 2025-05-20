@@ -6,6 +6,7 @@ const feuserRegistrationCaptcha = {
     document.querySelectorAll('.captcha-readaloud').forEach((element) => {
       element.addEventListener('click', function (event) {
         event.preventDefault();
+        event.stopImmediatePropagation();
         feuserRegistrationCaptcha.fetchCaptchaCode(event.target)
           .then((response) => {
             feuserRegistrationCaptcha.handleResponse(response, event.target);

@@ -1,7 +1,31 @@
-<div class="mb-3">
+<div class="mb-3 row-captcha">
     <label for="captcha" class="form-label d-block"><f:translate key="register.form.captcha_math" extensionName="feuserregistration" /></label>
-    <img class="img-captcha mb-3" src="{f:uri.page(pageType: settings.pagetypes.captcha, noCache: '1')}" />
-    <f:form.textfield id="captcha" property="captcha" class="form-control" value="" required="true" />
-    <a class="captcha-readaloud" href="javascript:void(0);" data-uri="{f:uri.page(pageType: settings.pagetypes.captcha, noCache: '1')}"><f:translate key="register.form.captcha.readaloud" extensionName="feuserregistration" /></a>
+    <div class="captcha-image-wrapper">
+        <img class="img-captcha mb-3" src="{f:uri.page(pageType: settings.pagetypes.captcha, noCache: '1')}" />
+        <a class="captcha-readaloud{f:if(condition: settings.fields.captchaReadAloudAsIcon, then: ' text-decoration-none')}" href="javascript:void(0);" data-uri="{f:uri.page(pageType: settings.pagetypes.captcha, noCache: '1')}" title="{f:translate(key: 'register.form.captcha.readaloud', extensionName: 'feuserregistration')}">
+            <f:if condition="{settings.fields.captchaReadAloudAsIcon}">
+                <f:then>
+                    <svg class="icon icon-svg" version="1.1" id="_x5F_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+        viewBox="0 0 2434.5 2054.4" enable-background="new 0 0 2434.5 2054.4" xml:space="preserve">
+    <path id="Sound_Icon" d="M341.7,1324.4H140.5c-27.8,0-50.3-22.5-50.3-50.3v-503c0-27.8,22.5-50.3,50.3-50.3h201.2
+        c27.8,0,50.3,22.5,50.3,50.3v503C392,1301.9,369.4,1324.4,341.7,1324.4z M1297.4,167.5L536.2,690.8c-27.3,18.8-43.6,49.8-43.6,82.9
+        v497.8c0,33.1,16.3,64.1,43.6,82.9l761.2,523.3V167.5z M1814.3,1022.6c0-186.7-151.8-338.5-338.5-338.5c-27.8,0-50.3,22.5-50.3,50.3
+        c0,27.8,22.5,50.3,50.3,50.3c131.2,0,237.9,106.7,237.9,237.9s-106.7,237.9-237.9,237.9c-27.8,0-50.3,22.5-50.3,50.3
+        c0,27.8,22.5,50.3,50.3,50.3C1662.5,1361.1,1814.3,1209.3,1814.3,1022.6z M2079.4,1022.6c0-332.8-270.8-603.5-603.5-603.5
+        c-27.8,0-50.3,22.5-50.3,50.3c0,27.8,22.5,50.3,50.3,50.3c277.3,0,502.9,225.6,502.9,502.9c0,277.3-225.6,502.9-502.9,502.9
+        c-27.8,0-50.3,22.5-50.3,50.3c0,27.8,22.5,50.3,50.3,50.3C1808.6,1626.2,2079.4,1355.4,2079.4,1022.6z M2344.4,1022.6
+        c0-478.9-389.6-868.5-868.6-868.5c-27.8,0-50.3,22.5-50.3,50.3c0,27.8,22.5,50.3,50.3,50.3c423.5,0,768,344.5,768,767.9
+        c0,423.5-344.5,768-768,768c-27.8,0-50.3,22.5-50.3,50.3c0,27.8,22.5,50.3,50.3,50.3C1954.8,1891.2,2344.4,1501.5,2344.4,1022.6z
+        M1096.2,176.7v1701c0,55.6,45,100.6,100.6,100.6l0,0c55.6,0,100.6-45,100.6-100.6v-1701c0-55.6-45-100.6-100.6-100.6l0,0
+        C1141.2,76.1,1096.2,121.1,1096.2,176.7z"/>
+    </svg>
+                </f:then>
+                <f:else>
+                    <f:translate key="register.form.captcha.readaloud" extensionName="feuserregistration" />
+                </f:else>
+            </f:if>
+        </a>
+    </div>
     <f:asset.script identifier="feuserregistration_captcha" src="EXT:feuserregistration/Resources/Public/JavaScript/Captcha.js" />
+    <f:form.textfield id="captcha" property="captcha" class="form-control" value="" required="true" />
 </div>
