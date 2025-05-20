@@ -79,7 +79,7 @@ class TypoScriptUtility implements \TYPO3\CMS\Core\SingletonInterface
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getConnectionForTable('sys_template')->createQueryBuilder();
         return $queryBuilder->select('*')->from('sys_template')->where(
             $queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pageUid, \PDO::PARAM_INT))
-        )->executeQuery()->fetchAssociative()
+        )->executeQuery()->fetchAssociative();
     }
 
     /**
