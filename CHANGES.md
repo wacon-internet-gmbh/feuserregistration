@@ -1,3 +1,8 @@
+# Version 2.3.0
+- [FEATURE] Add UnitTest for class check in Valditors
+- [FEATURE] Add readaloud function via SpeechSynthesisUtterance
+- [CHANGE] Change condition to support inheritance in Validator User Model check
+
 # Version 2.2.0
 - [FEATURE] Add option in constant editor to switch privacy checkbox label from normal to newsletter mode
 - [CHANGE] Shorten privacy checkbox label

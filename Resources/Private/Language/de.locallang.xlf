@@ -3,6 +3,13 @@
     <file source-language="en" target-language="de" datatype="plaintext" original="EXT:feuserregistration/Resources/Private/Language/de.locallang.xlf" date="2023-05-01T10:59:51Z" product-name="feuserregistration">
         <header/>
         <body>
+			<trans-unit id="math.times" resname="math.times">
+                <target>mal</target>
+            </trans-unit>
+			<trans-unit id="math.divided_by" resname="math.divided_by">
+                <target>geteilt durch</target>
+            </trans-unit>
+
             <trans-unit id="register.form.submit" resname="register.form.submit">
                 <target>Registrieren</target>
             </trans-unit>
@@ -59,6 +66,9 @@
             </trans-unit>
             <trans-unit id="register.form.captcha_math" resname="register.form.captcha_math">
                 <target>Bitte lösen Sie die untere Aufgabe</target>
+            </trans-unit>
+			<trans-unit id="register.form.captcha.readaloud" resname="register.form.captcha.readaloud">
+                <target>Vorlesen</target>
             </trans-unit>
             <trans-unit id="register.form.privacy_long" resname="register.form.privacy_long">
                 <target><![CDATA[Ich habe die <a href="%s" target="_blank">Datenschutzerklärung</a> gelesen und akzeptiere sie.]]></target>

@@ -21,21 +21,20 @@ class RegisterEmailValidator extends AbstractValidator
      * @var \Wacon\Feuserregistration\Domain\Service\Validation\RegisterEmailValidationService
      */
     protected $registerEmailValidationService;
-    
+
     protected function isValid($value): void
     {
-        $this->registerEmailValidationService = GeneralUtility::makeInstance(\Wacon\Feuserregistration\Domain\Service\Validation\RegisterEmailValidationService::class);        
-        $className = get_class($value);
+        $this->registerEmailValidationService = GeneralUtility::makeInstance(\Wacon\Feuserregistration\Domain\Service\Validation\RegisterEmailValidationService::class);
 
-        if ($className != \Wacon\Feuserregistration\Domain\Model\User::class) {
+        if (($value instanceof \Wacon\Feuserregistration\Domain\Model\User) !== true) {
             $errorString = 'The user validator can only handle object of class ' . \Wacon\Feuserregistration\Domain\Model\User::class . ', '
-                . $className . ' given instead.';
+                . get_class($value). ' given instead.';
             $this->addError($errorString, time());
         }
 
         if (!$this->registerEmailValidationService->isValid($value)) {
             $propertiesWithError = $this->registerEmailValidationService->getPropertiesWithError();
-            
+
             foreach($propertiesWithError as $propertyWithError) {
                 $this->addErrorForProperty($propertyWithError['name'], $propertyWithError['errorString'], $propertyWithError['errorCode']);
             }

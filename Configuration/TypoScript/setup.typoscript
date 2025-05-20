@@ -83,9 +83,6 @@ pageCaptcha {
     config {
         no_cache = 1
         disableAllHeaderCode = 1
-        additionalHeaders {
-            10.header = Content-type: image/png
-        }
     }
 
     10 = USER

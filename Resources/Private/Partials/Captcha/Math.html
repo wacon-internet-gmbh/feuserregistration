@@ -2,4 +2,6 @@
     <label for="captcha" class="form-label d-block"><f:translate key="register.form.captcha_math" extensionName="feuserregistration" /></label>
     <img class="img-captcha mb-3" src="{f:uri.page(pageType: settings.pagetypes.captcha, noCache: '1')}" />
     <f:form.textfield id="captcha" property="captcha" class="form-control" value="" required="true" />
+    <a class="captcha-readaloud" href="javascript:void(0);" data-uri="{f:uri.page(pageType: settings.pagetypes.captcha, noCache: '1')}"><f:translate key="register.form.captcha.readaloud" extensionName="feuserregistration" /></a>
+    <f:asset.script identifier="feuserregistration_captcha" src="EXT:feuserregistration/Resources/Public/JavaScript/Captcha.js" />
 </div>

@@ -3,6 +3,19 @@
     <file source-language="en" datatype="plaintext" original="EXT:feuserregistration/Resources/Private/Language/locallang.xlf" date="2023-05-01T10:59:51Z" product-name="feuserregistration">
         <header/>
         <body>
+			<trans-unit id="math.plus" resname="math.plus">
+                <source>plus</source>
+            </trans-unit>
+			<trans-unit id="math.minus" resname="math.minus">
+                <source>minus</source>
+            </trans-unit>
+			<trans-unit id="math.times" resname="math.times">
+                <source>times</source>
+            </trans-unit>
+			<trans-unit id="math.divided_by" resname="math.divided_by">
+                <source>divided by</source>
+            </trans-unit>
+
             <trans-unit id="register.form.submit" resname="register.form.submit">
                 <source>Register</source>
             </trans-unit>
@@ -62,6 +75,9 @@
             </trans-unit>
             <trans-unit id="register.form.captcha" resname="register.form.captcha">
                 <source>Captcha</source>
+            </trans-unit>
+			<trans-unit id="register.form.captcha.readaloud" resname="register.form.captcha.readaloud">
+                <source>Read aloud</source>
             </trans-unit>
             <trans-unit id="register.form.privacy" resname="register.form.privacy">
                 <source>Data protection</source>

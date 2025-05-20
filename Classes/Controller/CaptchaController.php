@@ -3,8 +3,9 @@ declare(strict_types=1);
 
 namespace Wacon\Feuserregistration\Controller;
 
-use TYPO3\CMS\Core\Core\Environment;
+use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use Wacon\Feuserregistration\Utility\TextToSpeechUtility;
 
 /*
  * This file is part of the TYPO3 extension feuserregistration.
@@ -22,19 +23,37 @@ class CaptchaController extends BaseActionController
 {
     /**
      * Create and return a math image
+     * @param bool $returnCode
+     * @return ResponseInterface
      */
-    public function mathImageAction() {
+    public function mathImageAction():ResponseInterface
+    {
+        $postArguments = json_decode($this->request->getBody()->getContents(), true);
+        if (is_array($postArguments) && array_key_exists('returnCode', $postArguments) && $postArguments['returnCode'] === true) {
+            $frontendUser = $this->request->getAttribute('frontend.user');
+            $formular = $frontendUser->getKey('ses', self::class . '->mathImage->formular');
+
+            return $this->responseFactory
+                ->createResponse()
+                ->withHeader('Content-Type', 'application/json')
+                ->withBody(
+                    $this->streamFactory->createStream(
+                        json_encode(['formular' => TextToSpeechUtility::formatMathFormula($formular, $this->extensionName)])
+                    )
+                );
+        }
+
         $operators = ['+', '-'];
         $operatorsCount = count($operators);
         $amountOfOperators = rand(1, $operatorsCount);
-        $formula = '';        
+        $formula = '';
 
         for($i = 0; $i < $amountOfOperators; $i++) {
             $currentOperator = (string)$operators[rand(0, $operatorsCount-1)];
             $num1=rand(1, 10);
             $num2=rand(1, 10);
             $formula .= (string)$num1 . ' ' . $currentOperator . ' ' . (string)$num2;
-            
+
             if (($i+1) < $amountOfOperators) {
                 $formula .= ' ' . (string)$operators[rand(0, $operatorsCount-1)] . ' ';
             }
@@ -50,7 +69,7 @@ class CaptchaController extends BaseActionController
                 $lastOperator = $value;
             }elseif($lastOperator) {
                 switch($lastOperator) {
-                    case '+':                        
+                    case '+':
                         $mathResult = $mathResult + $value;
                         break;
                     case '-':
@@ -64,6 +83,7 @@ class CaptchaController extends BaseActionController
 
         $frontendUser = $this->request->getAttribute('frontend.user');
         $frontendUser->setKey('ses', self::class . '->mathImage', $mathResult);
+        $frontendUser->setKey('ses', self::class . '->mathImage->formular', $formula);
         $frontendUser->storeSessionData();
 
         $font = GeneralUtility::getFileAbsFileName('EXT:' . $this->extensionName . '/Resources/Public/Fonts/ReenieBeanie/ReenieBeanie-Regular.ttf');

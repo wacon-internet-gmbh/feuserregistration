@@ -1,20 +1,52 @@
 {
-    "name": "wacon/feuserregistration",
-    "type": "typo3-cms-extension",
-    "description": "This extension enables the easy registration of a frontend user using the double opt-in process (e.g., for newsletter sign-ups). Optionally, a notification can be sent to a centrally configured email address.",
-    "license": "GPL-2.0-or-later",
-    "version": "2.2.0",
-    "require": {
-       "typo3/cms-core": "^12.4 || ^13.4"
-    },
-    "autoload": {
-       "psr-4": {
-          "Wacon\\Feuserregistration\\": "Classes/"
-       }
-    },
-    "extra": {
-       "typo3/cms": {
-          "extension-key": "feuserregistration"
-       }
-    }
- }
+	"name": "wacon/feuserregistration",
+	"type": "typo3-cms-extension",
+	"description": "This extension enables the easy registration of a frontend user using the double opt-in process (e.g., for newsletter sign-ups). Optionally, a notification can be sent to a centrally configured email address.",
+	"license": "GPL-2.0-or-later",
+	"version": "2.3.0",
+	"require": {
+		"typo3/cms-core": "^12.4 || ^13.4"
+	},
+	"require-dev": {
+		"typo3/testing-framework": "^8.2 || ^9.2",
+		"phpunit/phpunit": "^10.5",
+		"typo3/cms-composer-installers": "^5.0",
+		"typo3/cms-install": "^12.4 || ^13.3",
+		"typo3/coding-standards": "^0.8",
+		"friendsofphp/php-cs-fixer": "^3.52.1"
+	},
+	"autoload": {
+		"psr-4": {
+			"Wacon\\Feuserregistration\\": "Classes/"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Wacon\\Feuserregistration\\Tests\\": "Tests/"
+		}
+	},
+	"config": {
+		"vendor-dir": ".Build/vendor",
+		"bin-dir": ".Build/bin",
+		"lock": false,
+		"allow-plugins": {
+			"typo3/class-alias-loader": true,
+			"typo3/cms-composer-installers": true,
+			"sbuerk/typo3-cmscomposerinstallers-testingframework-bridge": true
+		}
+	},
+	"scripts": {
+		"cs": "php ./.Build/bin/php-cs-fixer fix  --dry-run -v --config ./Build/php-cs-fixer/php-cs-fixer.php ./",
+		"csfix": "php ./.Build/bin/php-cs-fixer fix  -v --config ./Build/php-cs-fixer/php-cs-fixer.php ./",
+		"post-autoload-dump": [
+			"TYPO3\\TestingFramework\\Composer\\ExtensionTestEnvironment::prepare"
+		]
+	},
+	"extra": {
+		"typo3/cms": {
+			"app-dir": ".Build",
+			"web-dir": ".Build/Web",
+			"extension-key": "feuserregistration"
+		}
+	}
+}
