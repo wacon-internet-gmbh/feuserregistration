@@ -16,25 +16,25 @@ plugin.tx_feuserregistration {
 
     settings {
         fegroups {
-            # cat=plugin.tx_feuserregistration/settings; type=string; label=The final target fe_group
+            # cat=plugin.tx_feuserregistration/settings; type=int+; label=The final target fe_group
             target =
         }
         fields {
-            # cat=plugin.tx_feuserregistration/fields; type=string; label=Show address field
+            # cat=plugin.tx_feuserregistration/fields; type=boolean; label=Show address field
             address = 1
-            # cat=plugin.tx_feuserregistration/fields; type=string; label=Show phone field
+            # cat=plugin.tx_feuserregistration/fields; type=boolean; label=Show phone field
             phone = 1
-            # cat=plugin.tx_feuserregistration/fields; type=string; label=Show fax field
+            # cat=plugin.tx_feuserregistration/fields; type=boolean; label=Show fax field
             fax = 1
-            # cat=plugin.tx_feuserregistration/fields; type=string; label=Show website field
+            # cat=plugin.tx_feuserregistration/fields; type=boolean; label=Show website field
             website = 1
-            # cat=plugin.tx_feuserregistration/fields; type=string; label=Show luxletter field
+            # cat=plugin.tx_feuserregistration/fields; type=boolean; label=Show luxletter field
             luxletter = 1
-            # cat=plugin.tx_feuserregistration/fields; type=string; label=Show captcha field
+            # cat=plugin.tx_feuserregistration/fields; type=boolean; label=Show captcha field
             captcha = 1
             # cat=plugin.tx_feuserregistration/fields; type=boolean; label=Show read aloud as icon
             captchaReadAloudAsIcon = 0
-            # cat=plugin.tx_feuserregistration/fields; type=string; label=Show privacy field
+            # cat=plugin.tx_feuserregistration/fields; type=boolean; label=Show privacy field
             privacy = 1
             privacy {
               # cat=plugin.tx_feuserregistration/fields; type=boolean; label=Show newsletter privacy label
@@ -42,15 +42,15 @@ plugin.tx_feuserregistration {
             }
         }
         pages {
-            # cat=plugin.tx_feuserregistration/pages; type=string; label=Verification page
+            # cat=plugin.tx_feuserregistration/pages; type=int+; label=Verification page
             verificationPage =
-            # cat=plugin.tx_feuserregistration/pages; type=string; label=Login page (optional)
+            # cat=plugin.tx_feuserregistration/pages; type=int+; label=Login page (optional)
             loginPage =
-            # cat=plugin.tx_feuserregistration/pages; type=string; label=Privacy page
+            # cat=plugin.tx_feuserregistration/pages; type=int+; label=Privacy page
             privacyPage =
         }
         pagetypes {
-            # cat=plugin.tx_feuserregistration/settings; type=string; label=Captcha typeNum
+            # cat=plugin.tx_feuserregistration/settings; type=int+; label=Captcha typeNum
             captcha = 1
         }
         # cat=plugin.tx_feuserregistration/fields; type=string; label=List of required fields

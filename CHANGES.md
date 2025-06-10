@@ -1,3 +1,7 @@
+# Version 2.4.2
+- [BUGFIX] Correct constant editor types for boolean and uid fields
+- [BUGFIX] Show only dev log in fluid, if devLog settings is enabled
+
 # Version 2.4.1
 - [BUGFIX] mb-3 on wrapper of catpcha
 
