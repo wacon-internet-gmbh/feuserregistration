@@ -615,27 +615,27 @@ class User extends BaseEntity
         return $this;
     }
 
-	/**
-	 * Get summary of name
-	 *
-	 * @return string
-	 */
-	public function getName(): string
-	{
-		return $this->name;
-	}
+    /**
+     * Get summary of name
+     *
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
 
-	/**
-	 * Set summary of name
-	 *
-	 * @param string  $name
-	 *
-	 * @return self
-	 */
-	public function setName(string $name): self
-	{
-		$this->name = $name;
+    /**
+     * Set summary of name
+     *
+     * @param string  $name
+     *
+     * @return self
+     */
+    public function setName(string $name): self
+    {
+        $this->name = $name;
 
-		return $this;
-	}
+        return $this;
+    }
 }
