@@ -33,7 +33,7 @@ class RegistrationService
 
     /**
      * Register a user by email and returns the frontend_user uid
-     * @param string $email
+     * @param User $userToRegister
      * @param int $pid
      * @param array $settings
      * @param ServerRequestInterface $request
@@ -41,7 +41,7 @@ class RegistrationService
      * @return User
      * @throws DoiNotSendException
      */
-    public function registerSimple(string $email, int $pid, array $settings, ServerRequestInterface $request, bool $privacy = true): User
+    public function registerSimple(User $userToRegister, int $pid, array $settings, ServerRequestInterface $request, bool $privacy = true): User
     {
         // We need to check, if user already exists
         // that is possible, if user has not the
@@ -51,20 +51,24 @@ class RegistrationService
         // Make sure pid is inside the StoragePages
         PersistenceUtility::addStoragePageUids($this->userRepository, [$pid]);
 
-        $user = $this->userRepository->findByEmail($email)->current();
+        $user = $this->userRepository->findByEmail($userToRegister->getEmail())->current();
 
         // if user does not exist, then create a new one
         if (!$user) {
             $user = GeneralUtility::makeInstance(User::class);
-            $user->setEmail($email);
+            $user->setEmail($userToRegister->getEmail());
         }
 
         // We don ask for username and password and we dont need it
         // but we want to set something, because they are required in typo3
-        $user->setUsername($email);
+        $user->setUsername($userToRegister->getEmail());
         $user->setRandomPassword();
         $user->setDisable(true);
         $user->setPid($pid);
+
+        if ($userToRegister->getName()) {
+            $user->setName($userToRegister->getName());
+        }
 
         if ($privacy) {
             $user->setPrivacy($privacy);

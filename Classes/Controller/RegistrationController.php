@@ -107,7 +107,7 @@ class RegistrationController extends BaseActionController
     {
         try {
             // Register with DOI process
-            $newUser = $this->registrationService->registerSimple($newUser->getEmail(), current(GeneralUtility::intExplode(',', $this->request->getAttribute('currentContentObject')->data['pages'], true)), $this->settings, $this->request);
+            $newUser = $this->registrationService->registerSimple($newUser, current(GeneralUtility::intExplode(',', $this->request->getAttribute('currentContentObject')->data['pages'], true)), $this->settings, $this->request);
             $this->view->assign('mailResponse', $this->registrationService->getMailResponseForDOI());
             $this->view->assign('enableLog', isset($this->settings['dev']['enableLog']) ? $this->settings['dev']['enableLog'] : 0);
         } catch (\Exception $e) {

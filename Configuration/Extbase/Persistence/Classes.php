@@ -16,6 +16,9 @@ return [
             'usergroup' => [
                 'fieldName' => 'usergroup'
             ],
+            'name' => [
+                'fieldName' => 'name'
+            ],
             'first_name' => [
                 'fieldName' => 'firstName'
             ],

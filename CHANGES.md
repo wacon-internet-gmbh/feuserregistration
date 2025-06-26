@@ -1,3 +1,6 @@
+# Version 2.5.0
+- [FEATURE] Rework registerEmail to make it technically possible to also use a name field
+
 # Version 2.4.2
 - [BUGFIX] Correct constant editor types for boolean and uid fields
 - [BUGFIX] Show only dev log in fluid, if devLog settings is enabled
