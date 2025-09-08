@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="es" datatype="plaintext" original="EXT:feuserregistration/Resources/Private/Language/locallang.xlf" date="2023-05-01T10:59:51Z" product-name="feuserregistration">
+        <header/>
+        <body>
+			<trans-unit id="math.plus" resname="math.plus">
+				<target>más</target>
+			</trans-unit>
+			<trans-unit id="math.minus" resname="math.minus">
+				<target>menos</target>
+			</trans-unit>
+			<trans-unit id="math.times" resname="math.times">
+				<target>por</target>
+			</trans-unit>
+			<trans-unit id="math.divided_by" resname="math.divided_by">
+				<target>dividido por</target>
+			</trans-unit>
+
+			<trans-unit id="register.form.submit" resname="register.form.submit">
+				<target>Registrarse</target>
+			</trans-unit>
+			<trans-unit id="register.form.email" resname="register.form.email">
+				<target>Correo electrónico</target>
+			</trans-unit>
+			<trans-unit id="register.form.email.placeholder" resname="register.form.email.placeholder">
+				<target>Introduzca su dirección de correo electrónico</target>
+			</trans-unit>
+			<trans-unit id="register.form.salutation" resname="register.form.salutation">
+				<target>Saludo</target>
+			</trans-unit>
+			<trans-unit id="register.form.salutation.I.female" resname="register.form.salutation.I.female">
+				<target>Femenino</target>
+			</trans-unit>
+			<trans-unit id="register.form.salutation.I.male" resname="register.form.salutation.I.male">
+				<target>Masculino</target>
+			</trans-unit>
+			<trans-unit id="register.form.salutation.I.others" resname="register.form.salutation.I.others">
+				<target>Otros</target>
+			</trans-unit>
+			<trans-unit id="register.form.firstName" resname="register.form.firstName">
+				<target>Nombre</target>
+			</trans-unit>
+			<trans-unit id="register.form.lastName" resname="register.form.lastName">
+				<target>Apellido</target>
+			</trans-unit>
+			<trans-unit id="register.form.address" resname="register.form.address">
+				<target>Dirección</target>
+			</trans-unit>
+			<trans-unit id="register.form.zip" resname="register.form.zip">
+				<target>Código postal</target>
+			</trans-unit>
+			<trans-unit id="register.form.city" resname="register.form.city">
+				<target>Ciudad</target>
+			</trans-unit>
+			<trans-unit id="register.form.country" resname="register.form.country">
+				<target>País</target>
+			</trans-unit>
+			<trans-unit id="register.form.phone" resname="register.form.phone">
+				<target>Teléfono</target>
+			</trans-unit>
+			<trans-unit id="register.form.fax" resname="register.form.fax">
+				<target>Fax</target>
+			</trans-unit>
+			<trans-unit id="register.form.website" resname="register.form.website">
+				<target>Sitio web</target>
+			</trans-unit>
+			<trans-unit id="register.form.newsletterReceive" resname="register.form.newsletterReceive">
+				<target>Suscribirse a nuestro boletín</target>
+			</trans-unit>
+			<trans-unit id="register.form.luxletterLanguage" resname="register.form.luxletterLanguage">
+				<target>Idioma preferido para el boletín</target>
+			</trans-unit>
+			<trans-unit id="register.form.captcha_math" resname="register.form.captcha_math">
+				<target>Por favor, resuelva la función matemática a continuación</target>
+			</trans-unit>
+			<trans-unit id="register.form.captcha" resname="register.form.captcha">
+				<target>Captcha</target>
+			</trans-unit>
+			<trans-unit id="register.form.captcha.readaloud" resname="register.form.captcha.readaloud">
+				<target>Leer en voz alta</target>
+			</trans-unit>
+			<trans-unit id="register.form.privacy" resname="register.form.privacy">
+				<target>Protección de datos</target>
+			</trans-unit>
+			<trans-unit id="register.form.privacy_long" resname="register.form.privacy_long">
+				<target><![CDATA[He leído y acepto la <a href="%s" target="_blank">Política de Privacidad</a>.]]></target>
+			</trans-unit>
+			<trans-unit id="register.form.privacy_long.newsletter" resname="register.form.privacy_long.newsletter">
+				<target><![CDATA[He leído y acepto la <a href="%s" target="_blank">Política de Privacidad</a>. Consiento que mis datos sean tratados para el envío del boletín.]]></target>
+			</trans-unit>
+
+			<trans-unit id="register.form.text.afterRegistration" resname="register.form.text.afterRegistration">
+				<target>Gracias por su registro. Le hemos enviado un correo electrónico para completar el proceso de registro. Por favor, revise su buzón.</target>
+			</trans-unit>
+			<trans-unit id="register.form.text.afterDoi" resname="register.form.text.afterDoi">
+				<target>Su registro está completo. Le hemos enviado sus credenciales al correo electrónico proporcionado.</target>
+			</trans-unit>
+			<trans-unit id="register.form.text.afterDoi.noCredentials" resname="register.form.text.afterDoi.noCredentials">
+				<target>Su registro está completo.</target>
+			</trans-unit>
+			<trans-unit id="register.form.text.afterDoi.error" resname="register.form.text.afterDoi.error">
+				<target>El enlace de verificación ha expirado.</target>
+			</trans-unit>
+
+			<trans-unit id="register.mail.doi.subject" resname="register.mail.doi.subject">
+				<target>Complete su registro en %s</target>
+			</trans-unit>
+			<trans-unit id="register.mail.doi.text.salutation" resname="register.mail.doi.text.salutation">
+				<target>Estimado/a señor/a,</target>
+			</trans-unit>
+			<trans-unit id="register.mail.doi.text.1" resname="register.mail.doi.text.1">
+				<target>hemos recibido una solicitud de registro para este correo electrónico.</target>
+			</trans-unit>
+			<trans-unit id="register.mail.doi.text.2" resname="register.mail.doi.text.2">
+                <target>Le pedimos que verifique su dirección de correo electrónico para completar el registro.</target>
+            </trans-unit>
+            <trans-unit id="register.mail.doi.text.3" resname="register.mail.doi.text.3">
+                <target>Por favor, haga clic en el siguiente enlace:</target>
+            </trans-unit>
+            <trans-unit id="register.mail.doi.link.helpText" resname="register.mail.doi.link.helpText">
+                <target>(Copie y pegue este enlace en su navegador)</target>
+            </trans-unit>
+			<trans-unit id="register.mail.doi.text.greetings" resname="register.mail.doi.text.greetings">
+				<target>Saludos cordiales,</target>
+			</trans-unit>
+			<trans-unit id="register.mail.doi.text.greetings.brand" resname="register.mail.doi.text.greetings.brand">
+				<target>WACON Internet GmbH</target>
+			</trans-unit>
+
+			<trans-unit id="register.mail.doi.credentials.subject" resname="register.mail.doi.credentials.subject">
+				<target>Sus credenciales de acceso para %s</target>
+			</trans-unit>
+			<trans-unit id="register.mail.doi.credentials.text.1" resname="register.mail.doi.credentials.text.1">
+				<target>El registro está completo. Ahora puede iniciar sesión con las siguientes credenciales:</target>
+			</trans-unit>
+			<trans-unit id="register.mail.doi.credentials.text.2" resname="register.mail.doi.credentials.text.2">
+				<target><![CDATA[<strong>Usuario:</strong> %s<br /><strong>Contraseña:</strong> %s]]></target>
+			</trans-unit>
+			<trans-unit id="register.mail.doi.none_credentials.text.1" resname="register.mail.doi.none_credentials.text.1">
+				<target>El registro está completo. Ahora recibirá nuestro boletín.</target>
+			</trans-unit>
+
+			<trans-unit id="register.mail.adminInfo.subject.registration" resname="register.mail.adminInfo.subject.registration">
+				<target>Nueva inscripción iniciada en %s</target>
+			</trans-unit>
+			<trans-unit id="register.mail.adminInfo.subject.verification" resname="register.mail.adminInfo.subject.verification">
+				<target>Nueva inscripción completada en %s</target>
+			</trans-unit>
+			<trans-unit id="register.mail.adminInfo.text.salutation" resname="register.mail.adminInfo.text.salutation">
+				<target>Estimado/a administrador/a,</target>
+			</trans-unit>
+			<trans-unit id="register.mail.adminInfo.text.registration" resname="register.mail.adminInfo.text.registration">
+				<target>Un nuevo usuario: '%s' inició un registro en %s. El usuario aún no ha verificado la cuenta.</target>
+			</trans-unit>
+			<trans-unit id="register.mail.adminInfo.text.verification" resname="register.mail.adminInfo.text.verification">
+				<target>Un nuevo usuario: '%s' completó el registro en %s. El usuario acaba de verificar su cuenta.</target>
+			</trans-unit>
+			<trans-unit id="register.mail.adminInfo.text.greetings" resname="register.mail.adminInfo.text.greetings">
+				<target>Atentamente,</target>
+			</trans-unit>
+			<trans-unit id="register.mail.adminInfo.text.greetings.brand" resname="register.mail.adminInfo.text.greetings.brand">
+				<target>WACON Internet GmbH</target>
+			</trans-unit>
+
+			<trans-unit id="verify.doiform.submit" resname="verify.doiform.submit">
+				<target>Completar verificación</target>
+			</trans-unit>
+
+			<trans-unit id="validation.error.notempty" resname="validation.error.notempty">
+				<target>Este campo es obligatorio.</target>
+			</trans-unit>
+			<trans-unit id="validation.error.email.exists" resname="validation.error.email.exists">
+				<target>Este correo electrónico ya está registrado.</target>
+			</trans-unit>
+			<trans-unit id="validation.error.captcha" resname="validation.error.captcha">
+				<target>La respuesta de seguridad es incorrecta. Por favor, inténtelo de nuevo.</target>
+			</trans-unit>
+			<trans-unit id="validation.error.privacy" resname="validation.error.privacy">
+				<target>Necesitamos su consentimiento para la protección de datos.</target>
+			</trans-unit>
+
+			<trans-unit id="validation.error.title" resname="validation.error.title">
+				<target>Por favor, verifique su información</target>
+			</trans-unit>
+        </body>
+    </file>
+</xliff>

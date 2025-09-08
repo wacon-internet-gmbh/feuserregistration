@@ -1,3 +1,7 @@
+# dev-v11-0
+- [FEATURE] Create and use new FlexForm for V11
+- [CHANGE] Adjust DOI process to V11
+
 # Version 2.5.0
 - [FEATURE] Rework registerEmail to make it technically possible to also use a name field
 

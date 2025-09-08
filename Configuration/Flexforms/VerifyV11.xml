@@ -1,0 +1,45 @@
+<T3DataStructure>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <sheetTitle>
+                    LLL:EXT:feuserregistration/Resources/Private/Language/locallang_plugins.xlf:verify.pi_flexform.sheetGeneral
+                </sheetTitle>
+                <type>array</type>
+                <el>
+                    <settings.mode>
+                        <label>
+                            LLL:EXT:feuserregistration/Resources/Private/Language/locallang_plugins.xlf:verify.pi_flexform.mode
+                        </label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <items type="array">
+                                <numIndex index="0" type="array">
+                                    <numIndex index="0">LLL:EXT:feuserregistration/Resources/Private/Language/locallang_plugins.xlf:verify.pi_flexform.mode.I.auto</numIndex>
+                                    <numIndex index="1"></numIndex>
+                                </numIndex>
+                                <numIndex index="1" type="array">
+                                    <numIndex index="0">LLL:EXT:feuserregistration/Resources/Private/Language/locallang_plugins.xlf:verify.pi_flexform.mode.I.form</numIndex>
+                                    <numIndex index="1">form</numIndex>
+                                </numIndex>
+                            </items>
+                        </config>
+                    </settings.mode>
+                    <settings.modeText>
+                        <label>
+                            LLL:EXT:feuserregistration/Resources/Private/Language/locallang_plugins.xlf:verify.pi_flexform.mode.text
+                        </label>
+                        <displayCond>
+                            FIELD:settings.mode:=:form
+                        </displayCond>
+                        <config>
+                            <type>text</type>
+                            <enableRichtext>1</enableRichtext>
+                        </config>
+                    </settings.modeText>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
+</T3DataStructure>

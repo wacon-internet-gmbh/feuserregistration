@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Wacon\Feuserregistration\Controller;
 
 use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Annotation\Validate;
 use TYPO3\CMS\Extbase\Http\ForwardResponse;
@@ -70,10 +71,18 @@ class RegistrationController extends BaseActionController
     public function registerAction(User $newUser)
     {
         try {
+            $currentContentObject = null;
+            $versionInformation = GeneralUtility::makeInstance(Typo3Version::class);
+            if (version_compare($versionInformation->getVersion(), '12.0', '<')) {
+                $currentContentObject = $this->configurationManager->getContentObject();
+            } else {
+                $currentContentObject = $this->request->getAttribute('currentContentObject');
+            }
+
             // Register with DOI process
             $newUser = $this->registrationService->register(
                 $newUser,
-                (int)current(GeneralUtility::intExplode(',', $this->request->getAttribute('currentContentObject')->data['pages'], true)),
+                (int)current(GeneralUtility::intExplode(',', $currentContentObject->data['pages'], true)),
                 $this->settings,
                 $this->request
             );
