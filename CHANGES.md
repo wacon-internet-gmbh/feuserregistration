@@ -1,3 +1,6 @@
+# dev-v11-1
+- [BUGFIX] Perstence mapping from phone to telephone
+
 # dev-v11-0
 - [FEATURE] Create and use new FlexForm for V11
 - [CHANGE] Adjust DOI process to V11

@@ -38,7 +38,7 @@ return [
                 'fieldName' => 'country'
             ],
             'phone' => [
-                'fieldName' => 'phone'
+                'fieldName' => 'telephone'
             ],
             'fax' => [
                 'fieldName' => 'fax'
