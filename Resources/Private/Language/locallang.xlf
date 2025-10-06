@@ -182,6 +182,28 @@
             <trans-unit id="validation.error.title" resname="validation.error.title">
                 <source>Please verify your input</source>
             </trans-unit>
+
+			<trans-unit id="module.importFeUserForLuxletter.title" resname="module.importFeUserForLuxletter.title">
+                <source>Import fe_user for Luxletter</source>
+            </trans-unit>
+			<trans-unit id="module.importFeUserForLuxletter.description" resname="module.importFeUserForLuxletter.description">
+                <source>First select folder where the new frontend user should be imported in. Then upload the CSV file.</source>
+            </trans-unit>
+			<trans-unit id="module.importFeUserForLuxletter.current_page" resname="module.importFeUserForLuxletter.current_page">
+                <source>Current target page/folder</source>
+            </trans-unit>
+			<trans-unit id="module.importFeUserForLuxletter.upload_form.seperator" resname="module.importFeUserForLuxletter.upload_form.seperator">
+                <source>CSV Separator</source>
+            </trans-unit>
+			<trans-unit id="module.importFeUserForLuxletter.upload_form.submit" resname="module.importFeUserForLuxletter.upload_form.submit">
+                <source>Import CSV</source>
+            </trans-unit>
+			<trans-unit id="module.importFeUserForLuxletter.upload_form.flashmessage.success" resname="module.importFeUserForLuxletter.upload_form.flashmessage.success">
+                <source>Successfully imported %d users.</source>
+            </trans-unit>
+			<trans-unit id="module.importFeUserForLuxletter.upload_form.flashmessage.error.email" resname="module.importFeUserForLuxletter.upload_form.flashmessage.error.email">
+                <source>The email address '%s' is invalid.</source>
+            </trans-unit>
         </body>
     </file>
 </xliff>

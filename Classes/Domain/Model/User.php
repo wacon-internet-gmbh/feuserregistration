@@ -271,6 +271,26 @@ class User extends BaseEntity
     }
 
     /**
+     * Summary of addUsergroups
+     * @param array $newUsergroups
+     * @return static
+     */
+    public function addUsergroups(array $newUsergroups)
+    {
+        $usergroup = GeneralUtility::intExplode(',', $this->usergroup);
+
+        foreach ($newUsergroups as $newUsergroup) {
+            if (!in_array($newUsergroup, $usergroup)) {
+                $usergroup[] = $newUsergroup;
+            }
+        }
+
+        $this->usergroup = implode(',', $usergroup);
+
+        return $this;
+    }
+
+    /**
      * Add a usergroup
      * @param string $newUsergroup
      * @return self

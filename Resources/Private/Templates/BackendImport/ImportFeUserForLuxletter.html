@@ -1,0 +1,39 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers"
+    xmlns:be="http://typo3.org/ns/TYPO3/CMS/Backend/ViewHelpers" data-namespace-typo3-fluid="true">
+
+<f:layout name="Module" />
+
+<f:section name="Content">
+    <h1>
+        <f:translate key="module.importFeUserForLuxletter.title" extensionName="feuserregistration" />
+    </h1>
+    <p class="alert alert-info fw-bold"><f:translate key="module.importFeUserForLuxletter.description" extensionName="feuserregistration" /></p>
+    <div class="alert alert-warning h2">
+        <f:translate key="module.importFeUserForLuxletter.current_page" extensionName="feuserregistration" />: {page.title} (ID: {page.uid})
+    </div>
+    <f:flashMessages />
+    <f:form action="uploadFeUserForLuxletter" id="uploadForm" name="upload" enctype="multipart/form-data">
+         <div class="mb-3">
+            <label for="uploadFeUserForLuxletterFeGroups" class="form-label"><f:translate key="module.importFeUserForLuxletter.upload_form.seperator" extensionName="feuserregistration" /></label>
+            <f:form.select id="uploadFeUserForLuxletterFeGroups" class="form-select" property="usergroups" multiple="true" size="5">
+                <f:for each="{usergroups}" as="usergroup" iteration="i">
+                    <f:form.select.option value="{usergroup.uid}">{usergroup.title}</f:form.select.option>
+                </f:for>
+            </f:form.select>
+        </div>
+        <div class="mb-3">
+            <label for="uploadFeUserForLuxletterSeparator" class="form-label"><f:translate key="module.importFeUserForLuxletter.upload_form.seperator" extensionName="feuserregistration" /></label>
+            <f:form.select id="uploadFeUserForLuxletterSeparator" class="form-select" property="seperator">
+                <f:form.select.option selected="1" value=",">,</f:form.select.option>
+                <f:form.select.option value=";">;</f:form.select.option>
+            </f:form.select>
+        </div>
+        <div class="mb-3">
+            <f:form.upload property="importFile" id="importFile" class="form-control" accept=".csv" />
+        </div>
+        <f:form.submit value="{f:translate(key: 'module.importFeUserForLuxletter.upload_form.submit', extensionName: 'feuserregistration')}" class="btn btn-primary mt-3" />
+    </f:form>
+</f:section>
+
+</html>

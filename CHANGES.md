@@ -1,3 +1,6 @@
+# Version dev-2.6.0-0
+- [FEATURE] Add backend module to import fe_user for luxletter
+
 # Version 2.5.0
 - [FEATURE] Rework registerEmail to make it technically possible to also use a name field
 

@@ -173,6 +173,25 @@
             <trans-unit id="validation.error.title" resname="validation.error.title">
                 <target>Bitte, prüfen Sie Ihre Eingaben</target>
             </trans-unit>
+
+			<trans-unit id="module.importFeUserForLuxletter.title" resname="module.importFeUserForLuxletter.title">
+                <target>Import fe_user für Luxletter</target>
+            </trans-unit>
+			<trans-unit id="module.importFeUserForLuxletter.description" resname="module.importFeUserForLuxletter.description">
+                <target>Wählen Sie zunächst den Ordner aus, in den der neue Frontend-Benutzer importiert werden soll. Laden Sie dann die CSV-Datei hoch.</target>
+            </trans-unit>
+			<trans-unit id="module.importFeUserForLuxletter.current_page" resname="module.importFeUserForLuxletter.current_page">
+                <target>Aktuelle Zielseite/-ordner</target>
+            </trans-unit>
+			<trans-unit id="module.importFeUserForLuxletter.upload_form.submit" resname="module.importFeUserForLuxletter.upload_form.submit">
+                <target>Importiere CSV</target>
+            </trans-unit>
+			<trans-unit id="module.importFeUserForLuxletter.upload_form.flashmessage.success" resname="module.importFeUserForLuxletter.upload_form.flashmessage.success">
+                <target>%d Benutzer erfolgreich importiert.</target>
+            </trans-unit>
+			<trans-unit id="module.importFeUserForLuxletter.upload_form.flashmessage.error.email" resname="module.importFeUserForLuxletter.upload_form.flashmessage.error.email">
+                <target>Die E-Mail-Adresse '%s' ist ungültig.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
