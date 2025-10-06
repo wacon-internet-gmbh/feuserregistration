@@ -13,8 +13,6 @@ declare(strict_types=1);
 
 namespace Wacon\Feuserregistration\Utility;
 
-use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
-
 class ValidationUtility
 {
     /**

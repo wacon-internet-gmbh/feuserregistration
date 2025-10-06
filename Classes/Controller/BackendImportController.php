@@ -67,7 +67,7 @@ final class BackendImportController extends ActionController
         $emailColumnIndex = 0;
         $importedRecords = 0;
 
-        foreach($csv as $key => $line) {
+        foreach ($csv as $key => $line) {
             if ($key == 0) {
                 // Skip header row
                 continue;
@@ -75,7 +75,7 @@ final class BackendImportController extends ActionController
 
             $row = \str_getcsv($line, $upload['seperator']);
 
-            if(ValidationUtility::isValidEmail($row[$emailColumnIndex]) === false) {
+            if (ValidationUtility::isValidEmail($row[$emailColumnIndex]) === false) {
                 $this->addFlashMessage(
                     LocalizationUtility::translate('module.importFeUserForLuxletter.upload_form.flashmessage.error.email', 'feuserregistration', [$row[$emailColumnIndex]]),
                     '',

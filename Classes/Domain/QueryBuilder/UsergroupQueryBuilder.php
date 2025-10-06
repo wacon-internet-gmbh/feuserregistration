@@ -21,8 +21,7 @@ class UsergroupQueryBuilder
 {
     public function __construct(
         private readonly ConnectionPool $connectionPool,
-    ) {
-    }
+    ) {}
 
     /**
      * Gets all usergroups from the database for Luxletter
