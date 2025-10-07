@@ -192,6 +192,9 @@
 			<trans-unit id="module.importFeUserForLuxletter.upload_form.flashmessage.error.email" resname="module.importFeUserForLuxletter.upload_form.flashmessage.error.email">
                 <target>Die E-Mail-Adresse '%s' ist ungültig.</target>
             </trans-unit>
+			<trans-unit id="module.importFeUserForLuxletter.current_page.no_selection" resname="module.importFeUserForLuxletter.current_page.no_selection">
+                <target>Kein Zielseite/-ordner ausgewählt.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

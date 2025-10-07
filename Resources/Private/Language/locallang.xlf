@@ -204,6 +204,9 @@
 			<trans-unit id="module.importFeUserForLuxletter.upload_form.flashmessage.error.email" resname="module.importFeUserForLuxletter.upload_form.flashmessage.error.email">
                 <source>The email address '%s' is invalid.</source>
             </trans-unit>
+			<trans-unit id="module.importFeUserForLuxletter.current_page.no_selection" resname="module.importFeUserForLuxletter.current_page.no_selection">
+                <source>No target page/folder selected.</source>
+            </trans-unit>
         </body>
     </file>
 </xliff>

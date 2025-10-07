@@ -23,6 +23,7 @@ use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use Wacon\Feuserregistration\Domain\Model\User;
 use Wacon\Feuserregistration\Domain\QueryBuilder\UsergroupQueryBuilder;
 use Wacon\Feuserregistration\Domain\Repository\UserRepository;
+use Wacon\Feuserregistration\FileReader\CsvAndXlsxReader;
 use Wacon\Feuserregistration\Utility\Typo3\Extbase\PersistenceUtility;
 use Wacon\Feuserregistration\Utility\ValidationUtility;
 
@@ -33,7 +34,8 @@ final class BackendImportController extends ActionController
         protected readonly ModuleTemplateFactory $moduleTemplateFactory,
         protected readonly PageRepository $pageRepository,
         protected readonly UserRepository $userRepository,
-        protected readonly UsergroupQueryBuilder $usergroupQueryBuilder
+        protected readonly UsergroupQueryBuilder $usergroupQueryBuilder,
+        protected readonly CsvAndXlsxReader $csvAndXlsxReader
     ) {
         PersistenceUtility::disableRespectStoragePage($this->userRepository);
     }
@@ -62,19 +64,11 @@ final class BackendImportController extends ActionController
     public function uploadFeUserForLuxletterAction(array $upload): ResponseInterface
     {
         $pageId = (int)($this->request->getQueryParams()['id'] ?? 0);
-
-        $csv = explode("\n", trim($upload['importFile']->getStream()->getContents()));
+        $lines = $this->csvAndXlsxReader->parseFile($upload['importFile'], ['separator' => $upload['seperator']]);
         $emailColumnIndex = 0;
         $importedRecords = 0;
 
-        foreach ($csv as $key => $line) {
-            if ($key == 0) {
-                // Skip header row
-                continue;
-            }
-
-            $row = \str_getcsv($line, $upload['seperator']);
-
+        foreach ($lines as $row) {
             if (ValidationUtility::isValidEmail($row[$emailColumnIndex]) === false) {
                 $this->addFlashMessage(
                     LocalizationUtility::translate('module.importFeUserForLuxletter.upload_form.flashmessage.error.email', 'feuserregistration', [$row[$emailColumnIndex]]),
