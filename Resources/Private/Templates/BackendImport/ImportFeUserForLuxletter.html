@@ -21,7 +21,7 @@
     <f:if condition="{page}">
         <f:form action="uploadFeUserForLuxletter" id="uploadForm" name="upload" enctype="multipart/form-data">
             <div class="mb-3">
-                <label for="uploadFeUserForLuxletterFeGroups" class="form-label"><f:translate key="module.importFeUserForLuxletter.upload_form.seperator" extensionName="feuserregistration" /></label>
+                <label for="uploadFeUserForLuxletterFeGroups" class="form-label"><f:translate key="module.importFeUserForLuxletter.upload_form.usergroups" extensionName="feuserregistration" /></label>
                 <f:form.select id="uploadFeUserForLuxletterFeGroups" class="form-select" property="usergroups" multiple="true" size="5">
                     <f:for each="{usergroups}" as="usergroup" iteration="i">
                         <f:form.select.option value="{usergroup.uid}">{usergroup.title}</f:form.select.option>
@@ -37,6 +37,7 @@
             </div>
             <div class="mb-3">
                 <f:form.upload property="importFile" id="importFile" class="form-control" accept=".csv,.xlsx" />
+                <div class="form-text"><f:translate key="module.importFeUserForLuxletter.upload_form.file.description" extensionName="feuserregistration" /></div>
             </div>
             <f:form.submit value="{f:translate(key: 'module.importFeUserForLuxletter.upload_form.submit', extensionName: 'feuserregistration')}" class="btn btn-primary mt-3" />
         </f:form>

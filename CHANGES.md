@@ -1,3 +1,7 @@
+# Version 2.6.2
+- [NOTICE] Add description for file upload to explan supported file types
+- [BUGFIX] Fix wrong label for target user group field
+
 # Version 2.6.1
 - [NOTICE] Change access to user for new backend module
 

@@ -192,8 +192,14 @@
 			<trans-unit id="module.importFeUserForLuxletter.current_page" resname="module.importFeUserForLuxletter.current_page">
                 <source>Current target page/folder</source>
             </trans-unit>
+			<trans-unit id="module.importFeUserForLuxletter.upload_form.usergroups" resname="module.importFeUserForLuxletter.upload_form.usergroups">
+                <source>Choose target user groups</source>
+            </trans-unit>
 			<trans-unit id="module.importFeUserForLuxletter.upload_form.seperator" resname="module.importFeUserForLuxletter.upload_form.seperator">
                 <source>CSV Separator</source>
+            </trans-unit>
+			<trans-unit id="module.importFeUserForLuxletter.upload_form.file.description" resname="module.importFeUserForLuxletter.upload_form.file.description">
+                <source>CSV or XLSX file</source>
             </trans-unit>
 			<trans-unit id="module.importFeUserForLuxletter.upload_form.submit" resname="module.importFeUserForLuxletter.upload_form.submit">
                 <source>Import CSV</source>
