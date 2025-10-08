@@ -1,3 +1,6 @@
+# Version 2.6.1
+- [NOTICE] Change access to user for new backend module
+
 # Version 2.6.0
 - [FEATURE] Add backend module to import fe_user for luxletter. CSV and XLSX are supported. The first column of the table must be the email address. No other data is supported at the moment
 

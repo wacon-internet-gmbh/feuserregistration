@@ -22,7 +22,7 @@ return [
     'admin_examples' => [
         'parent' => 'tools',
         'position' => ['bottom'],
-        'access' => 'admin',
+        'access' => 'user',
         'workspaces' => 'live',
         'path' => '/module/feuserregistration/import/feuser-luxletter',
         'labels' => 'LLL:EXT:feuserregistration/Resources/Private/Language/ImportFeUserForLuxletter/locallang_mod.xlf',
