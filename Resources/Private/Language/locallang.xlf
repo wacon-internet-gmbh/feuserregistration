@@ -213,6 +213,18 @@
 			<trans-unit id="module.importFeUserForLuxletter.current_page.no_selection" resname="module.importFeUserForLuxletter.current_page.no_selection">
                 <source>No target page/folder selected.</source>
             </trans-unit>
+			<trans-unit id="module.importFeUserForLuxletter.validator.file.missing">
+                <source>No file uploaded.</source>
+            </trans-unit>
+			<trans-unit id="module.importFeUserForLuxletter.validator.file.uploadError">
+                <source>File upload error occurred.</source>
+            </trans-unit>
+			<trans-unit id="module.importFeUserForLuxletter.validator.file.invalidFileType">
+                <source>Invalid file type uploaded.</source>
+            </trans-unit>
+			<trans-unit id="module.importFeUserForLuxletter.validator.noUsergroups">
+                <source>No usergroups selected.</source>
+            </trans-unit>
         </body>
     </file>
 </xliff>

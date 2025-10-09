@@ -204,6 +204,18 @@
 			<trans-unit id="module.importFeUserForLuxletter.current_page.no_selection" resname="module.importFeUserForLuxletter.current_page.no_selection">
                 <target>Kein Zielseite/-ordner ausgewählt.</target>
             </trans-unit>
+			<trans-unit id="module.importFeUserForLuxletter.validator.file.missing">
+                <target>Es wurde keine Datei hochgeladen.</target>
+            </trans-unit>
+			<trans-unit id="module.importFeUserForLuxletter.validator.file.uploadError">
+                <target>Fehler beim Hochladen der Datei.</target>
+            </trans-unit>
+			<trans-unit id="module.importFeUserForLuxletter.validator.file.invalidFileType">
+                <target>Ungültiger Dateityp hochgeladen.</target>
+            </trans-unit>
+			<trans-unit id="module.importFeUserForLuxletter.validator.noUsergroups">
+                <target>Keine Benutzergruppen ausgewählt.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

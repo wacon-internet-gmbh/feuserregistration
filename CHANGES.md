@@ -1,3 +1,6 @@
+# Version 2.7.0
+- [FEATURE] Add client and serverside validation
+
 # Version 2.6.2
 - [NOTICE] Add description for file upload to explan supported file types
 - [BUGFIX] Fix wrong label for target user group field
