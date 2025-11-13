@@ -27,6 +27,7 @@ use Wacon\Feuserregistration\Domain\QueryBuilder\UsergroupQueryBuilder;
 use Wacon\Feuserregistration\Domain\Repository\UserRepository;
 use Wacon\Feuserregistration\Domain\Validator\UploadFeUserForLuxletterValidator;
 use Wacon\Feuserregistration\FileReader\CsvAndXlsxReader;
+use Wacon\Feuserregistration\Utility\PasswordUtility;
 use Wacon\Feuserregistration\Utility\Typo3\Extbase\PersistenceUtility;
 use Wacon\Feuserregistration\Utility\ValidationUtility;
 
@@ -79,8 +80,13 @@ final class BackendImportController extends ActionController
         $lines = $this->csvAndXlsxReader->parseFile($upload['importFile'], ['separator' => $upload['seperator']]);
         $emailColumnIndex = 0;
         $importedRecords = 0;
+        $randomPassword = PasswordUtility::randomHash();
 
         foreach ($lines as $row) {
+            if ($row[$emailColumnIndex] === '' || $row[$emailColumnIndex] === null) {
+                continue;
+            }
+
             if (ValidationUtility::isValidEmail($row[$emailColumnIndex]) === false) {
                 $this->addFlashMessage(
                     LocalizationUtility::translate('module.importFeUserForLuxletter.upload_form.flashmessage.error.email', 'feuserregistration', [$row[$emailColumnIndex]]),
@@ -96,7 +102,7 @@ final class BackendImportController extends ActionController
                 $user = new User();
                 $user->setEmail($row[$emailColumnIndex]);
                 $user->setNewsletterReceive(true);
-                $user->setRandomPassword();
+                $user->setPassword($randomPassword);
                 $user->setPrivacy(true);
                 $user->setUsername($row[$emailColumnIndex]);
                 $user->setPid($pageId);

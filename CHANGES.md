@@ -1,3 +1,6 @@
+# Version 2.7.1
+- [CHANGE] Only generate random pw once in import script to make the import much more efficient
+
 # Version 2.7.0
 - [FEATURE] Add client and serverside validation
 
