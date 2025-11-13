@@ -81,6 +81,7 @@ final class BackendImportController extends ActionController
         $emailColumnIndex = 0;
         $importedRecords = 0;
         $randomPassword = PasswordUtility::randomHash();
+        $importedEmails = [];
 
         foreach ($lines as $row) {
             if ($row[$emailColumnIndex] === '' || $row[$emailColumnIndex] === null) {
@@ -93,6 +94,10 @@ final class BackendImportController extends ActionController
                     '',
                     ContextualFeedbackSeverity::ERROR
                 );
+                continue;
+            }
+
+            if (in_array($row[$emailColumnIndex], $importedEmails, true)) {
                 continue;
             }
 
@@ -113,6 +118,7 @@ final class BackendImportController extends ActionController
                 $this->userRepository->update($user);
             }
 
+            $importedEmails[] = $row[$emailColumnIndex];
             $importedRecords++;
         }
 
