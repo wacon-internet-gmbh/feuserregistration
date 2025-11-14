@@ -1,3 +1,6 @@
+# dev-v11-2
+- [FEATURE] Add RegisterBeforeDoiAndAfterDBSavingEvent
+
 # dev-v11-1
 - [BUGFIX] Perstence mapping from phone to telephone
 

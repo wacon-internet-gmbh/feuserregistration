@@ -13,12 +13,14 @@ declare(strict_types=1);
 
 namespace Wacon\Feuserregistration\Domain\Service;
 
+use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use Wacon\Feuserregistration\Bootstrap\Traits\ExtensionTrait;
 use Wacon\Feuserregistration\Domain\Exception\DoiNotSendException;
 use Wacon\Feuserregistration\Domain\Model\User;
 use Wacon\Feuserregistration\Domain\Repository\UserRepository;
+use Wacon\Feuserregistration\Event\RegisterBeforeDoiAndAfterDBSavingEvent;
 use Wacon\Feuserregistration\Utility\Typo3\Extbase\PersistenceUtility;
 
 class RegistrationService
@@ -28,7 +30,8 @@ class RegistrationService
     protected bool $mailResponseForDOI = false;
 
     public function __construct(
-        protected readonly UserRepository $userRepository
+        protected readonly UserRepository $userRepository,
+        private readonly EventDispatcherInterface $eventDispatcher
     ) {}
 
     /**
@@ -144,6 +147,11 @@ class RegistrationService
             } else {
                 $this->userRepository->update($user);
             }
+
+            $event = $this->eventDispatcher->dispatch(
+                new RegisterBeforeDoiAndAfterDBSavingEvent($user, $request),
+            );
+            $user = $event->getUser();
         } catch (\Exception $e) {
             throw new DoiNotSendException('Error during DOI process of feuserregistration. Prior Message: ' . $e->getMessage(), time(), $e);
         }
