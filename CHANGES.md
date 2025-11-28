@@ -1,3 +1,8 @@
+# Version upgrade-typo314-0
+- [TASK] Remove assign to NULL
+- [TASK] Remove RenderCompileStatic from ViewHelpers
+- [WIP] Migrate constant editor to site set
+
 # Version 2.7.2
 - [CHANGE] Import: Check for redundance in imported csv file
 

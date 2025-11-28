@@ -13,18 +13,14 @@ declare(strict_types=1);
 
 namespace Wacon\Feuserregistration\ViewHelpers\Format;
 
-use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
-use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
 
 class ReplaceViewHelper extends AbstractViewHelper
 {
-    use CompileWithRenderStatic;
-
     /**
      * Init new arguments
      */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         $this->registerArgument('subject', 'string', 'The original string', true);
         $this->registerArgument('search', 'string', 'String that will be replaced', true);
@@ -33,12 +29,9 @@ class ReplaceViewHelper extends AbstractViewHelper
 
     /**
      * Render the ViewHelper
-     * @param array $arguments
-     * @param \Closure $renderChildrenClosure
-     * @param RenderingContextInterface $renderingContext
      */
-    public static function renderStatic(array $arguments, \Closure $renderChildrenClosure, RenderingContextInterface $renderingContext)
+    public function render()
     {
-        return str_replace($arguments['search'], $arguments['replace'], $arguments['subject']);
+        return str_replace($this->arguments['search'], $this->arguments['replace'], $this->arguments['subject']);
     }
 }

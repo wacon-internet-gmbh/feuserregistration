@@ -1,0 +1,38 @@
+categories:
+  Feuserregistration:
+    label: 'Feuserregistration'
+  Feuserregistration.templates:
+    label: 'Templates'
+    parent: Feuserregistration
+  Feuserregistration.fegroups:
+    label: 'Frontend user groups'
+    parent: Feuserregistration
+  Feuserregistration.fields:
+    label: 'Frontend user groups'
+    parent: Feuserregistration
+
+settings:
+  feuserregistration.templateRootPath:  # (5)
+    label: 'Templates' # (3)
+    category: Feuserregistration.templates # (2)
+    description: 'Path to template root'  # (4)
+    type: string  # (6)
+    default: 'EXT:feuserregistration/Resources/Private/Templates/'  # (7) + (8)
+  feuserregistration.partialRootPath:
+    label: 'Partials'
+    category: Feuserregistration.templates
+    description: 'Path to partial root'
+    type: string
+    default: 'EXT:feuserregistration/Resources/Private/Partials/'
+  feuserregistration.layoutRootPath:
+    label: 'Layouts'
+    category: Feuserregistration.templates
+    description: 'Path to layout root'
+    type: string
+    default: 'EXT:feuserregistration/Resources/Private/Layouts/'
+  feuserregistration.fegroups.target:
+    label: 'Target group for new frontend users'
+    category: Feuserregistration.fegroups
+    description: 'Frontend user group to assign newly registered users to'
+    type: int
+    default: 0
