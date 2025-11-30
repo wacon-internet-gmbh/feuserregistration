@@ -1,3 +1,6 @@
+# Version 2.8.0
+- [FEATURE] Add Event after user finished DOI
+
 # Version 2.7.2
 - [CHANGE] Import: Check for redundance in imported csv file
 

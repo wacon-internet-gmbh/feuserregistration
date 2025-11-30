@@ -24,6 +24,7 @@ use Wacon\Feuserregistration\Domain\Repository\UserRepository;
 use Wacon\Feuserregistration\Domain\Service\AdminInfoMailService;
 use Wacon\Feuserregistration\Domain\Service\DoubleOptinService;
 use Wacon\Feuserregistration\Domain\Service\RegistrationService;
+use Wacon\Feuserregistration\Event\AfterDoiEvent;
 use Wacon\Feuserregistration\Registry\SettingsRegistry;
 use Wacon\Feuserregistration\Utility\PasswordUtility;
 use Wacon\Feuserregistration\Utility\Typo3\SiteUtility;
@@ -182,6 +183,12 @@ class RegistrationController extends BaseActionController
                     $this->view->assign('error', $e->getMessage());
                 }
             }
+
+            $event = $this->eventDispatcher->dispatch(
+                new AfterDoiEvent($user),
+            );
+            $user = $event->getUser();
+
         }
 
         $this->view->assign('user', $user);
