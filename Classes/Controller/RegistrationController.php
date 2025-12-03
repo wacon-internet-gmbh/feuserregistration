@@ -24,6 +24,8 @@ use Wacon\Feuserregistration\Domain\Repository\UserRepository;
 use Wacon\Feuserregistration\Domain\Service\AdminInfoMailService;
 use Wacon\Feuserregistration\Domain\Service\DoubleOptinService;
 use Wacon\Feuserregistration\Domain\Service\RegistrationService;
+use Wacon\Feuserregistration\Domain\Validator\RegisterEmailValidator;
+use Wacon\Feuserregistration\Domain\Validator\RegisterValidator;
 use Wacon\Feuserregistration\Registry\SettingsRegistry;
 use Wacon\Feuserregistration\Utility\PasswordUtility;
 use Wacon\Feuserregistration\Utility\Typo3\SiteUtility;
@@ -67,7 +69,12 @@ class RegistrationController extends BaseActionController
      * @return ResponseInterface|string
      * @Validate(param="newUser", validator="Wacon\Feuserregistration\Domain\Validator\RegisterValidator")
      */
-    public function registerAction(User $newUser)
+    public function registerAction(
+        #[Validate([
+            'validator' => RegisterValidator::class,
+        ])]
+        User $newUser
+    )
     {
         try {
             // Register with DOI process
@@ -103,7 +110,12 @@ class RegistrationController extends BaseActionController
      * @return ResponseInterface|string
      * @Validate(param="newUser", validator="Wacon\Feuserregistration\Domain\Validator\RegisterEmailValidator")
      */
-    public function registerEmailAction(User $newUser)
+    public function registerEmailAction(
+        #[Validate([
+            'validator' => RegisterEmailValidator::class,
+        ])]
+        User $newUser
+    )
     {
         try {
             // Register with DOI process

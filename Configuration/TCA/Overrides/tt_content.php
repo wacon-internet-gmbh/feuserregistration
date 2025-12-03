@@ -30,10 +30,17 @@ defined('TYPO3') or die();
         'after:palette:headers'
     );
 
-    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+    $pluginSignature = \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
         'Feuserregistration',
         'Register',
         'Feuserregistration: Display a registration form'
+    );
+
+    ExtensionManagementUtility::addToAllTCAtypes(
+        'tt_content',
+        '--div--;Configuration,pages',
+        $pluginSignature,
+        'after:palette:headers'
     );
 
     if (GeneralUtility::makeInstance(Typo3Version::class)->getMajorVersion() >= 14) {

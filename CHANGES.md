@@ -1,3 +1,8 @@
+# Version 3.0.0
+- [TASK] Do not register Import module if not luxletter is installed
+- [TASK] Add field pages to registration plugin
+- [TASK] Migrate custom property validation in ActionController
+
 # Version upgrade-typo314-1
 - [FEATURE] Migrate email registration
 - [TASK] Migrate constant editor to site set

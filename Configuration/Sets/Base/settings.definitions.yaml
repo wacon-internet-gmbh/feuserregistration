@@ -107,7 +107,7 @@ settings:
     category: Feuserregistration.fields
     description: 'Comma-separated list of fields that are required in the registration form'
     type: string
-    default: 'firstName,lastName,email'
+    default: 'firstName,lastName,email,privacy'
   feuserregistration.pages.verificationPage:
     label: 'Show verification page'
     category: Feuserregistration.pages

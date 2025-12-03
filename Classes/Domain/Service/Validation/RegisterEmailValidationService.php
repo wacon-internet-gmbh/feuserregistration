@@ -57,6 +57,14 @@ class RegisterEmailValidationService extends AbstractValidationService
         PersistenceUtility::removeAllRestrictions($this->userRepository, ['disabled', 'fe_group']);
 
         $this->settings = TypoScriptUtility::getTypoScript('plugin.tx_feuserregistration.settings');
+
+        if (!empty($this->settings['requiredFields'])) {
+            $requiredFields = GeneralUtility::trimExplode(',', $this->settings['requiredFields'], true);
+
+            if (in_array('privacy', $requiredFields)) {
+                $this->requiredFields[] = 'privacy';
+            }
+        }
     }
 
     /**
