@@ -16,6 +16,7 @@ namespace Wacon\Feuserregistration\Domain\Service;
 use Psr\Http\Message\ServerRequestInterface;
 
 use Symfony\Component\Mime\Address;
+use TYPO3\CMS\Core\Mail\MailerInterface;
 use TYPO3\CMS\Core\Mail\MailMessage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\MailUtility;
@@ -95,10 +96,12 @@ class AdminInfoMailService
             }
         }
 
-        return $this->mail
+        $this->mail
             ->subject(LocalizationUtility::translate('register.mail.adminInfo.subject.' . self::$MODE_REGISTRATION, $this->extensionKey, [SiteUtility::getDomain()]))
-            ->html($this->getBodyHtmlForAdminInfo(self::$MODE_REGISTRATION, $user, SiteUtility::getDomain(), SiteUtility::getBaseUrl()))
-            ->send();
+            ->html($this->getBodyHtmlForAdminInfo(self::$MODE_REGISTRATION, $user, SiteUtility::getDomain(), SiteUtility::getBaseUrl()));
+
+        GeneralUtility::makeInstance(MailerInterface::class)->send($this->mail);
+        return true;
     }
 
     /**
@@ -133,10 +136,13 @@ class AdminInfoMailService
             }
         }
 
-        return $this->mail
+        $this->mail
             ->subject(LocalizationUtility::translate('register.mail.adminInfo.subject.' . self::$MODE_VERIFICATION, $this->extensionKey, [SiteUtility::getDomain()]))
-            ->html($this->getBodyHtmlForAdminInfo(self::$MODE_VERIFICATION, $user, SiteUtility::getDomain(), SiteUtility::getBaseUrl()))
-            ->send();
+            ->html($this->getBodyHtmlForAdminInfo(self::$MODE_VERIFICATION, $user, SiteUtility::getDomain(), SiteUtility::getBaseUrl()));
+
+        GeneralUtility::makeInstance(MailerInterface::class)->send($this->mail);
+
+        return true;
     }
 
     /**

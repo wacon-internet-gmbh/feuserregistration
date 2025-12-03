@@ -15,6 +15,7 @@ namespace Wacon\Feuserregistration\Domain\Service;
 
 use Psr\Http\Message\ServerRequestInterface;
 use Symfony\Component\Mime\Address;
+use TYPO3\CMS\Core\Mail\MailerInterface;
 use TYPO3\CMS\Core\Mail\MailMessage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\MailUtility;
@@ -95,14 +96,16 @@ class DoubleOptinService
             $fromAddress = new Address(current($from));
         }
 
-        $this->response = $this->mail
+        $this->mail
             ->from($fromAddress)
             ->to(
                 new Address($this->user->getEmail())
             )
             ->subject(LocalizationUtility::translate('register.mail.doi.subject', $this->extensionName, [SiteUtility::getDomain()]))
-            ->html($this->getBodyHtml())
-            ->send();
+            ->html($this->getBodyHtml());
+
+        GeneralUtility::makeInstance(MailerInterface::class)->send($this->mail);
+        $this->response = true;
 
         return $this->hash;
     }
@@ -134,14 +137,15 @@ class DoubleOptinService
             $bodytext = $this->getBodyHtmlForNonCredentials($user);
         }
 
-        $this->response = $this->mail
+        $this->mail
             ->from($fromAddress)
             ->to(
                 new Address($this->user->getEmail())
             )
             ->subject(LocalizationUtility::translate('register.mail.doi.credentials.subject', $this->extensionName, [SiteUtility::getDomain()]))
-            ->html($bodytext)
-            ->send();
+            ->html($bodytext);
+
+        GeneralUtility::makeInstance(MailerInterface::class)->send($this->mail);
 
         return $this->hash;
     }

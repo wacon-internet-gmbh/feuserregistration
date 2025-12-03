@@ -1,3 +1,9 @@
+# Version upgrade-typo314-1
+- [FEATURE] Migrate email registration
+- [TASK] Migrate constant editor to site set
+- [TASK] Add field pages to plugins
+- [TASK] Migrate Repository findBy Magic functions
+
 # Version upgrade-typo314-0
 - [TASK] Remove assign to NULL
 - [TASK] Remove RenderCompileStatic from ViewHelpers

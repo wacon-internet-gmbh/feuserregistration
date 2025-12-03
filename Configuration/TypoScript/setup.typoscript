@@ -5,63 +5,63 @@ plugin.tx_feuserregistration {
     view {
         layoutRootPaths {
             0 = EXT:feuserregistration/Resources/Private/Layouts/
-            1 = {$plugin.tx_feuserregistration.view.layoutRootPath}
+            1 = {$feuserregistration.templates.layoutRootPath}
         }
 
         templateRootPaths {
             0 = EXT:feuserregistration/Resources/Private/Templates/
-            1 = {$plugin.tx_feuserregistration.view.templateRootPath}
+            1 = {$feuserregistration.templates.templateRootPath}
         }
 
         partialRootPaths {
             0 = EXT:feuserregistration/Resources/Private/Partials/
-            0 = {$plugin.tx_feuserregistration.view.partialRootPath}
+            1 = {$feuserregistration.templates.partialRootPath}
         }
     }
 
     settings {
         fegroups {
-            target = {$plugin.tx_feuserregistration.settings.fegroups.target}
+            target = {$feuserregistration.fegroups.target}
         }
 
         fields {
-            address = {$plugin.tx_feuserregistration.settings.fields.address}
-            phone = {$plugin.tx_feuserregistration.settings.fields.phone}
-            fax = {$plugin.tx_feuserregistration.settings.fields.fax}
-            website = {$plugin.tx_feuserregistration.settings.fields.website}
-            luxletter = {$plugin.tx_feuserregistration.settings.fields.luxletter}
-            captcha = {$plugin.tx_feuserregistration.settings.fields.captcha}
-            captchaReadAloudAsIcon = {$plugin.tx_feuserregistration.settings.fields.captchaReadAloudAsIcon}
-            privacy = {$plugin.tx_feuserregistration.settings.fields.privacy}
+            address = {$feuserregistration.fields.address}
+            phone = {$feuserregistration.fields.phone}
+            fax = {$feuserregistration.fields.fax}
+            website = {$feuserregistration.fields.website}
+            luxletter = {$feuserregistration.fields.luxletter}
+            captcha = {$feuserregistration.fields.captcha}
+            captchaReadAloudAsIcon = {$feuserregistration.fields.captchaReadAloudAsIcon}
+            privacy = {$feuserregistration.fields.privacy}
             privacy {
-              newsletter = {$plugin.tx_feuserregistration.settings.fields.privacy.newsletter}
+              newsletter = {$feuserregistration.fields.privacy.newsletter}
             }
         }
 
         pages {
-            verificationPage = {$plugin.tx_feuserregistration.settings.pages.verificationPage}
-            loginPage = {$plugin.tx_feuserregistration.settings.pages.loginPage}
-            privacyPage = {$plugin.tx_feuserregistration.settings.pages.privacyPage}
+            verificationPage = {$feuserregistration.pages.verificationPage}
+            loginPage = {$feuserregistration.pages.loginPage}
+            privacyPage = {$feuserregistration.pages.privacyPage}
         }
 
         pagetypes {
-            captcha = {$plugin.tx_feuserregistration.settings.pagetypes.captcha}
+            captcha = {$feuserregistration.pagetypes.captcha}
         }
 
-        requiredFields = {$plugin.tx_feuserregistration.settings.requiredFields}
+        requiredFields = {$feuserregistration.fields.requiredFields}
 
         mails {
             onRegistration {
-                enable = {$plugin.tx_feuserregistration.settings.mails.onRegistration.enable}
-                receivers = {$plugin.tx_feuserregistration.settings.mails.onRegistration.receivers}
+                enable = {$feuserregistration.mails.onRegistration.enable}
+                receivers = {$feuserregistration.mails.onRegistration.receivers}
             }
             onVerification {
-                enable = {$plugin.tx_feuserregistration.settings.mails.onVerification.enable}
-                receivers = {$plugin.tx_feuserregistration.settings.mails.onVerification.receivers}
+                enable = {$feuserregistration.mails.onVerification.enable}
+                receivers = {$feuserregistration.mails.onVerification.receivers}
             }
         }
         dev {
-          enableLog = {$plugin.tx_feuserregistration.settings.dev.enableLog}
+          enableLog = {$feuserregistration.dev.enableLog}
         }
     }
 }

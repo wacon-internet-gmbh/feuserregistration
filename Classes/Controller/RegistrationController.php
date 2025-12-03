@@ -148,7 +148,7 @@ class RegistrationController extends BaseActionController
         $querySettings->setIgnoreEnableFields(true);
         $querySettings->setEnableFieldsToBeIgnored(['disabled']);
         $this->userRepository->setDefaultQuerySettings($querySettings);
-        $user = $this->userRepository->findByDoiHash($this->request->getArgument('doihash'))->current();
+        $user = $this->userRepository->findBy(['doiHash' => $this->request->getArgument('doihash')])->current();
 
         if ($user) {
             $user->setDisable(false);
