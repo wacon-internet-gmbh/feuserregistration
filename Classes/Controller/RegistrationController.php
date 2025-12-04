@@ -74,8 +74,7 @@ class RegistrationController extends BaseActionController
             'validator' => RegisterValidator::class,
         ])]
         User $newUser
-    )
-    {
+    ) {
         try {
             // Register with DOI process
             $newUser = $this->registrationService->register(
@@ -115,8 +114,7 @@ class RegistrationController extends BaseActionController
             'validator' => RegisterEmailValidator::class,
         ])]
         User $newUser
-    )
-    {
+    ) {
         try {
             // Register with DOI process
             $newUser = $this->registrationService->registerSimple($newUser, current(GeneralUtility::intExplode(',', $this->request->getAttribute('currentContentObject')->data['pages'], true)), $this->settings, $this->request);
