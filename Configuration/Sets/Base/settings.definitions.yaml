@@ -112,19 +112,19 @@ settings:
     label: 'Show verification page'
     category: Feuserregistration.pages
     description: 'Page id for the verification page'
-    type: page
+    type: int
     default: 0
   feuserregistration.pages.loginPage:
     label: 'Show login page'
     category: Feuserregistration.pages
     description: 'Page id for the login page. Only use it, if you have a frontend registration and login on different pages.'
-    type: page
+    type: int
     default: 0
   feuserregistration.pages.privacyPage:
     label: 'Show privacy page'
     category: Feuserregistration.pages
     description: 'Page id for the privacy page'
-    type: page
+    type: int
     default: 0
   feuserregistration.pagetypes.captcha:
     label: 'Type num value for the ajax request to fetch captcha image'
