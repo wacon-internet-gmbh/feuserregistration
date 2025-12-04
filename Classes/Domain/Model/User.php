@@ -658,4 +658,22 @@ class User extends BaseEntity
 
         return $this;
     }
+
+    public function getReadableName(): string
+    {
+        $readableName = '';
+        if (!empty($this->firstName)) {
+            $readableName .= $this->firstName . ' ';
+        }
+        if (!empty($this->lastName)) {
+            $readableName .= $this->lastName;
+        }
+        if (empty($readableName)) {
+            $readableName = $this->name;
+        }
+        if (empty($readableName)) {
+            $readableName = $this->email;
+        }
+        return trim($readableName);
+    }
 }

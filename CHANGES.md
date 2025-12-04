@@ -1,3 +1,6 @@
+# Version 3.0.1
+- [CHANGE] Add request to AfterDoiEvent
+
 # Version 3.0.0
 - [TASK] Do not register Import module if not luxletter is installed
 - [TASK] Add field pages to registration plugin

@@ -195,7 +195,7 @@ class RegistrationController extends BaseActionController
             }
 
             $event = $this->eventDispatcher->dispatch(
-                new AfterDoiEvent($user),
+                new AfterDoiEvent($user, $this->request),
             );
             $user = $event->getUser();
         }
