@@ -17,17 +17,17 @@ final class AfterDoiEvent
         return $this->user;
     }
 
-	/**
-	 * Set the value of user
-	 *
-	 * @param mixed  $user
-	 *
-	 * @return self
-	 */
-	public function setUser($user): self
-	{
-		$this->user = $user;
+    /**
+     * Set the value of user
+     *
+     * @param mixed  $user
+     *
+     * @return self
+     */
+    public function setUser($user): self
+    {
+        $this->user = $user;
 
-		return $this;
-	}
+        return $this;
+    }
 }

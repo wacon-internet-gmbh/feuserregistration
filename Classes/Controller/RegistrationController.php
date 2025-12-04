@@ -198,7 +198,6 @@ class RegistrationController extends BaseActionController
                 new AfterDoiEvent($user),
             );
             $user = $event->getUser();
-
         }
 
         $this->view->assign('user', $user);
