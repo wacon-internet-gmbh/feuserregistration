@@ -24,6 +24,8 @@ use Wacon\Feuserregistration\Domain\Repository\UserRepository;
 use Wacon\Feuserregistration\Domain\Service\AdminInfoMailService;
 use Wacon\Feuserregistration\Domain\Service\DoubleOptinService;
 use Wacon\Feuserregistration\Domain\Service\RegistrationService;
+use Wacon\Feuserregistration\Domain\Validator\RegisterEmailValidator;
+use Wacon\Feuserregistration\Domain\Validator\RegisterValidator;
 use Wacon\Feuserregistration\Event\AfterDoiEvent;
 use Wacon\Feuserregistration\Registry\SettingsRegistry;
 use Wacon\Feuserregistration\Utility\PasswordUtility;
@@ -68,8 +70,12 @@ class RegistrationController extends BaseActionController
      * @return ResponseInterface|string
      * @Validate(param="newUser", validator="Wacon\Feuserregistration\Domain\Validator\RegisterValidator")
      */
-    public function registerAction(User $newUser)
-    {
+    public function registerAction(
+        #[Validate([
+            'validator' => RegisterValidator::class,
+        ])]
+        User $newUser
+    ) {
         try {
             // Register with DOI process
             $newUser = $this->registrationService->register(
@@ -104,8 +110,12 @@ class RegistrationController extends BaseActionController
      * @return ResponseInterface|string
      * @Validate(param="newUser", validator="Wacon\Feuserregistration\Domain\Validator\RegisterEmailValidator")
      */
-    public function registerEmailAction(User $newUser)
-    {
+    public function registerEmailAction(
+        #[Validate([
+            'validator' => RegisterEmailValidator::class,
+        ])]
+        User $newUser
+    ) {
         try {
             // Register with DOI process
             $newUser = $this->registrationService->registerSimple($newUser, current(GeneralUtility::intExplode(',', $this->request->getAttribute('currentContentObject')->data['pages'], true)), $this->settings, $this->request);
@@ -149,7 +159,7 @@ class RegistrationController extends BaseActionController
         $querySettings->setIgnoreEnableFields(true);
         $querySettings->setEnableFieldsToBeIgnored(['disabled']);
         $this->userRepository->setDefaultQuerySettings($querySettings);
-        $user = $this->userRepository->findByDoiHash($this->request->getArgument('doihash'))->current();
+        $user = $this->userRepository->findBy(['doiHash' => $this->request->getArgument('doihash')])->current();
 
         if ($user) {
             $user->setDisable(false);

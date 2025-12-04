@@ -95,7 +95,7 @@ class RegisterValidationService extends RegisterEmailValidationService
         }
 
         // check if user already exists with that email
-        $exists = $this->userRepository->findByEmail($value->getEmail())->current();
+        $exists = $this->userRepository->findBy(['email' => $value->getEmail()])->current();
 
         if ($exists && $exists->getUsergroup() != '') {
             // If user exists, then check

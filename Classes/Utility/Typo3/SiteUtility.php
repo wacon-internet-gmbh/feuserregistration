@@ -42,7 +42,7 @@ class SiteUtility
      * @param ServerRequestInterface $request
      * @return array
      */
-    public static function getAllLanguagesForSelect(ServerRequestInterface $request = null)
+    public static function getAllLanguagesForSelect(?ServerRequestInterface $request)
     {
         if (!$request) {
             $request = $GLOBALS['TYPO3_REQUEST'];

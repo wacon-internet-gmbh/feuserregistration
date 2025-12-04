@@ -1,0 +1,163 @@
+categories:
+  Feuserregistration:
+    label: 'Feuserregistration'
+  Feuserregistration.templates:
+    label: 'Templates'
+    parent: Feuserregistration
+  Feuserregistration.fegroups:
+    label: 'Frontend user groups'
+    parent: Feuserregistration
+  Feuserregistration.fields:
+    label: 'Form fields'
+    parent: Feuserregistration
+  Feuserregistration.pages:
+    label: 'Pages'
+    parent: Feuserregistration
+  Feuserregistration.pagestypes:
+    label: 'Page Types'
+    parent: Feuserregistration
+  Feuserregistration.mails:
+    label: 'Emails'
+    parent: Feuserregistration
+  Feuserregistration.dev:
+    label: 'Development'
+    parent: Feuserregistration
+
+settings:
+  feuserregistration.templates.templateRootPath:  # (5)
+    label: 'Templates' # (3)
+    category: Feuserregistration.templates # (2)
+    description: 'Path to template root'  # (4)
+    type: string  # (6)
+    default: 'EXT:feuserregistration/Resources/Private/Templates/'  # (7) + (8)
+  feuserregistration.templates.partialRootPath:
+    label: 'Partials'
+    category: Feuserregistration.templates
+    description: 'Path to partial root'
+    type: string
+    default: 'EXT:feuserregistration/Resources/Private/Partials/'
+  feuserregistration.templates.layoutRootPath:
+    label: 'Layouts'
+    category: Feuserregistration.templates
+    description: 'Path to layout root'
+    type: string
+    default: 'EXT:feuserregistration/Resources/Private/Layouts/'
+  feuserregistration.fegroups.target:
+    label: 'Target group for new frontend users'
+    category: Feuserregistration.fegroups
+    description: 'Frontend user group to assign newly registered users to'
+    type: int
+    default: 0
+  feuserregistration.fields.address:
+    label: 'Show address fields'
+    category: Feuserregistration.fields
+    description: 'Show fields to ask for the user address in the registration form'
+    type: bool
+    default: true
+  feuserregistration.fields.phone:
+    label: 'Show phone fields'
+    category: Feuserregistration.fields
+    description: 'Show fields to ask for the user phone number in the registration form'
+    type: bool
+    default: true
+  feuserregistration.fields.fax:
+    label: 'Show fax fields'
+    category: Feuserregistration.fields
+    description: 'Show fields to ask for the user fax number in the registration form'
+    type: bool
+    default: true
+  feuserregistration.fields.website:
+    label: 'Show website fields'
+    category: Feuserregistration.fields
+    description: 'Show fields to ask for the user website in the registration form'
+    type: bool
+    default: true
+  feuserregistration.fields.luxletter:
+    label: 'Show luxletter fields'
+    category: Feuserregistration.fields
+    description: 'Show fields to ask for the user luxletter in the registration form'
+    type: bool
+    default: true
+  feuserregistration.fields.captcha:
+    label: 'Show captcha fields'
+    category: Feuserregistration.fields
+    description: 'Show fields to ask for the user captcha in the registration form'
+    type: bool
+    default: true
+  feuserregistration.fields.captchaReadAloudAsIcon:
+    label: 'Show captcha read aloud as icon'
+    category: Feuserregistration.fields
+    description: 'Show fields to ask for the user captcha read aloud as icon in the registration form'
+    type: bool
+    default: false
+  feuserregistration.fields.privacy:
+    label: 'Show privacy fields'
+    category: Feuserregistration.fields
+    description: 'Show fields to ask for the user privacy in the registration form'
+    type: bool
+    default: true
+  feuserregistration.fields.privacy.newsletter:
+    label: 'Show privacy fields for newsletter'
+    category: Feuserregistration.fields
+    description: 'Show fields to ask for the user privacy in the registration form'
+    type: bool
+    default: true
+  feuserregistration.fields.requiredFields:
+    label: 'CSV list of fields that are required'
+    category: Feuserregistration.fields
+    description: 'Comma-separated list of fields that are required in the registration form'
+    type: string
+    default: 'firstName,lastName,email,privacy'
+  feuserregistration.pages.verificationPage:
+    label: 'Show verification page'
+    category: Feuserregistration.pages
+    description: 'Page id for the verification page'
+    type: int
+    default: 0
+  feuserregistration.pages.loginPage:
+    label: 'Show login page'
+    category: Feuserregistration.pages
+    description: 'Page id for the login page. Only use it, if you have a frontend registration and login on different pages.'
+    type: int
+    default: 0
+  feuserregistration.pages.privacyPage:
+    label: 'Show privacy page'
+    category: Feuserregistration.pages
+    description: 'Page id for the privacy page'
+    type: int
+    default: 0
+  feuserregistration.pagetypes.captcha:
+    label: 'Type num value for the ajax request to fetch captcha image'
+    category: Feuserregistration.pagetypes
+    type: int
+    default: 1
+  feuserregistration.mails.onRegistration.enable:
+    label: 'Enable info mail on registration'
+    category: Feuserregistration.mails
+    description: 'Enable info mail on registration'
+    type: bool
+    default: false
+  feuserregistration.mails.onRegistration.receivers:
+    label: 'CSV of receivers for info mail on registration'
+    category: Feuserregistration.mails
+    description: 'CSV of receivers for info mail on registration'
+    type: string
+    default: ''
+  feuserregistration.mails.onVerification.enable:
+    label: 'Enable info mail on verification'
+    category: Feuserregistration.mails
+    description: 'Enable info mail on verification'
+    type: bool
+    default: false
+  feuserregistration.mails.onVerification.receivers:
+    label: 'CSV of receivers for info mail on verification'
+    category: Feuserregistration.mails
+    description: 'CSV of receivers for info mail on verification'
+    type: string
+    default: ''
+  feuserregistration.dev.enableLog:
+    label: 'Enable logging'
+    category: Feuserregistration.dev
+    description: 'Enable logging'
+    type: bool
+    default: false

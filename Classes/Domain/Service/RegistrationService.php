@@ -51,7 +51,7 @@ class RegistrationService
         // Make sure pid is inside the StoragePages
         PersistenceUtility::addStoragePageUids($this->userRepository, [$pid]);
 
-        $user = $this->userRepository->findByEmail($userToRegister->getEmail())->current();
+        $user = $this->userRepository->findBy(['email' => $userToRegister->getEmail()])->current();
 
         // if user does not exist, then create a new one
         if (!$user) {
@@ -79,7 +79,7 @@ class RegistrationService
             $service = GeneralUtility::makeInstance(DoubleOptinService::class, $request);
             $service->setSettings($settings);
             $doiHash = $service->sendMail($user);
-            $this->mailResponseForDOI = $service->getResponse();
+            $this->mailResponseForDOI = (bool)$service->getResponse();
 
             // Create frontend user as hidden and without fe_group
             // We save the doi hash in user db

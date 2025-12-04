@@ -13,13 +13,15 @@
  * The TYPO3 project - inspiring people to share!
  */
 
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use Wacon\Feuserregistration\Controller\BackendImportController;
 
-/**
- * Definitions for modules provided by EXT:examples
- */
+if (ExtensionManagementUtility::isLoaded('luxletter') === false) {
+    return [];
+}
+
 return [
-    'admin_examples' => [
+    'admin_feuserregistration_import' => [
         'parent' => 'tools',
         'position' => ['bottom'],
         'access' => 'user',
