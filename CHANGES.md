@@ -1,3 +1,7 @@
+# Version 3.1.0
+- [FEATURE] Add checkbox to delete existing frontend users before import
+- [FEATURE] New checkbox is hidable with default on in Extension Configuration
+
 # Version 3.0.1
 - [CHANGE] Add request to AfterDoiEvent
 

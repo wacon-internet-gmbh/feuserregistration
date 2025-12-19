@@ -3,7 +3,7 @@
 	"type": "typo3-cms-extension",
 	"description": "This extension enables the easy registration of a frontend user using the double opt-in process (e.g., for newsletter sign-ups). Optionally, a notification can be sent to a centrally configured email address.",
 	"license": "GPL-2.0-or-later",
-	"version": "3.0.1",
+	"version": "3.1.0",
 	"require": {
 		"typo3/cms-core": "^13.4 || ^14.0",
 		"shuchkin/simplexlsx": "^1.0"

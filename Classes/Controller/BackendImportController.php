@@ -17,6 +17,7 @@ use Psr\Http\Message\ResponseInterface;
 use SJBR\SrFeuserRegister\Utility\LocalizationUtility;
 use TYPO3\CMS\Backend\Attribute\AsController;
 use TYPO3\CMS\Backend\Template\ModuleTemplateFactory;
+use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Domain\Repository\PageRepository;
 use TYPO3\CMS\Core\Page\AssetCollector;
 use TYPO3\CMS\Core\Type\ContextualFeedbackSeverity;
@@ -24,6 +25,7 @@ use TYPO3\CMS\Extbase\Annotation\Validate;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use Wacon\Feuserregistration\Domain\Model\User;
 use Wacon\Feuserregistration\Domain\QueryBuilder\UsergroupQueryBuilder;
+use Wacon\Feuserregistration\Domain\QueryBuilder\UserQueryBuilder;
 use Wacon\Feuserregistration\Domain\Repository\UserRepository;
 use Wacon\Feuserregistration\Domain\Validator\UploadFeUserForLuxletterValidator;
 use Wacon\Feuserregistration\FileReader\CsvAndXlsxReader;
@@ -38,9 +40,11 @@ final class BackendImportController extends ActionController
         protected readonly ModuleTemplateFactory $moduleTemplateFactory,
         protected readonly PageRepository $pageRepository,
         protected readonly UserRepository $userRepository,
+        protected readonly UserQueryBuilder $userQueryBuilder,
         protected readonly UsergroupQueryBuilder $usergroupQueryBuilder,
         protected readonly CsvAndXlsxReader $csvAndXlsxReader,
         private readonly AssetCollector $assetCollector,
+        private readonly ExtensionConfiguration $extensionConfiguration
     ) {
         PersistenceUtility::disableRespectStoragePage($this->userRepository);
     }
@@ -61,6 +65,9 @@ final class BackendImportController extends ActionController
 
         $moduleTemplate->assign('page', $this->pageRepository->getPage($pageId));
         $moduleTemplate->assign('usergroups', $usergroups);
+        $moduleTemplate->assign('settings', [
+            'import' => $this->extensionConfiguration->get('feuserregistration', 'import') ?? [],
+        ]);
 
         return $moduleTemplate->renderResponse('BackendImport/ImportFeUserForLuxletter');
     }
@@ -82,6 +89,10 @@ final class BackendImportController extends ActionController
         $importedRecords = 0;
         $randomPassword = PasswordUtility::randomHash();
         $importedEmails = [];
+
+        if ($upload['truncateDb'] === '1') {
+            $this->userQueryBuilder->deleteAllFrontendUsersInPage($pageId);
+        }
 
         foreach ($lines as $row) {
             if ($row[$emailColumnIndex] === '' || $row[$emailColumnIndex] === null) {

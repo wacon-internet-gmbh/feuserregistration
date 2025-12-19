@@ -1,0 +1,4 @@
+import {
+    # cat=import/truncateDbOnDefault/0; type=boolean; label=Truncate Database; default=0
+    truncateDbOnDefault = 0
+}

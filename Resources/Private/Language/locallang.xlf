@@ -198,6 +198,12 @@
 			<trans-unit id="module.importFeUserForLuxletter.upload_form.seperator" resname="module.importFeUserForLuxletter.upload_form.seperator">
                 <source>CSV Separator</source>
             </trans-unit>
+			<trans-unit id="module.importFeUserForLuxletter.upload_form.truncate_db" resname="module.importFeUserForLuxletter.upload_form.truncate_db">
+                <source>Delete existing frontend users</source>
+            </trans-unit>
+			<trans-unit id="module.importFeUserForLuxletter.upload_form.truncate_db.description" resname="module.importFeUserForLuxletter.upload_form.truncate_db.description">
+                <source>Only delete frontend users on selected page or folder.</source>
+            </trans-unit>
 			<trans-unit id="module.importFeUserForLuxletter.upload_form.file.description" resname="module.importFeUserForLuxletter.upload_form.file.description">
                 <source>CSV or XLSX file</source>
             </trans-unit>

@@ -189,6 +189,12 @@
 			<trans-unit id="module.importFeUserForLuxletter.upload_form.seperator" resname="module.importFeUserForLuxletter.upload_form.seperator">
                 <target>CSV-Trennzeichen</target>
             </trans-unit>
+			<trans-unit id="module.importFeUserForLuxletter.upload_form.truncate_db" resname="module.importFeUserForLuxletter.upload_form.truncate_db">
+				<target>Bestehende Frontend-Benutzer löschen</target>
+            </trans-unit>
+			<trans-unit id="module.importFeUserForLuxletter.upload_form.truncate_db.description" resname="module.importFeUserForLuxletter.upload_form.truncate_db.description">
+				<target>Nur Frontend-Benutzer auf der ausgewählten Seite oder im ausgewählten Ordner löschen.</target>
+            </trans-unit>
 			<trans-unit id="module.importFeUserForLuxletter.upload_form.file.description" resname="module.importFeUserForLuxletter.upload_form.file.description">
                 <target>CSV- oder XLSX-Datei</target>
             </trans-unit>

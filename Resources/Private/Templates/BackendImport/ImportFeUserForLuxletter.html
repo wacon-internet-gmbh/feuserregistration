@@ -36,6 +36,17 @@
                     <f:form.select.option value=";">;</f:form.select.option>
                 </f:form.select>
             </div>
+            <f:if condition="{settings.import.truncateDbOnDefault}">
+                <f:then>
+                    <f:form.hidden id="uploadFeUserForLuxletterTruncateDb" property="truncateDb" value="1" />
+                </f:then>
+                <f:else>
+                    <div class="mb-3 form-check">
+                        <f:form.checkbox id="uploadFeUserForLuxletterTruncateDb" class="form-check-input" property="truncateDb" value="1" />
+                        <label for="uploadFeUserForLuxletterTruncateDb" class="form-check-label"><f:translate key="module.importFeUserForLuxletter.upload_form.truncate_db" extensionName="feuserregistration" /></label>
+                    </div>
+                </f:else>
+            </f:if>
             <div class="mb-3">
                 <f:form.upload property="importFile" id="importFile" class="form-control" accept=".csv,.xlsx" required="true" />
                 <div class="form-text"><f:translate key="module.importFeUserForLuxletter.upload_form.file.description" extensionName="feuserregistration" /></div>
