@@ -1,3 +1,6 @@
+# Version 3.2.0
+- [FEATURE] Add simple dashboard widget to list the latest 5 registered users
+
 # Version 3.1.0
 - [FEATURE] Add checkbox to delete existing frontend users before import
 - [FEATURE] New checkbox is hidable with default on in Extension Configuration

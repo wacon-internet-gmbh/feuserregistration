@@ -8,11 +8,27 @@ services:
   Wacon\Feuserregistration\:
     resource: '../Classes/*'
 
-  Wacon\Feuserregistration\Domain\Service\Validation\RegisterEmailValidationService:  
+  Wacon\Feuserregistration\Domain\Service\Validation\RegisterEmailValidationService:
     public: true
 
-  Wacon\Feuserregistration\Domain\Service\Validation\RegisterValidationService:  
+  Wacon\Feuserregistration\Domain\Service\Validation\RegisterValidationService:
     public: true
 
-  Wacon\Feuserregistration\Domain\Service\RegistrationService: 
+  Wacon\Feuserregistration\Domain\Service\RegistrationService:
     public: true
+
+  dashboard.widget.feuserregistration:
+    class: 'TYPO3\CMS\Dashboard\Widgets\ListWidget'
+    arguments:
+      $dataProvider: '@Wacon\Feuserregistration\Dashboard\Widgets\Provider\LatestUsersWidgetDataProvider'
+      $options:
+         refreshAvailable: true
+    tags:
+      - name: dashboard.widget
+        identifier: 'feuserregistration'
+        groupNames: 'general'
+        title: 'LLL:EXT:feuserregistration/Resources/Private/Language/locallang.xlf:widgets.latestusers.title'
+        description: 'LLL:EXT:feuserregistration/Resources/Private/Language/locallang.xlf:widgets.latestusers.description'
+        iconIdentifier: 'tx_feuserregistration'
+        height: 'small'
+        width: 'small'

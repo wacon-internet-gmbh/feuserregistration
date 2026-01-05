@@ -231,6 +231,13 @@
 			<trans-unit id="module.importFeUserForLuxletter.validator.noUsergroups">
                 <source>No usergroups selected.</source>
             </trans-unit>
+
+			<trans-unit id="widgets.latestusers.title">
+                <source>Latest registered users</source>
+            </trans-unit>
+			<trans-unit id="widgets.latestusers.description">
+                <source>Displays the latest registered users.</source>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -38,4 +38,26 @@ class UserQueryBuilder
             )
             ->executeQuery();
     }
+
+    /**
+     * Summary of getLatestCreatedFrontendUsers
+     * @param int $limit
+     * @return array
+     */
+    public function getLatestCreatedFrontendUsers(int $limit): array
+    {
+        $queryBuilder = $this->connectionPool->getQueryBuilderForTable('fe_users');
+        $result = $queryBuilder
+            ->select('*')
+            ->from('fe_users')
+            ->where(
+                $queryBuilder->expr()->eq('deleted', $queryBuilder->createNamedParameter(0, Connection::PARAM_INT)),
+                $queryBuilder->expr()->eq('disable', $queryBuilder->createNamedParameter(0, Connection::PARAM_INT))
+            )
+            ->orderBy('crdate', 'DESC')
+            ->setMaxResults($limit)
+            ->executeQuery();
+
+        return $result->fetchAllAssociative();
+    }
 }
