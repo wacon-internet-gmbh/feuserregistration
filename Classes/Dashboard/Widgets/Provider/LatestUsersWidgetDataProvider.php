@@ -39,8 +39,7 @@ class LatestUsersWidgetDataProvider implements ListDataProviderInterface, Number
 
     public function __construct(
         private readonly UserQueryBuilder $userQueryBuilder
-    )
-    {}
+    ) {}
 
     protected function initialize(): void
     {
