@@ -118,6 +118,7 @@ class DoubleOptinService
      */
     public function sendCredentials(User $user, string $password): string
     {
+        $this->hash = md5(uniqid($user->getEmail()));
         $this->user = $user;
 
         $from = MailUtility::getSystemFrom();

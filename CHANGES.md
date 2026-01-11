@@ -1,3 +1,6 @@
+# Version 3.2.1
+- [BUGFIX] Create hash also, when login page active
+
 # Version 3.2.0
 - [FEATURE] Add simple dashboard widget to list the latest 5 registered users
 
