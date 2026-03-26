@@ -1,3 +1,6 @@
+# Version 3.2.2
+- [BUGFIX] Wrong namespace for LocalizationUtility
+
 # Version 3.2.1
 - [BUGFIX] Create hash also, when login page active
 

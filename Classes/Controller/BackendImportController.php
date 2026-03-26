@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace Wacon\Feuserregistration\Controller;
 
 use Psr\Http\Message\ResponseInterface;
-use SJBR\SrFeuserRegister\Utility\LocalizationUtility;
 use TYPO3\CMS\Backend\Attribute\AsController;
 use TYPO3\CMS\Backend\Template\ModuleTemplateFactory;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
@@ -23,6 +22,7 @@ use TYPO3\CMS\Core\Page\AssetCollector;
 use TYPO3\CMS\Core\Type\ContextualFeedbackSeverity;
 use TYPO3\CMS\Extbase\Annotation\Validate;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 use Wacon\Feuserregistration\Domain\Model\User;
 use Wacon\Feuserregistration\Domain\QueryBuilder\UsergroupQueryBuilder;
 use Wacon\Feuserregistration\Domain\QueryBuilder\UserQueryBuilder;
