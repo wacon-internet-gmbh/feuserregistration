@@ -1,85 +1,90 @@
-<div class="mb-3">
-    <label for="salutation" class="form-label"><f:translate key="register.form.salutation" extensionName="feuserregistration" /></label>
-    <f:form.select property="salutation" class="form-control">
-        <f:form.select.option value=""></f:form.select.option>
-        <f:form.select.option value="female"><f:translate key="register.form.salutation.I.female" extensionName="feuserregistration" /></f:form.select.option>
-        <f:form.select.option value="male"><f:translate key="register.form.salutation.I.male" extensionName="feuserregistration" /></f:form.select.option>
-        <f:form.select.option value="others"><f:translate key="register.form.salutation.I.others" extensionName="feuserregistration" /></f:form.select.option>
-    </f:form.select>
-</div>
-<div class="mb-3">
-    <label for="firstName" class="form-label"><f:translate key="register.form.firstName" extensionName="feuserregistration" /></label>
-    <f:form.textfield property="firstName" class="form-control" />
-</div>
-<div class="mb-3">
-    <label for="lastName" class="form-label"><f:translate key="register.form.lastName" extensionName="feuserregistration" /></label>
-    <f:form.textfield property="lastName" class="form-control" />
-</div>
-<div class="mb-3">
-    <label for="email" class="form-label"><f:translate key="register.form.email" extensionName="feuserregistration" /></label>
-    <f:form.textfield property="email" class="form-control" />
-</div>
-<f:if condition="{settings.fields.address}">
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:fe="http://typo3.org/ns/Wacon/Feuserregistration/ViewHelpers"
+    data-namespace-typo3-fluid="true">
     <div class="mb-3">
-        <label for="address" class="form-label"><f:translate key="register.form.address" extensionName="feuserregistration" /></label>
-        <f:form.textfield property="address" class="form-control" />
+        <label for="salutation" class="form-label"><f:translate key="register.form.salutation" extensionName="feuserregistration" /><fe:form.isRequired field="salutation" settings="{settings}">*</fe:form.isRequired></label>
+        <f:form.select property="salutation" class="form-control" required="{fe:form.isRequired(field: 'salutation', settings: settings, then: 'true', else: 'false')}">
+            <f:form.select.option value=""></f:form.select.option>
+            <f:form.select.option value="female"><f:translate key="register.form.salutation.I.female" extensionName="feuserregistration" /></f:form.select.option>
+            <f:form.select.option value="male"><f:translate key="register.form.salutation.I.male" extensionName="feuserregistration" /></f:form.select.option>
+            <f:form.select.option value="others"><f:translate key="register.form.salutation.I.others" extensionName="feuserregistration" /></f:form.select.option>
+        </f:form.select>
     </div>
-    <div class="row mb-3">
-        <div class="col-sm-6">
-            <label for="zip" class="form-label"><f:translate key="register.form.zip" extensionName="feuserregistration" /></label>
-            <f:form.textfield property="zip" class="form-control" />
+    <div class="mb-3">
+        <label for="firstName" class="form-label"><f:translate key="register.form.firstName" extensionName="feuserregistration" /><fe:form.isRequired field="firstName" settings="{settings}">*</fe:form.isRequired></label>
+        <f:form.textfield property="firstName" class="form-control" required="{fe:form.isRequired(field: 'firstName', settings: settings, then: 'true', else: 'false')}"/>
+    </div>
+    <div class="mb-3">
+        <label for="lastName" class="form-label"><f:translate key="register.form.lastName" extensionName="feuserregistration" /><fe:form.isRequired field="lastName" settings="{settings}">*</fe:form.isRequired></label>
+        <f:form.textfield property="lastName" class="form-control" required="{fe:form.isRequired(field: 'lastName', settings: settings, then: 'true', else: 'false')}"/>
+    </div>
+    <div class="mb-3">
+        <label for="email" class="form-label"><f:translate key="register.form.email" extensionName="feuserregistration" /><fe:form.isRequired field="email" settings="{settings}">*</fe:form.isRequired></label>
+        <f:form.textfield property="email" type="email" class="form-control" required="{fe:form.isRequired(field: 'email', settings: settings, then: 'true', else: 'false')}"/>
+    </div>
+    <f:if condition="{settings.fields.address}">
+        <div class="mb-3">
+            <label for="address" class="form-label"><f:translate key="register.form.address" extensionName="feuserregistration" /><fe:form.isRequired field="address" settings="{settings}">*</fe:form.isRequired></label>
+            <f:form.textfield property="address" class="form-control" required="{fe:form.isRequired(field: 'address', settings: settings, then: 'true', else: 'false')}"/>
         </div>
-        <div class="col-sm-6">
-            <label for="city" class="form-label"><f:translate key="register.form.city" extensionName="feuserregistration" /></label>
-            <f:form.textfield property="city" class="form-control" />
+        <div class="row mb-3">
+            <div class="col-sm-6">
+                <label for="zip" class="form-label"><f:translate key="register.form.zip" extensionName="feuserregistration" /><fe:form.isRequired field="zip" settings="{settings}">*</fe:form.isRequired></label>
+                <f:form.textfield property="zip" class="form-control" required="{fe:form.isRequired(field: 'zip', settings: settings, then: 'true', else: 'false')}"/>
+            </div>
+            <div class="col-sm-6">
+                <label for="city" class="form-label"><f:translate key="register.form.city" extensionName="feuserregistration" /><fe:form.isRequired field="city" settings="{settings}">*</fe:form.isRequired></label>
+                <f:form.textfield property="city" class="form-control" required="{fe:form.isRequired(field: 'city', settings: settings, then: 'true', else: 'false')}"/>
+            </div>
         </div>
-    </div>
-    <div class="mb-3">
-        <label for="country" class="form-label"><f:translate key="register.form.country" extensionName="feuserregistration" /></label>
-        <f:form.textfield property="country" class="form-control" />
-    </div>
-</f:if>
-<f:if condition="{settings.fields.phone}">
-    <div class="mb-3">
-        <label for="phone" class="form-label"><f:translate key="register.form.phone" extensionName="feuserregistration" /></label>
-        <f:form.textfield property="phone" class="form-control" />
-    </div>
-</f:if>
-<f:if condition="{settings.fields.fax}">
-    <div class="mb-3">
-        <label for="fax" class="form-label"><f:translate key="register.form.fax" extensionName="feuserregistration" /></label>
-        <f:form.textfield property="fax" class="form-control" />
-    </div>
-</f:if>
-<f:if condition="{settings.fields.website}">
-    <div class="mb-3">
-        <label for="www" class="form-label"><f:translate key="register.form.website" extensionName="feuserregistration" /></label>
-        <f:form.textfield property="www" class="form-control" />
-    </div>
-</f:if>
-<f:if condition="{settings.fields.captcha}">
-    <f:render partial="Captcha/Math" />
-</f:if>
-<f:if condition="{settings.fields.luxletter}">
-    <div class="form-check mb-3">
-        <f:form.checkbox property="newsletterReceive" class="form-check-input" value="1" />
-        <label for="newsletterReceive" class="form-check-label"><f:translate key="register.form.newsletterReceive" extensionName="feuserregistration" /></label>
-    </div>
-    <div class="mb-3">
-        <label for="luxletterLanguage" class="form-label"><f:translate key="register.form.luxletterLanguage" extensionName="feuserregistration" /></label>
-        <f:form.select property="luxletterLanguage" class="form-select" options="{languages}" />
-    </div>
-</f:if>
-<f:if condition="{settings.fields.privacy}">
-    <div class="mb-3 form-check">
-        <f:form.checkbox id="privacy" property="privacy" class="form-check-input" value="1" />
-        <f:if condition="{settings.fields.privacy.newsletter}">
-            <f:then>
-                <label for="privacy" class="form-check-label"><f:format.raw><f:translate key="register.form.privacy_long.newsletter" extensionName="feuserregistration" arguments="{0: '{f:uri.page(pageUid: \'{settings.pages.privacyPage}\')}'}" /></f:format.raw></label>
-            </f:then>
-            <f:else>
-                <label for="privacy" class="form-check-label"><f:format.raw><f:translate key="register.form.privacy_long" extensionName="feuserregistration" arguments="{0: '{f:uri.page(pageUid: \'{settings.pages.privacyPage}\')}'}" /></f:format.raw></label>
-            </f:else>
-        </f:if>
-    </div>
-</f:if>
+        <div class="mb-3">
+            <label for="country" class="form-label"><f:translate key="register.form.country" extensionName="feuserregistration" /><fe:form.isRequired field="country" settings="{settings}">*</fe:form.isRequired></label>
+            <f:form.textfield property="country" class="form-control" required="{fe:form.isRequired(field: 'country', settings: settings, then: 'true', else: 'false')}"/>
+        </div>
+    </f:if>
+    <f:if condition="{settings.fields.phone}">
+        <div class="mb-3">
+            <label for="phone" class="form-label"><f:translate key="register.form.phone" extensionName="feuserregistration" /><fe:form.isRequired field="phone" settings="{settings}">*</fe:form.isRequired></label>
+            <f:form.textfield property="phone" class="form-control" required="{fe:form.isRequired(field: 'phone', settings: settings, then: 'true', else: 'false')}"/>
+        </div>
+    </f:if>
+    <f:if condition="{settings.fields.fax}">
+        <div class="mb-3">
+            <label for="fax" class="form-label"><f:translate key="register.form.fax" extensionName="feuserregistration" /><fe:form.isRequired field="fax" settings="{settings}">*</fe:form.isRequired></label>
+            <f:form.textfield property="fax" class="form-control" required="{fe:form.isRequired(field: 'fax', settings: settings, then: 'true', else: 'false')}"/>
+        </div>
+    </f:if>
+    <f:if condition="{settings.fields.website}">
+        <div class="mb-3">
+            <label for="www" class="form-label"><f:translate key="register.form.website" extensionName="feuserregistration" /><fe:form.isRequired field="www" settings="{settings}">*</fe:form.isRequired></label>
+            <f:form.textfield property="www" class="form-control" required="{fe:form.isRequired(field: 'www', settings: settings, then: 'true', else: 'false')}"/>
+        </div>
+    </f:if>
+    <f:if condition="{settings.fields.captcha}">
+        <f:render partial="Captcha/Math" />
+    </f:if>
+    <f:if condition="{settings.fields.luxletter}">
+        <div class="form-check mb-3">
+            <f:form.checkbox property="newsletterReceive" class="form-check-input" value="1" />
+            <label for="newsletterReceive" class="form-check-label"><f:translate key="register.form.newsletterReceive" extensionName="feuserregistration" /></label>
+        </div>
+        <div class="mb-3">
+            <label for="luxletterLanguage" class="form-label"><f:translate key="register.form.luxletterLanguage" extensionName="feuserregistration" /></label>
+            <f:form.select property="luxletterLanguage" class="form-select" options="{languages}" />
+        </div>
+    </f:if>
+    <f:if condition="{settings.fields.privacy}">
+        <div class="mb-3 form-check">
+            <f:form.checkbox id="privacy" property="privacy" class="form-check-input" value="1" required="{fe:form.isRequired(field: 'privacy', settings: settings, then: 'true', else: 'false')}" />
+            <f:if condition="{settings.fields.privacy.newsletter}">
+                <f:then>
+                    <label for="privacy" class="form-check-label"><f:format.raw><f:translate key="register.form.privacy_long.newsletter" extensionName="feuserregistration" arguments="{0: '{f:uri.page(pageUid: \'{settings.pages.privacyPage}\')}'}" /></f:format.raw><fe:form.isRequired field="privacy" settings="{settings}">*</fe:form.isRequired></label>
+                </f:then>
+                <f:else>
+                    <label for="privacy" class="form-check-label"><f:format.raw><f:translate key="register.form.privacy_long" extensionName="feuserregistration" arguments="{0: '{f:uri.page(pageUid: \'{settings.pages.privacyPage}\')}'}" /></f:format.raw><fe:form.isRequired field="privacy" settings="{settings}">*</fe:form.isRequired></label>
+                </f:else>
+            </f:if>
+        </div>
+    </f:if>
+</html>

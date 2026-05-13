@@ -1,3 +1,7 @@
+# Version 3.3.0
+- [FEATURE] Add IsRequiredViewHelper and use it in long registration form to mark required fields with * and add attribute required
+- [TASK] Use type email for email field
+
 # Version 3.2.2
 - [BUGFIX] Wrong namespace for LocalizationUtility
 
