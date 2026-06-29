@@ -1,3 +1,6 @@
+# Version 3.3.1
+- [TASK] Raise TYPO3 14.0 to 14.3
+
 # Version 3.3.0
 - [FEATURE] Add IsRequiredViewHelper and use it in long registration form to mark required fields with * and add attribute required
 - [TASK] Use type email for email field
