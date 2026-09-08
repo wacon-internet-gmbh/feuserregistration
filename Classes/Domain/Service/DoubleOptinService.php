@@ -74,6 +74,10 @@ class DoubleOptinService
     {
         $this->mail = GeneralUtility::makeInstance(MailMessage::class);
         $this->request = $request;
+
+        if ($this->request->hasArgument('doihash')) {
+            $this->hash = $this->request->getArgument('doihash');
+        }
     }
 
     /**

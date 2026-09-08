@@ -1,3 +1,6 @@
+# Version 2.7.3
+- [BUGFIX] Missing hash value in DoubleOptinService on sendCredentials
+
 # Version 2.7.2
 - [CHANGE] Import: Check for redundance in imported csv file
 
