@@ -13,12 +13,16 @@ declare(strict_types=1);
 
 namespace Wacon\Feuserregistration\Controller;
 
+use InvalidArgumentException;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Http\ForwardResponse;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 use Wacon\Feuserregistration\Domain\Repository\UserRepository;
+use Wacon\Feuserregistration\Domain\Service\DeclineRegistrationService;
+use Wacon\Feuserregistration\Domain\Service\DoubleOptinService;
 use Wacon\Feuserregistration\Domain\Service\RegistrationService;
+use Wacon\Feuserregistration\Utility\PasswordUtility;
 
 class AdminController extends BaseActionController
 {
@@ -72,7 +76,46 @@ class AdminController extends BaseActionController
      */
     public function activateAction(string $submit, string $doihash): ResponseInterface
     {
+        $querySettings = $this->userRepository->createQuery()->getQuerySettings();
+        $querySettings->setIgnoreEnableFields(true);
+        $querySettings->setEnableFieldsToBeIgnored(['disabled']);
+        $this->userRepository->setDefaultQuerySettings($querySettings);
+        $user = $this->userRepository->findByDoiHash($doihash)->current();
 
+        if (!$user) {
+            throw new InvalidArgumentException();
+        }
+
+        if ($submit === LocalizationUtility::translate('admin.activateform.decline', 'feuserregistration')) {
+            $service = GeneralUtility::makeInstance(DeclineRegistrationService::class, $this->request);
+            $service->sendDeclinedInfo($user);
+            $this->userRepository->remove($user);
+            $this->view->assign('message', LocalizationUtility::translate('admin.activateform.declined', 'feuserregistration'));
+        } else {
+            $user->setDisable(false);
+            $user->setDoiHash('');
+            $user->addFeGroup($this->settings['fegroups']['target']);
+            $password = PasswordUtility::random();
+            $user->setPassword(PasswordUtility::hashPassword($password));
+            $this->userRepository->update($user);
+
+            // if login page is set, then send credentials to user
+            if ($this->settings['pages']['loginPage']) {
+                try {
+                    $service = GeneralUtility::makeInstance(DoubleOptinService::class, $this->request);
+                    $service->setSettings($this->settings);
+                    $service->sendCredentials($user, $password);
+                } catch (\Exception $e) {
+                    $this->view->assign('error', $e->getMessage());
+                }
+
+                $this->view->assign('message', LocalizationUtility::translate('register.form.text.afterDoi', 'feuserregistration'));
+            }
+
+            $this->view->assign('message', LocalizationUtility::translate('admin.activateform.approved', 'feuserregistration'));
+        }
+
+        return $this->htmlResponse();
     }
 
     /**

@@ -174,10 +174,25 @@
                 <source>Do you want to approve the registration of the following user?</source>
             </trans-unit>
 			<trans-unit id="admin.activateform.approve" resname="admin.activateform.approve">
-                <source>Decline</source>
+                <source>Approve</source>
             </trans-unit>
 			<trans-unit id="admin.activateform.decline" resname="admin.activateform.decline">
-                <source>Approve</source>
+                <source>Decline</source>
+            </trans-unit>
+			<trans-unit id="admin.activateform.declined" resname="admin.activateform.declined">
+                <source>The registration has been declined and the user has been informed by email and deleted from the system.</source>
+            </trans-unit>
+			<trans-unit id="admin.activateform.declined.mail.subject" resname="admin.activateform.declined.mail.subject">
+                <source>The registration has been declined</source>
+            </trans-unit>
+			<trans-unit id="admin.activateform.declined.salutation" resname="admin.activateform.declined.salutation">
+                <source>Dear user,</source>
+            </trans-unit>
+			<trans-unit id="admin.activateform.declined.text.1" resname="admin.activateform.declined.text.1">
+                <source>your registration has beend declined from our web team. We apologize for any inconvience. If we made a mistake, then please contact us via our website.</source>
+            </trans-unit>
+			<trans-unit id="admin.activateform.approved" resname="admin.activateform.approved">
+                <source>The registration has been approved and the user has been informed by email including the login credentials</source>
             </trans-unit>
 
             <trans-unit id="verify.doiform.submit" resname="verify.doiform.submit">

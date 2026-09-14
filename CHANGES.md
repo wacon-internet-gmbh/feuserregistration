@@ -1,3 +1,6 @@
+# Version dev-2.8.0-1
+- [FEATURE] Admin Activation process
+
 # Version dev-2.8.0-0
 - [WIP] Admin Activation process
 

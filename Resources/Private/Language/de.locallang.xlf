@@ -77,7 +77,7 @@
                 <target><![CDATA[Ich habe die <a href="%s" target="_blank">Datenschutzerklärung</a> gelesen und akzeptiere sie. Ich willige ein, dass meine Daten zum Versand des Newsletters verarbeitet werden.]]></target>
             </trans-unit>
             <trans-unit id="register.form.privacy" resname="register.form.privacy">
-                <source>Datenschutzerklärung</source>
+                <target>Datenschutzerklärung</target>
             </trans-unit>
 
             <trans-unit id="register.form.text.afterRegistration" resname="register.form.text.afterRegistration">
@@ -154,6 +154,27 @@
             </trans-unit>
             <trans-unit id="register.mail.adminInfo.text.greetings.brand" resname="register.mail.adminInfo.text.greetings.brand">
                 <target>WACON Internet GmbH</target>
+            </trans-unit>
+			<trans-unit id="admin.activateform.message" resname="admin.activateform.message">
+                <target>Möchten Sie die Registrierung des folgenden Benutzers genehmigen?</target>
+            </trans-unit>
+			<trans-unit id="admin.activateform.approve" resname="admin.activateform.approve">
+                <target>Zustimmen</target>
+            </trans-unit>
+			<trans-unit id="admin.activateform.decline" resname="admin.activateform.decline">
+                <target>Ablehnen</target>
+            </trans-unit>
+			<trans-unit id="admin.activateform.declined" resname="admin.activateform.declined">
+                <target>Die Registrierung wurde abgelehnt, der Benutzer wurde per E-Mail benachrichtigt und aus dem System gelöscht.</target>
+            </trans-unit>
+			<trans-unit id="admin.activateform.declined.mail.subject" resname="admin.activateform.declined.mail.subject">
+                <target>Die Registrierung wurde abgelehnt.</target>
+            </trans-unit>
+			<trans-unit id="admin.activateform.declined.text.1" resname="admin.activateform.declined.text.1">
+                <target>Ihre Registrierung wurde von unserem Webteam abgelehnt. Wir entschuldigen uns für die Unannehmlichkeiten. Sollten wir einen Fehler gemacht haben, kontaktieren Sie uns bitte über unsere Website.</target>
+            </trans-unit>
+			<trans-unit id="admin.activateform.approved" resname="admin.activateform.approved">
+                <target>Die Registrierung wurde genehmigt und der Nutzer wurde per E-Mail über die Zugangsdaten informiert.</target>
             </trans-unit>
 
             <trans-unit id="verify.doiform.submit" resname="verify.doiform.submit">
