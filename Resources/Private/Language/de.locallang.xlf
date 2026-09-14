@@ -86,6 +86,9 @@
             <trans-unit id="register.form.text.afterDoi" resname="register.form.text.afterDoi">
                 <target>Ihre Registrierung ist abgeschlossen. Wir haben Ihre Zugangsdaten an die von Ihnen hinterlegte E-Mail Adresse geschickt.</target>
             </trans-unit>
+			<trans-unit id="register.form.text.afterDoi.adminActivation" resname="register.form.text.afterDoi.adminActivation">
+                <target>Wir haben Ihre Registrierung erhalten. Wir werden Ihre Registrierung bestätigen und Ihnen nach der Bestätigung Ihre Zugangsdaten per E-Mail zusenden.</target>
+            </trans-unit>
             <trans-unit id="register.form.text.afterDoi.noCredentials" resname="register.form.text.afterDoi.noCredentials">
                 <target>Ihre Registrierung ist abgeschlossen.</target>
             </trans-unit>

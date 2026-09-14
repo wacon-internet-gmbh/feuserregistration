@@ -19,6 +19,7 @@ use Symfony\Component\Mime\Address;
 use TYPO3\CMS\Core\Mail\MailMessage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\MailUtility;
+use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 use Wacon\Feuserregistration\Bootstrap\Traits\ExtensionTrait;
 use Wacon\Feuserregistration\Domain\Model\User;
@@ -27,6 +28,7 @@ use Wacon\Feuserregistration\Utility\Typo3\SiteUtility;
 class AdminInfoMailService
 {
     use ExtensionTrait;
+    public static string $MODE_ACTIVATION = 'activation';
     public static string $MODE_VERIFICATION = 'verification';
     public static string $MODE_REGISTRATION = 'registration';
 
@@ -136,6 +138,50 @@ class AdminInfoMailService
         return $this->mail
             ->subject(LocalizationUtility::translate('register.mail.adminInfo.subject.' . self::$MODE_VERIFICATION, $this->extensionKey, [SiteUtility::getDomain()]))
             ->html($this->getBodyHtmlForAdminInfo(self::$MODE_VERIFICATION, $user, SiteUtility::getDomain(), SiteUtility::getBaseUrl()))
+            ->send();
+    }
+
+    /**
+     * Send the mail to admin to activate account
+     * @param User $user
+     * @return bool
+     */
+    public function sendActivationMail(User $user): bool
+    {
+        $from = MailUtility::getSystemFrom();
+        $fromAddress = null;
+
+        if (!array_key_exists(0, $from)) {
+            $fromAddress = new Address(current(array_keys($from)), current($from));
+        } else {
+            $fromAddress = new Address(current($from));
+        }
+
+        $this->mail->from($fromAddress);
+
+        $receivers = GeneralUtility::trimExplode(',', $this->settings['adminActivation']['receivers'], true);
+
+        if (count($receivers) == 0) {
+            return false;
+        }
+
+        foreach ($receivers as $key => $receiver) {
+            if ($key == 0) {
+                $this->mail->to(new Address($receiver));
+            } else {
+                $this->mail->addCc(new Address($receiver));
+            }
+        }
+
+        $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
+        $url = $uriBuilder
+            ->setTargetPageUid((int)$this->settings['pages']['activationPage'])
+            ->setCreateAbsoluteUri(true)
+            ->uriFor('activateForm', ['hash' => $user->getDoiHash()], 'Admin', 'Feuserregistration', 'Activate');
+
+        return $this->mail
+            ->subject(LocalizationUtility::translate('register.mail.adminInfo.subject.' . self::$MODE_ACTIVATION, $this->extensionKey, [SiteUtility::getDomain()]))
+            ->html($this->getBodyHtmlForAdminInfo(self::$MODE_ACTIVATION, $user, SiteUtility::getBaseUrl(), $url))
             ->send();
     }
 

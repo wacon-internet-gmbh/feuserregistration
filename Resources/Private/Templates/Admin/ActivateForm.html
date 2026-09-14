@@ -1,0 +1,25 @@
+<f:layout name="Default" />
+
+<f:section name="Main">
+    <f:if condition="{errorMessage}">
+        <f:then>
+            <div class="alert alert-danger">{errorMessage}</div>
+        </f:then>
+        <f:else>
+            <p class="fw-bold"><f:translate key="admin.activateform.message" extensionName="feuserregistration" /></p>
+            <ul class="list-group list-unstyled">
+                <f:if condition="{user.username} != {user.email}">
+                    <li>{user.username}</li>
+                </f:if>
+                <li>{user.email}</li>
+            </ul>
+        </f:else>
+    </f:if>
+    <f:form action="activate" method="POST">
+        <div class="form-buttons">
+            <f:form.hidden name="doihash" value="{user.doihash}" />
+            <f:form.submit name="submit" value="{f:translate(key: 'admin.activateform.decline', extensionName: 'feuserregistration')}" class="btn btn-danger" />
+            <f:form.submit name="submit" value="{f:translate(key: 'admin.activateform.approve', extensionName: 'feuserregistration')}" class="btn btn-primary" />
+        </div>
+    </f:form>
+</f:section>

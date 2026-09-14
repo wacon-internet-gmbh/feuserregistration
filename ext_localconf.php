@@ -47,8 +47,19 @@ defined('TYPO3') or die();
 
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
         'Feuserregistration',
+        'Activate',
+        [
+            \Wacon\Feuserregistration\Controller\AdminController::class => 'activateForm,activate'
+        ],
+        [
+            \Wacon\Feuserregistration\Controller\AdminController::class => 'activateForm,activate'
+        ]
+    );
+
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+        'Feuserregistration',
         'CaptchaMath',
-        [                
+        [
             \Wacon\Feuserregistration\Controller\CaptchaController::class => 'mathImage'
         ],
         // non-cacheable actions

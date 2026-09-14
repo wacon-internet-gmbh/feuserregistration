@@ -95,6 +95,9 @@
             <trans-unit id="register.form.text.afterDoi" resname="register.form.text.afterDoi">
                 <source>Your registration is completed. We have sent your credentials to your given email.</source>
             </trans-unit>
+			<trans-unit id="register.form.text.afterDoi.adminActivation" resname="register.form.text.afterDoi.adminActivation">
+                <source>We have received your registration. We will approve your registration and send your login credential on approval via email.</source>
+            </trans-unit>
             <trans-unit id="register.form.text.afterDoi.noCredentials" resname="register.form.text.afterDoi.noCredentials">
                 <source>Your registration is completed.</source>
             </trans-unit>
@@ -146,6 +149,9 @@
             <trans-unit id="register.mail.adminInfo.subject.verification" resname="register.mail.adminInfo.subject.verification">
                 <source>New registration completed at %s</source>
             </trans-unit>
+			<trans-unit id="register.mail.adminInfo.subject.activation" resname="register.mail.adminInfo.subject.activation">
+                <source>New registration needs to be verified at %s</source>
+            </trans-unit>
             <trans-unit id="register.mail.adminInfo.text.salutation" resname="register.mail.adminInfo.text.salutation">
                 <source>Dear admin,</source>
             </trans-unit>
@@ -155,11 +161,23 @@
             <trans-unit id="register.mail.adminInfo.text.verification" resname="register.mail.adminInfo.text.verification">
                 <source>a new user: '%s' completed the registration on %s. The user has just verified his account.</source>
             </trans-unit>
+			<trans-unit id="register.mail.adminInfo.text.activation" resname="register.mail.adminInfo.text.activation">
+                <source>a new user: '%s' completed the registration on %s. The user has just verified his account. The account is disabled and needs to be activated by an admin.</source>
+            </trans-unit>
             <trans-unit id="register.mail.adminInfo.text.greetings" resname="register.mail.adminInfo.text.greetings">
                 <source>Best regards,</source>
             </trans-unit>
             <trans-unit id="register.mail.adminInfo.text.greetings.brand" resname="register.mail.adminInfo.text.greetings.brand">
                 <source>WACON Internet GmbH</source>
+            </trans-unit>
+			<trans-unit id="admin.activateform.message" resname="admin.activateform.message">
+                <source>Do you want to approve the registration of the following user?</source>
+            </trans-unit>
+			<trans-unit id="admin.activateform.approve" resname="admin.activateform.approve">
+                <source>Decline</source>
+            </trans-unit>
+			<trans-unit id="admin.activateform.decline" resname="admin.activateform.decline">
+                <source>Approve</source>
             </trans-unit>
 
             <trans-unit id="verify.doiform.submit" resname="verify.doiform.submit">
@@ -181,6 +199,9 @@
 
             <trans-unit id="validation.error.title" resname="validation.error.title">
                 <source>Please verify your input</source>
+            </trans-unit>
+			<trans-unit id="validation.error.notAllowed" resname="validation.error.notAllowed">
+                <source>You are not allowed to perform this action.</source>
             </trans-unit>
 
 			<trans-unit id="module.importFeUserForLuxletter.title" resname="module.importFeUserForLuxletter.title">

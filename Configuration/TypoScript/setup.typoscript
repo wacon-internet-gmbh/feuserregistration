@@ -38,10 +38,17 @@ plugin.tx_feuserregistration {
             }
         }
 
+        adminActivation {
+          enable = {$plugin.tx_feuserregistration.settings.adminActivation.enable}
+          receivers = {$plugin.tx_feuserregistration.settings.adminActivation.receivers}
+          backendGroups = {$plugin.tx_feuserregistration.settings.adminActivation.backendGroups}
+        }
+
         pages {
-            verificationPage = {$plugin.tx_feuserregistration.settings.pages.verificationPage}
-            loginPage = {$plugin.tx_feuserregistration.settings.pages.loginPage}
-            privacyPage = {$plugin.tx_feuserregistration.settings.pages.privacyPage}
+          activationPage = {$plugin.tx_feuserregistration.settings.pages.activationPage}
+          verificationPage = {$plugin.tx_feuserregistration.settings.pages.verificationPage}
+          loginPage = {$plugin.tx_feuserregistration.settings.pages.loginPage}
+          privacyPage = {$plugin.tx_feuserregistration.settings.pages.privacyPage}
         }
 
         pagetypes {

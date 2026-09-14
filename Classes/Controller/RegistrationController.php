@@ -151,33 +151,44 @@ class RegistrationController extends BaseActionController
         $user = $this->userRepository->findByDoiHash($this->request->getArgument('doihash'))->current();
 
         if ($user) {
-            $user->setDisable(false);
-            $user->setDoiHash('');
-            $user->addFeGroup($this->settings['fegroups']['target']);
-            $password = PasswordUtility::random();
-            $user->setPassword(PasswordUtility::hashPassword($password));
-            $this->userRepository->update($user);
+            if (!isset($this->settings['adminActivation']['enable']) || boolval($this->settings['adminActivation']['enable']) === false) {
+                $user->setDisable(false);
+                $user->setDoiHash('');
+                $user->addFeGroup($this->settings['fegroups']['target']);
+                $password = PasswordUtility::random();
+                $user->setPassword(PasswordUtility::hashPassword($password));
+                $this->userRepository->update($user);
 
-            // if login page is set, then send credentials to user
-            if ($this->settings['pages']['loginPage']) {
-                try {
-                    $service = GeneralUtility::makeInstance(DoubleOptinService::class, $this->request);
-                    $service->setSettings($this->settings);
-                    $service->sendCredentials($user, $password);
-                } catch (\Exception $e) {
-                    $this->view->assign('error', $e->getMessage());
+                // if login page is set, then send credentials to user
+                if ($this->settings['pages']['loginPage']) {
+                    try {
+                        $service = GeneralUtility::makeInstance(DoubleOptinService::class, $this->request);
+                        $service->setSettings($this->settings);
+                        $service->sendCredentials($user, $password);
+                    } catch (\Exception $e) {
+                        $this->view->assign('error', $e->getMessage());
+                    }
+
+                    $this->view->assign('message', LocalizationUtility::translate('register.form.text.afterDoi', 'feuserregistration'));
+                } else {
+                    $this->view->assign('message', LocalizationUtility::translate('register.form.text.afterDoi.noCredentials', 'feuserregistration'));
                 }
 
-                $this->view->assign('message', LocalizationUtility::translate('register.form.text.afterDoi', 'feuserregistration'));
+                if (isset($this->settings['mails']['onVerification']) && $this->settings['mails']['onVerification']['enable'] == '1' && !empty($this->settings['mails']['onVerification']['receivers'])) {
+                    try {
+                        $service = GeneralUtility::makeInstance(AdminInfoMailService::class, $this->request);
+                        $service->setSettings($this->settings);
+                        $service->sendVerificationMail($user);
+                    } catch (\Exception $e) {
+                        $this->view->assign('error', $e->getMessage());
+                    }
+                }
             } else {
-                $this->view->assign('message', LocalizationUtility::translate('register.form.text.afterDoi.noCredentials', 'feuserregistration'));
-            }
-
-            if (isset($this->settings['mails']['onVerification']) && $this->settings['mails']['onVerification']['enable'] == '1' && !empty($this->settings['mails']['onVerification']['receivers'])) {
                 try {
                     $service = GeneralUtility::makeInstance(AdminInfoMailService::class, $this->request);
                     $service->setSettings($this->settings);
-                    $service->sendVerificationMail($user);
+                    $service->sendActivationMail($user);
+                    $this->view->assign('message', LocalizationUtility::translate('register.form.text.afterDoi.adminActivation', 'feuserregistration'));
                 } catch (\Exception $e) {
                     $this->view->assign('error', $e->getMessage());
                 }

@@ -36,6 +36,12 @@ defined('TYPO3') or die();
         $pluginSignature,
         'FILE:EXT:' . $extensionName . '/Configuration/Flexforms/Verify.xml'
     );
+
+    $pluginSignature = \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+        'Feuserregistration',
+        'Activate',
+        'Feuserregistration: Activate a registration.'
+    );
      /******************************************************************
      * FRONTEND PLUGINS - END
      *****************************************************************/

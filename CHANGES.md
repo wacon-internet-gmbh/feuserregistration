@@ -1,3 +1,6 @@
+# Version dev-2.8.0-0
+- [WIP] Admin Activation process
+
 # Version 2.7.3
 - [BUGFIX] Missing hash value in DoubleOptinService on sendCredentials
 
