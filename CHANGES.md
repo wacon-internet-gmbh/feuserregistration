@@ -1,3 +1,6 @@
+# Version 3.3.2
+- [TASK] Add Dashboard to requirment because of Widget
+
 # Version 3.3.1
 - [TASK] Raise TYPO3 14.0 to 14.3
 
