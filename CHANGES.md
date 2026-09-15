@@ -1,3 +1,6 @@
+# Version 2.8.0
+- [TASK] Merge dev-2.8.0
+
 # Version dev-2.8.0-1
 - [FEATURE] Admin Activation process
 
